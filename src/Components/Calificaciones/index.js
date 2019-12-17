@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
-import './index.css'
+import './index.css';
+import API from '../../api';
 
 class Calificaciones extends Component {
 	constructor(props) {
@@ -10,8 +11,20 @@ class Calificaciones extends Component {
 			curso: 'default',
 			maestro: 'default',
 			asignatura: 'default',
-			periodo: 'default'
+			periodo: 'default',
+			cursos: []
 		};
+	}
+
+	componentDidMount() {
+		API.get(
+			`periodo_estudiante`
+			
+		).then((res) => {
+			 
+			console.log(res.data.cursos);
+			this.setState({ cursos: res.data.cursos });
+		});
 	}
 
 	manejaCalificaciones = (event) => {
@@ -19,6 +32,7 @@ class Calificaciones extends Component {
 	};
 
 	manejaCurso = (event) => {
+
 		this.setState({ curso: event.target.value });
 	};
 
@@ -33,7 +47,14 @@ class Calificaciones extends Component {
 		this.setState({ periodo: event.target.value });
 	};
 
+	
+
 	render() {
+
+		const cursos =this.state.cursos ;
+		const listCursos = cursos.map((curso) =>
+			<option value= {curso.codigo_curso}>{curso.codigo_curso}</option>
+		);
 		
 		return (
 			<div>
@@ -66,7 +87,8 @@ class Calificaciones extends Component {
 										onChange={this.manejaCurso}
 									>
 										<option value="default">COD. CURSO</option>
-										<option value="6B201819">6B201819</option>
+										{listCursos}
+									
 									</select>
 								</div>
 								<div className="col-sm-3">

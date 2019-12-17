@@ -1,0 +1,500 @@
+{
+  "calif_general": [
+    {
+      "id": "1",
+      "codigo_curso": "6B201819",
+      "codigo_maestro": "LJRAMIREZ2019",
+      "codigo_materia": "MAT001",
+      "periodo": "2018-2019",
+      "tipo": "0",
+      "cantidad_estudiantes": "21",
+      "calificaciones": [
+        {
+          "numero": 1,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 3,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 4,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 5,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 6,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 7,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 8,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 9,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 10,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 11,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 12,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 13,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 14,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 15,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 16,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 17,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 18,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 19,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 20,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 21,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        }
+      ],
+      "activo": true
+    },
+    {
+      "id": "2",
+      "codigo_curso": "6C201819",
+      "codigo_maestro": "LJPEREZ2019",
+      "codigo_materia": "ESP001",
+      "periodo": "2018-2019",
+      "tipo": "0",
+      "cantidad_estudiantes": "7",
+      "calificaciones": [
+        {
+          "numero": 1,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 3,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 4,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 5,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 6,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 7,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        }
+      ],
+      "activo": true
+    },
+    {
+      "id": "3",
+      "codigo_curso": "1C201819",
+      "codigo_maestro": "LJSANCHEZ2019",
+      "codigo_materia": "ING001",
+      "periodo": "2018-2019",
+      "tipo": "0",
+      "cantidad_estudiantes": "7",
+      "calificaciones": [
+        {
+          "numero": 1,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 3,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        }
+      ],
+      "activo": true
+    }
+  ],
+  "calif_completiva": [
+    {
+      "id": "11",
+      "codigo_curso": "6B201819",
+      "codigo_maestro": "LJRAMIREZ2019",
+      "codigo_materia": "MAT001",
+      "periodo": "2018-2019",
+      "tipo": "1",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 1,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        },
+        {
+          "numero": 2,
+          "ago_sept_oct": 80,
+          "nov_dic_ene": 80,
+          "feb_mar": 80,
+          "abr_may_jun": 80,
+          "cf": 80
+        }
+      ],
+      "activo": true
+    },
+    {
+      "id": "12",
+      "codigo_curso": "6C201819",
+      "codigo_maestro": "LJPEREZ2019",
+      "codigo_materia": "ESP001",
+      "periodo": "2018-2019",
+      "tipo": "1",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 1,
+          "pcp_50": 80,
+          "cpc": 80,
+          "cpc_50": 80,
+          "cc": 80
+        },
+        {
+          "numero": 19,
+          "pcp_50": 80,
+          "cpc": 80,
+          "cpc_50": 80,
+          "cc": 80
+        }
+      ],
+      "activo": true
+    }
+  ],
+  "calif_extraordinaria": [
+    {
+      "id": "11",
+      "codigo_curso": "6B201819",
+      "codigo_maestro": "LJRAMIREZ2019",
+      "codigo_materia": "MAT001",
+      "periodo": "2018-2019",
+      "tipo": "2",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 19,
+          "pcp_30": 80,
+          "cpex": 80,
+          "cpex_70": 80,
+          "cex": 80
+        },
+        {
+          "numero": 19,
+          "pcp_30": 80,
+          "cpex": 80,
+          "cpex_70": 80,
+          "cex": 80
+        }
+      ],
+      "activo": true
+    },
+    {
+      "id": "12",
+      "codigo_curso": "6C201819",
+      "codigo_maestro": "LJPEREZ2019",
+      "codigo_materia": "ESP001",
+      "periodo": "2018-2019",
+      "tipo": "2",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 19,
+          "pcp_30": 80,
+          "cpex": 80,
+          "cpex_70": 80,
+          "cex": 80
+        },
+        {
+          "numero": 19,
+          "pcp_30": 80,
+          "cpex": 80,
+          "cpex_70": 80,
+          "cex": 80
+        }
+      ],
+      "activo": true
+    }
+  ],
+  "calif_tecnica": [
+    {
+      "id": "11",
+      "codigo_curso": "6B201819",
+      "codigo_maestro": "LJRODRIGUEZ2019",
+      "codigo_materia": "ELECT001T",
+      "periodo": "2018-2019",
+      "tipo": "6",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 19,
+          "ra1": 80,
+          "ra2": 80,
+          "ra3": 80,
+          "ra4": 80,
+          "ra5": 80,
+          "ra6": 80,
+          "ra7": 80,
+          "ra8": 80,
+          "ra9": 80,
+          "ra10": 80,
+          "ra11": 0,
+          "total": 100
+        },
+        {
+          "numero": 11,
+          "ra1": 80,
+          "ra2": 80,
+          "ra3": 80,
+          "ra4": 80,
+          "ra5": 80,
+          "ra6": 80,
+          "ra7": 80,
+          "ra8": 80,
+          "ra9": 80,
+          "ra10": 80,
+          "ra11": 0,
+          "total": 100
+        }
+      ],
+      "activo": true
+    },
+    {
+      "id": "12",
+      "codigo_curso": "6C201819",
+      "codigo_maestro": "LJSOSA2019",
+      "codigo_materia": "ESP001",
+      "periodo": "2018-2019",
+      "tipo": "6",
+      "cantidad_estudiantes": "2",
+      "calificaciones": [
+        {
+          "numero": 19,
+          "ra1": 80,
+          "ra2": 80,
+          "ra3": 80,
+          "ra4": 80,
+          "ra5": 80,
+          "ra6": 80,
+          "ra7": 80,
+          "ra8": 80,
+          "ra9": 80,
+          "ra10": 80,
+          "ra11": 0,
+          "total": 100
+        },
+        {
+          "numero": 11,
+          "ra1": 80,
+          "ra2": 80,
+          "ra3": 80,
+          "ra4": 80,
+          "ra5": 80,
+          "ra6": 80,
+          "ra7": 80,
+          "ra8": 80,
+          "ra9": 80,
+          "ra10": 80,
+          "ra11": 0,
+          "total": 100
+        }
+      ],
+      "activo": true
+    }
+  ]
+}

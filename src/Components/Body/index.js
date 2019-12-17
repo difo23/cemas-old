@@ -8,7 +8,7 @@ import Maestro from '../Maestros';
 import React, { Component } from 'react';
 
 function Bienvenido(params) {
-	return <h1>Bienvenido</h1>;
+	return <h1>Bienvenido a CEMAS BD 2019</h1>;
 }
 
 class Body extends Component {
