@@ -12,19 +12,69 @@ class Calificaciones extends Component {
 			maestro: 'default',
 			asignatura: 'default',
 			periodo: 'default',
-			cursos: []
+			cursos: [],
+			asignaturas: [],
+			listAsignaturasOptions: [],
+			listAsignaturas: [],
+			listCursosOptions: [],
+			listCursos: [],
+			listAsigAcadsOptions: [],
+			listAsigAcads: []
 		};
 	}
 
 	componentDidMount() {
+		
+		let asigAcads = [];
+		var listAsigAcadsOptions =[]
+		var listAsigAcads = []
+		var cursos = [];
+		var asignaturas = [];
+		var listCursosOptions = [];
+		var listCursos = [];
+
 		API.get(
-			`periodo_estudiante`
-			
+			`asignaturas_academicas`		
 		).then((res) => {
 			 
-			console.log(res.data.cursos);
-			this.setState({ cursos: res.data.cursos });
+			asigAcads = res.data.asignaturas_academicas;
+			console.log(asigAcads)
+			for(let asigAcad of asigAcads){
+				listAsigAcads.push(asigAcad.cursos_profesor);
+			}
+
+			console.log(listAsigAcads)
+			for (var lists of listAsigAcads){
+				listAsigAcadsOptions.push(lists.map((list) =>
+				<option value= {list.profesor}>{list.profesor}</option>
+			));
+			}
+			this.setState({ listAsigAcadsOptions: listAsigAcadsOptions, listAsigAcads: listAsigAcads });
 		});
+
+		API.get(
+			`cursos`		
+		).then((res) => {
+			 
+			cursos = res.data.cursos;
+			for(let curso of cursos){
+				asignaturas.push(curso.asignaturas);
+			}
+
+		
+
+			listCursosOptions= cursos.map((curso) =>
+				<option value= {curso.codigo_curso}>{curso.codigo_curso}</option>
+			);
+			listCursos= cursos.map((curso) =>
+				curso.codigo_curso
+			);
+			
+
+			this.setState({ cursos: cursos, asignaturas: asignaturas, listCursosOptions: listCursosOptions, listCursos: listCursos });
+		});
+
+		
 	}
 
 	manejaCalificaciones = (event) => {
@@ -32,8 +82,22 @@ class Calificaciones extends Component {
 	};
 
 	manejaCurso = (event) => {
+		
+		
+		const asignaturasUpdate =this.state.asignaturas ;
+		
+		const cursos = this.state.listCursos;
+		const indx = cursos.indexOf(event.target.value);
+		var listAsignaturasOptions= [];
 
-		this.setState({ curso: event.target.value });
+		
+		if(indx >=0){
+			 const asigs = asignaturasUpdate[indx];
+			listAsignaturasOptions = asigs.map((asig) =>
+		 		<option value= {asig}>{asig}</option>
+			);
+		 }
+		this.setState({ curso: event.target.value, listAsignaturasOptions: listAsignaturasOptions });
 	};
 
 	manejaMaestro = (event) => {
@@ -41,8 +105,11 @@ class Calificaciones extends Component {
 	};
 
 	manejaAsignatura = (event) => {
+		
 		this.setState({ asignatura: event.target.value });
+	
 	};
+
 	manejaPeriodo = (event) => {
 		this.setState({ periodo: event.target.value });
 	};
@@ -51,10 +118,6 @@ class Calificaciones extends Component {
 
 	render() {
 
-		const cursos =this.state.cursos ;
-		const listCursos = cursos.map((curso) =>
-			<option value= {curso.codigo_curso}>{curso.codigo_curso}</option>
-		);
 		
 		return (
 			<div>
@@ -87,8 +150,18 @@ class Calificaciones extends Component {
 										onChange={this.manejaCurso}
 									>
 										<option value="default">COD. CURSO</option>
-										{listCursos}
+										{this.state.listCursosOptions}
 									
+									</select>
+								</div>
+								<div className="col-sm-3">
+									<select
+										className="form-control"
+										value={this.state.asignatura}
+										onChange={this.manejaAsignatura}
+									>
+										<option value="default">COD. ASIGNATURA</option>
+										{this.state.listAsignaturasOptions}
 									</select>
 								</div>
 								<div className="col-sm-3">
@@ -98,19 +171,10 @@ class Calificaciones extends Component {
 										onChange={this.manejaMaestro}
 									>
 										<option value="default">COD. MAESTRO</option>
-										<option value="LJRAMIREZD2019">LJRAMIREZD2019</option>
+										{this.state.listAsigAcadsOptions}
 									</select>
 								</div>
-								<div className="col-sm-3">
-									<select
-										className="form-control"
-										value={this.state.asignatura}
-										onChange={this.manejaAsiganatura}
-									>
-										<option value="default">COD. ASIGNATURA</option>
-										<option value="MAT001">MAT001</option>
-									</select>
-								</div>
+								
 								<div className="col-sm-2">
 									<select
 										className="form-control"
