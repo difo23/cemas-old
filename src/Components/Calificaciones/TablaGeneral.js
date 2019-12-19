@@ -17,7 +17,9 @@ class TablaGeneral extends Component {
 			rows: [],
 			columns: getNewColumns(props.tipoTabla),
 			type: props.tipoTabla,
-			cantidad_estudiantes: 0
+			cantidad_estudiantes: props.cantidad_estudiantes,
+			estudiantes: props.estudiantes
+
 		};
 	}
 
@@ -32,7 +34,8 @@ class TablaGeneral extends Component {
 			asignatura: props.asignatura,
 			maestro: props.maestro,
 			periodo: props.periodo,
-			
+			cantidad_estudiantes: props.cantidad_estudiantes,
+			estudiantes: props.estudiantes
 		});
 	}
 

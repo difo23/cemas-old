@@ -19,62 +19,67 @@ class Calificaciones extends Component {
 			listCursosOptions: [],
 			listCursos: [],
 			listAsigAcadsOptions: [],
-			listAsigAcads: []
+			listAsigAcads: [],
+			listperEsts: [],
+			estudiantesList: [],
+			cantidad_estudiantes: 0
 		};
 	}
 
 	componentDidMount() {
-		
 		let asigAcads = [];
-		var listAsigAcadsOptions =[]
-		var listAsigAcads = []
+		var listAsigAcadsOptions = [];
+		var listAsigAcads = [];
 		var cursos = [];
 		var asignaturas = [];
 		var listCursosOptions = [];
 		var listCursos = [];
+		var perEsts = [];
+		var listperEsts = [];
 
-		API.get(
-			`asignaturas_academicas`		
-		).then((res) => {
-			 
+		API.get(`asignaturas_academicas`).then((res) => {
 			asigAcads = res.data.asignaturas_academicas;
-			console.log(asigAcads)
-			for(let asigAcad of asigAcads){
+			console.log(asigAcads);
+			for (let asigAcad of asigAcads) {
 				listAsigAcads.push(asigAcad.cursos_profesor);
 			}
 
-			console.log(listAsigAcads)
-			for (var lists of listAsigAcads){
-				listAsigAcadsOptions.push(lists.map((list) =>
-				<option value= {list.profesor}>{list.profesor}</option>
-			));
+			console.log(listAsigAcads);
+			for (var lists of listAsigAcads) {
+				listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
 			}
 			this.setState({ listAsigAcadsOptions: listAsigAcadsOptions, listAsigAcads: listAsigAcads });
 		});
 
-		API.get(
-			`cursos`		
-		).then((res) => {
-			 
+		API.get(`periodos_estudiantes`).then((res) => {
+			perEsts = res.data.estudiantes;
+			console.log(perEsts);
+			for (let perEst of perEsts) {
+				listperEsts.push({
+					curso_periodo: perEst.codigo_calificaciones,
+					estudiantes: perEst.estudiantes_inscritos
+				});
+			}
+
+			this.setState({ listperEsts: listperEsts });
+		});
+
+		API.get(`cursos`).then((res) => {
 			cursos = res.data.cursos;
-			for(let curso of cursos){
+			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
 			}
 
-		
+			listCursosOptions = cursos.map((curso) => <option value={curso.codigo_curso}>{curso.codigo_curso}</option>);
+			listCursos = cursos.map((curso) => curso.codigo_curso);
 
-			listCursosOptions= cursos.map((curso) =>
-				<option value= {curso.codigo_curso}>{curso.codigo_curso}</option>
-			);
-			listCursos= cursos.map((curso) =>
-				curso.codigo_curso
-			);
-			
-
-			this.setState({ cursos: cursos, asignaturas: asignaturas, listCursosOptions: listCursosOptions, listCursos: listCursos });
+			this.setState({
+				cursos: cursos,
+				asignaturas: asignaturas,
+				listCursosOptions: listCursosOptions,
+				listCursos: listCursos
+			});
 		});
-
-		
 	}
 
 	manejaCalificaciones = (event) => {
@@ -82,21 +87,16 @@ class Calificaciones extends Component {
 	};
 
 	manejaCurso = (event) => {
-		
-		
-		const asignaturasUpdate =this.state.asignaturas ;
-		
+		const asignaturasUpdate = this.state.asignaturas;
+
 		const cursos = this.state.listCursos;
 		const indx = cursos.indexOf(event.target.value);
-		var listAsignaturasOptions= [];
+		var listAsignaturasOptions = [];
 
-		
-		if(indx >=0){
-			 const asigs = asignaturasUpdate[indx];
-			listAsignaturasOptions = asigs.map((asig) =>
-		 		<option value= {asig}>{asig}</option>
-			);
-		 }
+		if (indx >= 0) {
+			const asigs = asignaturasUpdate[indx];
+			listAsignaturasOptions = asigs.map((asig) => <option value={asig}>{asig}</option>);
+		}
 		this.setState({ curso: event.target.value, listAsignaturasOptions: listAsignaturasOptions });
 	};
 
@@ -105,20 +105,34 @@ class Calificaciones extends Component {
 	};
 
 	manejaAsignatura = (event) => {
-		
 		this.setState({ asignatura: event.target.value });
-	
 	};
 
 	manejaPeriodo = (event) => {
-		this.setState({ periodo: event.target.value });
+		let perEsts = this.state.listperEsts;
+		let len = 0;
+		let curso = this.state.curso;
+		let periodo = event.target.value;
+		let estudiantesList = [];
+
+		if (curso != 'default') {
+			for (var perEst of perEsts) {
+				let cursoPerido = perEst.curso_periodo.split(':');
+				let cursoEst = cursoPerido[0];
+				let peridoEst = cursoPerido[1];
+
+				if (periodo == peridoEst && cursoEst == curso) {
+					estudiantesList = perEst.estudiantes;
+					len = estudiantesList.length;
+					break;
+				}
+			}
+		}
+		console.log("Length"+len)
+		this.setState({ periodo: periodo, estudiantesList: estudiantesList, cantidad_estudiantes: len  });
 	};
 
-	
-
 	render() {
-
-		
 		return (
 			<div>
 				<div className="jumbotron">
@@ -151,7 +165,6 @@ class Calificaciones extends Component {
 									>
 										<option value="default">COD. CURSO</option>
 										{this.state.listCursosOptions}
-									
 									</select>
 								</div>
 								<div className="col-sm-3">
@@ -174,7 +187,7 @@ class Calificaciones extends Component {
 										{this.state.listAsigAcadsOptions}
 									</select>
 								</div>
-								
+
 								<div className="col-sm-2">
 									<select
 										className="form-control"
@@ -182,15 +195,14 @@ class Calificaciones extends Component {
 										onChange={this.manejaPeriodo}
 									>
 										<option value="default">PERIODO</option>
-										<option value="2018-2019">20182019</option>
+										<option value="2019-2020">2019-2020</option>
 									</select>
 								</div>
 								<div className="col-sm-2">
-						<button onClick={this.manejaEnvio} className="btn btn-success">
-							Buscar
-						</button>
-						
-					</div>
+									<button onClick={this.manejaEnvio} className="btn btn-success">
+										Buscar
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -203,6 +215,8 @@ class Calificaciones extends Component {
 							asignatura={this.state.asignatura}
 							materia={this.state.materia}
 							periodo={this.state.periodo}
+							cantidad_estudiantes= {this.state.cantidad_estudiantes}
+							estudiantes= {this.state.estudiantesList}
 						/>
 					</div>
 					<hr className="my-4" />
