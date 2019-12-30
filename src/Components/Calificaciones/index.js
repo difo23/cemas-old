@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
 import './index.css';
 import API from '../../api';
+import CalificacionGeneral from './utils/calificacionGeneral'
 
 class Calificaciones extends Component {
 	constructor(props) {
@@ -21,6 +22,8 @@ class Calificaciones extends Component {
 			listAsigAcadsOptions: [],
 			listAsigAcads: [],
 			listperEsts: [],
+			listCalificaciones: [],
+			calificaciones: [],
 			estudiantesList: [],
 			cantidad_estudiantes: 0
 		};
@@ -36,15 +39,22 @@ class Calificaciones extends Component {
 		var listCursos = [];
 		var perEsts = [];
 		var listperEsts = [];
+		var listCalificaciones = []
+
+		API.get(`calificaciones`).then((res) => {
+			listCalificaciones = res.data.calificaciones;
+
+			this.setState({ listCalificaciones: listCalificaciones });	
+		});
 
 		API.get(`asignaturas_academicas`).then((res) => {
 			asigAcads = res.data.asignaturas_academicas;
-			console.log(asigAcads);
+			//console.log("Asignaturas Academicas: "+JSON.stringify(asigAcads));
 			for (let asigAcad of asigAcads) {
 				listAsigAcads.push(asigAcad.cursos_profesor);
 			}
 
-			console.log(listAsigAcads);
+			//console.log(listAsigAcads);
 			for (var lists of listAsigAcads) {
 				listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
 			}
@@ -53,7 +63,8 @@ class Calificaciones extends Component {
 
 		API.get(`periodos_estudiantes`).then((res) => {
 			perEsts = res.data.estudiantes;
-			console.log(perEsts);
+		
+			//console.log("Perido estudiantes: "+JSON.stringify(perEsts));
 			for (let perEst of perEsts) {
 				listperEsts.push({
 					curso_periodo: perEst.codigo_calificaciones,
@@ -80,6 +91,9 @@ class Calificaciones extends Component {
 				listCursos: listCursos
 			});
 		});
+
+				
+
 	}
 
 	manejaCalificaciones = (event) => {
@@ -108,11 +122,30 @@ class Calificaciones extends Component {
 		this.setState({ asignatura: event.target.value });
 	};
 
+	manejaEnvio = (event) => {
+
+
+	};
+
 	manejaPeriodo = (event) => {
+		
 		let perEsts = this.state.listperEsts;
 		let len = 0;
 		let curso = this.state.curso;
+		let asignatura = this.state.asignatura;
+		let maestro = this.state.maestro;
 		let periodo = event.target.value;
+		let calificaciones = []
+
+		let codigo_calificacion = `${curso}:${asignatura}:${maestro}:${periodo}`;
+
+		let listCalificaciones = this.state.listCalificaciones;
+		for (let calificacion of listCalificaciones){
+			if(codigo_calificacion === calificacion.codigo_calificacion){
+				calificaciones = calificacion.calificacion_estudiantes
+			}
+		}
+
 		let estudiantesList = [];
 
 		if (curso != 'default') {
@@ -128,8 +161,27 @@ class Calificaciones extends Component {
 				}
 			}
 		}
-		console.log("Length"+len)
-		this.setState({ periodo: periodo, estudiantesList: estudiantesList, cantidad_estudiantes: len  });
+
+		let newCalificaciones = [];
+		
+		if (!calificaciones.length){
+
+			
+			for (let estudiante of estudiantesList){
+				let calif = new CalificacionGeneral(estudiante.numero, estudiante.rne,0,0,0,0,0)
+
+				newCalificaciones.push(calif)
+
+			}
+
+			calificaciones = newCalificaciones;
+
+		}
+
+		console.log("Crear nueva calificacion "+JSON.stringify(newCalificaciones))
+
+		console.log("Cantidad de estudiantes: "+len)
+		this.setState({ periodo: periodo, estudiantesList: estudiantesList, cantidad_estudiantes: len, calificaciones: calificaciones  });
 	};
 
 	render() {
@@ -213,10 +265,11 @@ class Calificaciones extends Component {
 							tipoTabla={this.state.tipoTabla}
 							curso={this.state.curso}
 							asignatura={this.state.asignatura}
-							materia={this.state.materia}
+							maestro={this.state.maestro}
 							periodo={this.state.periodo}
 							cantidad_estudiantes= {this.state.cantidad_estudiantes}
 							estudiantes= {this.state.estudiantesList}
+							calificaciones= {this.state.calificaciones}
 						/>
 					</div>
 					<hr className="my-4" />

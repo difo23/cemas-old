@@ -14,9 +14,12 @@ class TablaGeneral extends Component {
 		this.tipos = ["calif_general","calif_completiva","calif_extraordinaria","calif_tecnica"];
 
 		this.state = {
-			rows: [],
 			columns: getNewColumns(props.tipoTabla),
 			type: props.tipoTabla,
+			curso: props.curso,
+			asignatura: props.asignatura,
+			maestro: props.maestro,
+			periodo: props.periodo,
 			cantidad_estudiantes: props.cantidad_estudiantes,
 			estudiantes: props.estudiantes
 
@@ -26,8 +29,9 @@ class TablaGeneral extends Component {
 	componentWillMount() {}
 
 	componentWillReceiveProps(props) {
+
 		this.setState({
-			rows: props.data,
+			rows: props.calificaciones,
 			columns: getNewColumns(props.tipoTabla),
 			type: props.tablaType,
 			curso: props.curso,
@@ -45,10 +49,10 @@ class TablaGeneral extends Component {
 
 		const calificaciones = {
 
-			calificaciones: this.state.data,
+			calificaciones: this.state.calificaciones,
 			tipo: this.state.tablaType,
 			codigo_curso: this.state.curso,
-			codigo_materia: this.state.asignatura,
+			codigo_asignatura: this.state.asignatura,
 			codigo_maestro: this.state.maestro,
 			periodo: this.state.periodo
 		};
@@ -61,13 +65,20 @@ class TablaGeneral extends Component {
 //?${this.state.curso}&${this.state.asignatura}&${this.state.maestro}&${this.state.periodo}`
 //`${this.tipos[parseInt(this.state.tipo)]}/1`
 	componentDidMount() {
-		API.get(
-			`${this.tipos[parseInt(this.state.type)]}/1`
+	
+		// API.get('calificaciones').then((res) => {
+		// 	let califs = res.data.calificaciones;
+		
+
+		// 	// for (let calificacion of califs){
+		// 	// 		match= calificacion.calificacion_estudiantes;			
+		// 	// }
+
 			
-		).then((res) => {
-			 
-			this.setState({ rows: res.data.calificaciones });
-		});
+
+		// });
+
+	
 	}
 
 	cellEdit = cellEditFactory({

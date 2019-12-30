@@ -108,7 +108,7 @@ const PARCIAL_COLUMNS = [
 		style
 	},
 	{
-		dataField: 'RNE',
+		dataField: 'rne',
 		text: 'RNE:',
 		editable: false,
 		filter: textFilter(),
