@@ -74,7 +74,7 @@ let updateParcialRows = (row, data) => {
 	let element = data[row-1];
 
 			for (const prop in element) {
-				if (prop !== 'cf' && prop !== 'numero') {
+				if (prop !== 'cf' && prop !== 'numero' && prop !== 'rne') {
 					element[prop] = parseInt(element[prop]) > 100 ? 0 : element[prop];
 					promedio += parseInt(element[prop], 10);
 					

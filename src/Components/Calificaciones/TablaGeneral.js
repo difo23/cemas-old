@@ -5,17 +5,19 @@ import { getNewColumns, updateRow } from './utils';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import API from '../../api';
 import BootstrapTable from 'react-bootstrap-table-next';
+import axios from 'axios';
 
 
 class TablaGeneral extends Component {
 	constructor(props) {
 		super(props);
 
-		this.tipos = ["calif_general","calif_completiva","calif_extraordinaria","calif_tecnica"];
+		const tipos = ["GENERAL","COMPLETIVA","EXTRAORDINARIA","TECNICA"];
 
 		this.state = {
 			columns: getNewColumns(props.tipoTabla),
 			type: props.tipoTabla,
+			tipos: tipos,
 			curso: props.curso,
 			asignatura: props.asignatura,
 			maestro: props.maestro,
@@ -33,7 +35,7 @@ class TablaGeneral extends Component {
 		this.setState({
 			rows: props.calificaciones,
 			columns: getNewColumns(props.tipoTabla),
-			type: props.tablaType,
+			type: props.tipoTabla,
 			curso: props.curso,
 			asignatura: props.asignatura,
 			maestro: props.maestro,
@@ -46,20 +48,39 @@ class TablaGeneral extends Component {
 
 	manejaEnvio = (event) => {
 		event.preventDefault();
+		// "codigo_curso" : "6D",
+		// "codigo_maestro" : "YAHL000",
+		// "codigo_asigantura" : "LENG004",
+		// "codigo_periodo" : "2019-2020",
+		// "estado" : true,
+		// "codigo_calificacion" : "6D:LENG004:YAHL000:2019-2020",
+		// "calificacion_estudiantes" :
+		let calificaciones = {
 
-		const calificaciones = {
-
-			calificaciones: this.state.calificaciones,
-			tipo: this.state.tablaType,
+			calificacion_estudiantes: this.state.rows,
+			estado: "true",
+			modalidad: this.state.tipos[parseInt(this.state.type)],
 			codigo_curso: this.state.curso,
 			codigo_asignatura: this.state.asignatura,
 			codigo_maestro: this.state.maestro,
-			periodo: this.state.periodo
+			codigo_periodo: this.state.periodo,
+			codigo_calificacion: `${this.state.curso}:${this.state.asignatura}:${this.state.maestro}:${this.state.periodo}`
 		};
+		// console.log("En el post mensaje a enviar "+JSON.stringify(calificaciones))
+	
 
-		API.post(`${this.tipos[parseInt(this.state.type)]}s`, { calificaciones }).then((res) => {
-			console.log(res);
-			console.log(res.data);
+
+		API.post('/calificacion',
+		
+		calificaciones ,{
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then((res) => {
+			
+			console.log("Respuesta "+res);
+			
+			console.log("Respuesta con data "+res.data);
 		});
 	};
 //?${this.state.curso}&${this.state.asignatura}&${this.state.maestro}&${this.state.periodo}`
