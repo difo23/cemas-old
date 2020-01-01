@@ -48,13 +48,7 @@ class TablaGeneral extends Component {
 
 	manejaEnvio = (event) => {
 		event.preventDefault();
-		// "codigo_curso" : "6D",
-		// "codigo_maestro" : "YAHL000",
-		// "codigo_asigantura" : "LENG004",
-		// "codigo_periodo" : "2019-2020",
-		// "estado" : true,
-		// "codigo_calificacion" : "6D:LENG004:YAHL000:2019-2020",
-		// "calificacion_estudiantes" :
+	
 		let calificaciones = {
 
 			calificacion_estudiantes: this.state.rows,
@@ -64,12 +58,14 @@ class TablaGeneral extends Component {
 			codigo_asignatura: this.state.asignatura,
 			codigo_maestro: this.state.maestro,
 			codigo_periodo: this.state.periodo,
-			codigo_calificacion: `${this.state.curso}:${this.state.asignatura}:${this.state.maestro}:${this.state.periodo}`
+			codigo_calificacion: `${this.state.curso}:${this.state.asignatura}:${this.state.maestro}:${this.state.periodo}:${this.state.type}`
 		};
 		// console.log("En el post mensaje a enviar "+JSON.stringify(calificaciones))
-	
+		let con = false;
+		// eslint-disable-next-line no-restricted-globals
+		con = confirm("Desea Guardar su calificacion ?");
 
-
+		if(con){
 		API.post('/calificacion',
 		
 		calificaciones ,{
@@ -82,6 +78,10 @@ class TablaGeneral extends Component {
 			
 			console.log("Respuesta con data "+res.data);
 		});
+		alert("Su Calificacion ha sido enviada!")
+	}
+		
+		
 	};
 //?${this.state.curso}&${this.state.asignatura}&${this.state.maestro}&${this.state.periodo}`
 //`${this.tipos[parseInt(this.state.tipo)]}/1`

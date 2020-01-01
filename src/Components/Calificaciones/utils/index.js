@@ -90,21 +90,21 @@ let updateParcialRows = (row, data) => {
 	return data;
 };
 
-let updateExtraordinarioRows = (id, data) => {
+let updateExtraordinarioRows = (row, data) => {
 	let promedio = 0;
-	for (var element of data) {
-		if (element.id === id) {
-			element.setentaPorCientoCPEX = Math.round(element.CPEX * 0.7);
+	let element = data[row-1];
+
+
+			element.cpex_70 = Math.round(element.cpex * 0.7);
 			//element.treintaPorCientoPCP = Math.round(pcp * 0.3);
 
 			for (const prop in element) {
-				if (prop !== 'calificacionFinal' && prop !== 'id' && prop !== 'CPEX') {
+				if (prop !== 'cf' && prop !== 'numero' && prop !== 'cpex' && prop !== 'rne') {
 					promedio += parseInt(element[prop], 10);
 				}
 			}
-			element.calificacionFinal = promedio;
-		}
-	}
+			element.cf = promedio;
+	
 
 	return data;
 };
@@ -121,41 +121,26 @@ let updateCAPRows = (id, data) => {
 	return data;
 };
 
-let updateCompletivoRows = (id, data) => {
+let updateCompletivoRows = (row, data) => {
 	let promedio = 0;
-	for (var element of data) {
-		if (element.id === id) {
-			element.cincuentaPorCientoCPC = Math.round(element.CPC * 0.5);
+	let element = data[row-1];
+
+	
+			element.cpc_50 = Math.round(element.cpc * 0.5);
 			//element.cincuetaPorCientoPCP = Math.round(pcp * 0.5);
 
 			for (const prop in element) {
-				if (prop !== 'calificacionFinal' && prop !== 'id' && prop !== 'CPC') {
+				if (prop !== 'cf' && prop !== 'numero' && prop !== 'cpc' && prop !== 'rne') {
 					promedio += parseInt(element[prop], 10);
 				}
 			}
-			element.calificacionFinal = promedio;
-		}
-	}
+			element.cf = promedio;
+	
 
 	return data;
 };
 
 let updateTecnicaRows = (id, data) => {
-	let promedio = 0;
-	for (var element of data) {
-		if (element.id === id) {
-			for (const prop in element) {
-				if (prop !== 'calificacionFinal' && prop !== 'id') {
-					let valor = parseInt(element[prop], 10);
-					if (valor > 0) {
-						promedio += valor;
-					}
-				}
-			}
-			element.calificacionFinal = promedio;
-		}
-	}
-
 	return data;
 };
 

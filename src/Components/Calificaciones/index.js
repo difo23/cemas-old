@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
 import './index.css';
 import API from '../../api';
-import CalificacionGeneral from './utils/calificacionGeneral'
+import CalificacionGeneral from './utils/calificacionGeneral';
+import CalificacionTecnico from './utils/calificacionTecnica';
+import CalificacionExtraordinaria from './utils/calificacionExtraordinaria';
+import CalificacionCompletivo from './utils/calificacionCompletivo';
 
 class Calificaciones extends Component {
 	constructor(props) {
@@ -25,7 +28,8 @@ class Calificaciones extends Component {
 			listCalificaciones: [],
 			calificaciones: [],
 			estudiantesList: [],
-			cantidad_estudiantes: 0
+			cantidad_estudiantes: 0,
+			update_calificaciones: false
 		};
 	}
 
@@ -39,12 +43,12 @@ class Calificaciones extends Component {
 		var listCursos = [];
 		var perEsts = [];
 		var listperEsts = [];
-		var listCalificaciones = []
+		var listCalificaciones = [];
 
 		API.get(`calificaciones`).then((res) => {
 			listCalificaciones = res.data.calificaciones;
-
-			this.setState({ listCalificaciones: listCalificaciones });	
+			
+			this.setState({ listCalificaciones: listCalificaciones });
 		});
 
 		API.get(`asignaturas_academicas`).then((res) => {
@@ -63,7 +67,7 @@ class Calificaciones extends Component {
 
 		API.get(`periodos_estudiantes`).then((res) => {
 			perEsts = res.data.estudiantes;
-		
+
 			//console.log("Perido estudiantes: "+JSON.stringify(perEsts));
 			for (let perEst of perEsts) {
 				listperEsts.push({
@@ -91,9 +95,6 @@ class Calificaciones extends Component {
 				listCursos: listCursos
 			});
 		});
-
-				
-
 	}
 
 	manejaCalificaciones = (event) => {
@@ -124,25 +125,28 @@ class Calificaciones extends Component {
 
 	manejaEnvio = (event) => {
 
-
-	};
-
-	manejaPeriodo = (event) => {
+		API.get(`calificaciones`).then((res) => {
+			listCalificaciones = res.data.calificaciones;
+			
+			this.setState({ listCalificaciones: listCalificaciones });
+		});
 		
 		let perEsts = this.state.listperEsts;
 		let len = 0;
 		let curso = this.state.curso;
 		let asignatura = this.state.asignatura;
 		let maestro = this.state.maestro;
-		let periodo = event.target.value;
-		let calificaciones = []
+		let periodo = this.state.periodo;
+		let tipo = this.state.tipoTabla;
+		let calificaciones = [];
 
-		let codigo_calificacion = `${curso}:${asignatura}:${maestro}:${periodo}`;
+		let codigo_calificacion = `${curso}:${asignatura}:${maestro}:${periodo}:${tipo}`;
+	
 
 		let listCalificaciones = this.state.listCalificaciones;
-		for (let calificacion of listCalificaciones){
-			if(codigo_calificacion === calificacion.codigo_calificacion){
-				calificaciones = calificacion.calificacion_estudiantes
+		for (let calificacion of listCalificaciones) {
+			if (codigo_calificacion === calificacion.codigo_calificacion) {
+				calificaciones = calificacion.calificacion_estudiantes;
 			}
 		}
 
@@ -164,24 +168,53 @@ class Calificaciones extends Component {
 
 		let newCalificaciones = [];
 		
-		if (!calificaciones.length){
+		if (!calificaciones.length) {
+		
+			for (let estudiante of estudiantesList) {
+				let calif = []
+				
+				switch(this.state.tipoTabla){
+					case '0':
+						calif = new CalificacionGeneral(estudiante.numero, estudiante.rne, 0, 0, 0, 0, 0);
+						break;
+					case '1':
+						console.log("Calificaciones Completiva")
+						calif = new CalificacionCompletivo(estudiante.numero, estudiante.rne, 0,0, 0, 0);
+						break;
+					case '2':
+						console.log("Calificaciones Extraordinaria")
+						calif = new CalificacionExtraordinaria(estudiante.numero, estudiante.rne, 0, 0, 0, 0);
+						break;
+					case '3':
+						console.log("Calificaciones tecnicas")
+						calif = new CalificacionTecnico(estudiante.numero, estudiante.rne, 0/*, 0*/, 0);
+						break;
+					default:
+				}
+				
 
-			
-			for (let estudiante of estudiantesList){
-				let calif = new CalificacionGeneral(estudiante.numero, estudiante.rne,0,0,0,0,0)
-
-				newCalificaciones.push(calif)
-
+				newCalificaciones.push(calif);
 			}
 
 			calificaciones = newCalificaciones;
-
 		}
+		
 
-		console.log("Crear nueva calificacion "+JSON.stringify(newCalificaciones))
 
-		console.log("Cantidad de estudiantes: "+len)
-		this.setState({ periodo: periodo, estudiantesList: estudiantesList, cantidad_estudiantes: len, calificaciones: calificaciones  });
+		alert("Nueva busqueda! Codigo: "+codigo_calificacion)
+		this.setState({
+			periodo: periodo,
+			estudiantesList: estudiantesList,
+			cantidad_estudiantes: len,
+			calificaciones: calificaciones
+		});
+	};
+
+	manejaPeriodo = (event) => {
+		let periodo = event.target.value;
+		this.setState({
+			periodo: periodo
+		});
 	};
 
 	render() {
@@ -267,9 +300,9 @@ class Calificaciones extends Component {
 							asignatura={this.state.asignatura}
 							maestro={this.state.maestro}
 							periodo={this.state.periodo}
-							cantidad_estudiantes= {this.state.cantidad_estudiantes}
-							estudiantes= {this.state.estudiantesList}
-							calificaciones= {this.state.calificaciones}
+							cantidad_estudiantes={this.state.cantidad_estudiantes}
+							estudiantes={this.state.estudiantesList}
+							calificaciones={this.state.calificaciones}
 						/>
 					</div>
 					<hr className="my-4" />
