@@ -47,7 +47,7 @@ class Calificaciones extends Component {
 
 		API.get(`calificaciones`).then((res) => {
 			listCalificaciones = res.data.calificaciones;
-			
+
 			this.setState({ listCalificaciones: listCalificaciones });
 		});
 
@@ -124,13 +124,12 @@ class Calificaciones extends Component {
 	};
 
 	manejaEnvio = (event) => {
-
 		API.get(`calificaciones`).then((res) => {
 			listCalificaciones = res.data.calificaciones;
-			
+
 			this.setState({ listCalificaciones: listCalificaciones });
 		});
-		
+
 		let perEsts = this.state.listperEsts;
 		let len = 0;
 		let curso = this.state.curso;
@@ -141,7 +140,6 @@ class Calificaciones extends Component {
 		let calificaciones = [];
 
 		let codigo_calificacion = `${curso}:${asignatura}:${maestro}:${periodo}:${tipo}`;
-	
 
 		let listCalificaciones = this.state.listCalificaciones;
 		for (let calificacion of listCalificaciones) {
@@ -167,41 +165,37 @@ class Calificaciones extends Component {
 		}
 
 		let newCalificaciones = [];
-		
+
 		if (!calificaciones.length) {
-		
 			for (let estudiante of estudiantesList) {
-				let calif = []
-				
-				switch(this.state.tipoTabla){
+				let calif = [];
+
+				switch (this.state.tipoTabla) {
 					case '0':
 						calif = new CalificacionGeneral(estudiante.numero, estudiante.rne, 0, 0, 0, 0, 0);
 						break;
 					case '1':
-						console.log("Calificaciones Completiva")
-						calif = new CalificacionCompletivo(estudiante.numero, estudiante.rne, 0,0, 0, 0);
+						console.log('Calificaciones Completiva');
+						calif = new CalificacionCompletivo(estudiante.numero, estudiante.rne, 0, 0, 0, 0);
 						break;
 					case '2':
-						console.log("Calificaciones Extraordinaria")
+						console.log('Calificaciones Extraordinaria');
 						calif = new CalificacionExtraordinaria(estudiante.numero, estudiante.rne, 0, 0, 0, 0);
 						break;
 					case '3':
-						console.log("Calificaciones tecnicas")
-						calif = new CalificacionTecnico(estudiante.numero, estudiante.rne, 0/*, 0*/, 0);
+						console.log('Calificaciones tecnicas');
+						calif = new CalificacionTecnico(estudiante.numero, estudiante.rne, 0 /*, 0*/, 0);
 						break;
 					default:
 				}
-				
 
 				newCalificaciones.push(calif);
 			}
 
 			calificaciones = newCalificaciones;
 		}
-		
 
-
-		alert("Nueva busqueda! Codigo: "+codigo_calificacion)
+		alert('Nueva busqueda! Codigo: ' + codigo_calificacion);
 		this.setState({
 			periodo: periodo,
 			estudiantesList: estudiantesList,
@@ -281,6 +275,7 @@ class Calificaciones extends Component {
 									>
 										<option value="default">PERIODO</option>
 										<option value="2019-2020">2019-2020</option>
+										<option value="2020-2021">2020-2021</option>
 									</select>
 								</div>
 								<div className="col-sm-2">
