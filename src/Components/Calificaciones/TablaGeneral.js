@@ -5,66 +5,101 @@ import { getNewColumns, updateRow } from './utils';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import API from '../../api';
 import BootstrapTable from 'react-bootstrap-table-next';
+import axios from 'axios';
 
 
 class TablaGeneral extends Component {
 	constructor(props) {
 		super(props);
 
-		this.tipos = ["calif_general","calif_completiva","calif_extraordinaria","calif_tecnica"];
+		const tipos = ["GENERAL","COMPLETIVA","EXTRAORDINARIA","TECNICA"];
 
 		this.state = {
-			rows: [],
 			columns: getNewColumns(props.tipoTabla),
 			type: props.tipoTabla,
-			cantidad_estudiantes: 0
+			tipos: tipos,
+			curso: props.curso,
+			asignatura: props.asignatura,
+			maestro: props.maestro,
+			periodo: props.periodo,
+			cantidad_estudiantes: props.cantidad_estudiantes,
+			estudiantes: props.estudiantes
+
 		};
 	}
 
 	componentWillMount() {}
 
 	componentWillReceiveProps(props) {
+
 		this.setState({
-			rows: props.data,
+			rows: props.calificaciones,
 			columns: getNewColumns(props.tipoTabla),
-			type: props.tablaType,
+			type: props.tipoTabla,
 			curso: props.curso,
 			asignatura: props.asignatura,
 			maestro: props.maestro,
 			periodo: props.periodo,
-			
+			cantidad_estudiantes: props.cantidad_estudiantes,
+			estudiantes: props.estudiantes
 		});
 	}
 
 
 	manejaEnvio = (event) => {
 		event.preventDefault();
+	
+		let calificaciones = {
 
-		const calificaciones = {
-
-			calificaciones: this.state.data,
-			tipo: this.state.tablaType,
+			calificacion_estudiantes: this.state.rows,
+			estado: "true",
+			modalidad: this.state.tipos[parseInt(this.state.type)],
 			codigo_curso: this.state.curso,
-			codigo_materia: this.state.asignatura,
+			codigo_asignatura: this.state.asignatura,
 			codigo_maestro: this.state.maestro,
-			periodo: this.state.periodo
+			codigo_periodo: this.state.periodo,
+			codigo_calificacion: `${this.state.curso}:${this.state.asignatura}:${this.state.maestro}:${this.state.periodo}:${this.state.type}`
 		};
+		// console.log("En el post mensaje a enviar "+JSON.stringify(calificaciones))
+		let con = false;
+		// eslint-disable-next-line no-restricted-globals
+		con = confirm("Desea Guardar su calificacion ?");
 
-		API.post(`${this.tipos[parseInt(this.state.type)]}s`, { calificaciones }).then((res) => {
-			console.log(res);
-			console.log(res.data);
+		if(con){
+		API.post('/calificacion',
+		
+		calificaciones ,{
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then((res) => {
+			
+			console.log("Respuesta "+res);
+			
+			console.log("Respuesta con data "+res.data);
 		});
+		alert("Su Calificacion ha sido enviada!")
+	}
+		
+		
 	};
 //?${this.state.curso}&${this.state.asignatura}&${this.state.maestro}&${this.state.periodo}`
 //`${this.tipos[parseInt(this.state.tipo)]}/1`
 	componentDidMount() {
-		API.get(
-			`${this.tipos[parseInt(this.state.type)]}/1`
+	
+		// API.get('calificaciones').then((res) => {
+		// 	let califs = res.data.calificaciones;
+		
+
+		// 	// for (let calificacion of califs){
+		// 	// 		match= calificacion.calificacion_estudiantes;			
+		// 	// }
+
 			
-		).then((res) => {
-			 
-			this.setState({ rows: res.data.calificaciones });
-		});
+
+		// });
+
+	
 	}
 
 	cellEdit = cellEditFactory({

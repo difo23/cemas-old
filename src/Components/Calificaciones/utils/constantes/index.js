@@ -108,9 +108,8 @@ const PARCIAL_COLUMNS = [
 		style
 	},
 	{
-		dataField: 'RNE',
+		dataField: 'rne',
 		text: 'RNE:',
-		editable: false,
 		filter: textFilter(),
 		headerStyle,
 		style
@@ -157,69 +156,37 @@ const PARCIAL_COLUMNS = [
 let TECNICA_COLUMNS = [
 	{
 		dataField: 'numero',
-		text: '#',
+		text: 'NUMERO:',
+		editable: false,
+		filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},
 	{
-		dataField: 'ra1',
-		text: 'RA1%:',
+		dataField: 'rne',
+		text: 'RNE:',
+		editable: false,
+		filter: textFilter(),
 		headerStyle,
 		style
 	},
 	{
-		dataField: 'ra2',
-		text: 'RA2%:',
+		dataField: 'acumulado',
+		text: 'Acumulado:',
 		headerStyle,
 		style
-	},
+	}/*,
 	{
-		dataField: 'ra3',
-		text: 'RA3%:',
+		dataField: 'ras',
+		text: ' #RAs:',
 		headerStyle,
 		style
-	},
-	{
-		dataField: 'ra4',
-		text: 'RA4%:',
-		headerStyle,
-		style
-	},
-	{
-		dataField: 'ra5',
-		text: 'RA5%:',
-		headerStyle,
-		style
-	},
-	{
-		dataField: 'ra6',
-		text: 'RA6%:',
-		headerStyle,
-		style
-	},
-	{
-		dataField: 'ra7',
-		text: 'RA7%:',
-		headerStyle,
-		style
-	},
-	{
-		dataField: 'ra8',
-		text: 'RA8%:',
-		headerStyle,
-		style
-	},
-	{
-		dataField: 'ra9',
-		text: 'RA9%:',
-		headerStyle,
-		style
-	},
+	}*/,
+	
 
 	{
-		dataField: 'calificacionFinal',
-		text: 'C.F:',
-		editable: false,
+		dataField: 'total',
+		text: 'Total:',
 		headerStyle,
 		style: {
 			fontWeight: 'boldest',
@@ -232,8 +199,15 @@ let TECNICA_COLUMNS = [
 
 const COMPLETIVA_COLUMNS = [
 	{
-		dataField: 'id',
-		text: '',
+		dataField: 'numero',
+		text: 'NUMERO:',
+		filter: textFilter(), // apply text filter
+		headerStyle,
+		style
+	},
+	{
+		dataField: 'rne',
+		text: 'RNE:',
 		filter: textFilter(),
 		headerStyle,
 		style
@@ -241,7 +215,6 @@ const COMPLETIVA_COLUMNS = [
 	{
 		dataField: 'pcp_50',
 		text: '50% P.C.P:',
-		editable: false,
 		headerStyle,
 		style
 	},
@@ -259,7 +232,7 @@ const COMPLETIVA_COLUMNS = [
 		style
 	},
 	{
-		dataField: 'cc',
+		dataField: 'cf',
 		text: 'C.C:',
 		editable: false,
 		headerStyle,
@@ -275,7 +248,14 @@ const COMPLETIVA_COLUMNS = [
 const EXTRAORDINARIA_COLUMNS = [
 	{
 		dataField: 'numero',
-		text: '',
+		text: 'NUMERO:',
+		filter: textFilter(), // apply text filter
+		headerStyle,
+		style
+	},
+	{
+		dataField: 'rne',
+		text: 'RNE:',
 		filter: textFilter(),
 		headerStyle,
 		style
@@ -283,7 +263,6 @@ const EXTRAORDINARIA_COLUMNS = [
 	{
 		dataField: 'pcp_30',
 		text: '30% P.C.P:',
-		editable: false,
 		headerStyle,
 		style
 	},
@@ -301,7 +280,7 @@ const EXTRAORDINARIA_COLUMNS = [
 		style
 	},
 	{
-		dataField: 'cex',
+		dataField: 'cf',
 		text: 'C.EX:',
 		editable: false,
 		headerStyle,
