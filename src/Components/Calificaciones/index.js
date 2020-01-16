@@ -18,6 +18,7 @@ class Calificaciones extends Component {
 			periodo: 'default',
 			cursos: [],
 			asignaturas: [],
+			profesores: [],
 			listAsignaturasOptions: [],
 			listAsignaturas: [],
 			listCursosOptions: [],
@@ -29,16 +30,18 @@ class Calificaciones extends Component {
 			calificaciones: [],
 			estudiantesList: [],
 			cantidad_estudiantes: 0,
-			update_calificaciones: false
+			update_calificaciones: false,
+			listProfesoresOptions: []
 		};
 	}
 
 	componentDidMount() {
-		let asigAcads = [];
-		var listAsigAcadsOptions = [];
+		// let asigAcads = [];
+		// var listAsigAcadsOptions = [];
 		var listAsigAcads = [];
 		var cursos = [];
 		var asignaturas = [];
+		var profesores =[];
 		var listCursosOptions = [];
 		var listCursos = [];
 		var perEsts = [];
@@ -51,19 +54,20 @@ class Calificaciones extends Component {
 			this.setState({ listCalificaciones: listCalificaciones });
 		});
 
-		API.get(`asignaturas_academicas`).then((res) => {
-			asigAcads = res.data.asignaturas_academicas;
-			//console.log("Asignaturas Academicas: "+JSON.stringify(asigAcads));
-			for (let asigAcad of asigAcads) {
-				listAsigAcads.push(asigAcad.cursos_profesor);
-			}
+		// API.get(`asignaturas_academicas`).then((res) => {
+		// 	asigAcads = res.data.asignaturas_academicas;
+		// 	//console.log("Asignaturas Academicas: "+JSON.stringify(asigAcads));
+		// 	for (let asigAcad of asigAcads) {
+		// 		listAsigAcads.push(asigAcad.cursos_profesor);
+		// 	}
 
-			//console.log(listAsigAcads);
-			for (var lists of listAsigAcads) {
-				listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
-			}
-			this.setState({ listAsigAcadsOptions: listAsigAcadsOptions, listAsigAcads: listAsigAcads });
-		});
+		// 	//console.log(listAsigAcads);
+		// 	for (var lists of listAsigAcads) {
+		// 		listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
+		// 	}
+		// 	this.setState({ listAsigAcadsOptions: listAsigAcadsOptions, 
+		// 		listAsigAcads: listAsigAcads });
+		// });
 
 		API.get(`periodos_estudiantes`).then((res) => {
 			perEsts = res.data.estudiantes;
@@ -83,6 +87,7 @@ class Calificaciones extends Component {
 			cursos = res.data.cursos;
 			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
+				profesores.push(curso.profesores);
 			}
 
 			listCursosOptions = cursos.map((curso) => <option value={curso.codigo_curso}>{curso.codigo_curso}</option>);
@@ -91,6 +96,7 @@ class Calificaciones extends Component {
 			this.setState({
 				cursos: cursos,
 				asignaturas: asignaturas,
+				profesores: profesores,
 				listCursosOptions: listCursosOptions,
 				listCursos: listCursos
 			});
@@ -103,16 +109,23 @@ class Calificaciones extends Component {
 
 	manejaCurso = (event) => {
 		const asignaturasUpdate = this.state.asignaturas;
+		const profesoresUpdate = this.state.profesores;
 
 		const cursos = this.state.listCursos;
 		const indx = cursos.indexOf(event.target.value);
 		var listAsignaturasOptions = [];
+		var listProfesoresOptions = [];
 
 		if (indx >= 0) {
 			const asigs = asignaturasUpdate[indx];
+			const profs = profesoresUpdate[indx]
 			listAsignaturasOptions = asigs.map((asig) => <option value={asig}>{asig}</option>);
+			listProfesoresOptions = profs.map((prof) => <option value={prof}>{prof}</option>);
 		}
-		this.setState({ curso: event.target.value, listAsignaturasOptions: listAsignaturasOptions });
+		this.setState({ curso: event.target.value, 
+			listAsignaturasOptions: listAsignaturasOptions,
+			listProfesoresOptions: listProfesoresOptions
+		 });
 	};
 
 	manejaMaestro = (event) => {
@@ -263,7 +276,7 @@ class Calificaciones extends Component {
 										onChange={this.manejaMaestro}
 									>
 										<option value="default">COD. MAESTRO</option>
-										{this.state.listAsigAcadsOptions}
+										{this.state.listProfesoresOptions}
 									</select>
 								</div>
 
