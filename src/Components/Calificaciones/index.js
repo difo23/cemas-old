@@ -110,7 +110,7 @@ class Calificaciones extends Component {
 	manejaCurso = (event) => {
 		const asignaturasUpdate = this.state.asignaturas;
 		const profesoresUpdate = this.state.profesores;
-
+//TODO: 
 		const cursos = this.state.listCursos;
 		const indx = cursos.indexOf(event.target.value);
 		var listAsignaturasOptions = [];
