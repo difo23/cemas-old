@@ -35,29 +35,13 @@ class Calificaciones extends Component {
 		};
 	}
 
-	naturalCompare(a, b) {
-		var ax = [], bx = [];
-	
-		a.replace(/(\d+)|(\D+)/g, function(_, $1, $2) { ax.push([$1 || Infinity, $2 || ""]) });
-		b.replace(/(\d+)|(\D+)/g, function(_, $1, $2) { bx.push([$1 || Infinity, $2 || ""]) });
-		
-		while(ax.length && bx.length) {
-			var an = ax.shift();
-			var bn = bx.shift();
-			var nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1]);
-			if(nn) return nn;
-		}
-	
-		return ax.length - bx.length;
-	}
-
 	componentDidMount() {
 		// let asigAcads = [];
 		// var listAsigAcadsOptions = [];
 		var listAsigAcads = [];
 		var cursos = [];
 		var asignaturas = [];
-		var profesores =[];
+		var profesores = [];
 		var listCursosOptions = [];
 		var listCursos = [];
 		var perEsts = [];
@@ -81,7 +65,7 @@ class Calificaciones extends Component {
 		// 	for (var lists of listAsigAcads) {
 		// 		listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
 		// 	}
-		// 	this.setState({ listAsigAcadsOptions: listAsigAcadsOptions, 
+		// 	this.setState({ listAsigAcadsOptions: listAsigAcadsOptions,
 		// 		listAsigAcads: listAsigAcads });
 		// });
 
@@ -100,7 +84,7 @@ class Calificaciones extends Component {
 		});
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos.sort(this.naturalCompare).reverse();
+			cursos = res.data.cursos.sort().reverse();
 			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
 				profesores.push(curso.profesores);
@@ -133,14 +117,15 @@ class Calificaciones extends Component {
 
 		if (indx >= 0) {
 			const asigs = asignaturasUpdate[indx];
-			const profs = profesoresUpdate[indx]
+			const profs = profesoresUpdate[indx];
 			listAsignaturasOptions = asigs.map((asig) => <option value={asig}>{asig}</option>);
 			listProfesoresOptions = profs.map((prof) => <option value={prof}>{prof}</option>);
 		}
-		this.setState({ curso: event.target.value, 
+		this.setState({
+			curso: event.target.value,
 			listAsignaturasOptions: listAsignaturasOptions,
 			listProfesoresOptions: listProfesoresOptions
-		 });
+		});
 	};
 
 	manejaMaestro = (event) => {
