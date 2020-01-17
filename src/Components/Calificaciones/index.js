@@ -35,6 +35,22 @@ class Calificaciones extends Component {
 		};
 	}
 
+	naturalCompare(a, b) {
+		var ax = [], bx = [];
+	
+		a.replace(/(\d+)|(\D+)/g, function(_, $1, $2) { ax.push([$1 || Infinity, $2 || ""]) });
+		b.replace(/(\d+)|(\D+)/g, function(_, $1, $2) { bx.push([$1 || Infinity, $2 || ""]) });
+		
+		while(ax.length && bx.length) {
+			var an = ax.shift();
+			var bn = bx.shift();
+			var nn = (an[0] - bn[0]) || an[1].localeCompare(bn[1]);
+			if(nn) return nn;
+		}
+	
+		return ax.length - bx.length;
+	}
+
 	componentDidMount() {
 		// let asigAcads = [];
 		// var listAsigAcadsOptions = [];
@@ -84,7 +100,7 @@ class Calificaciones extends Component {
 		});
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos;
+			cursos = res.data.cursos.sort(this.naturalCompare).reverse();
 			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
 				profesores.push(curso.profesores);
@@ -110,7 +126,6 @@ class Calificaciones extends Component {
 	manejaCurso = (event) => {
 		const asignaturasUpdate = this.state.asignaturas;
 		const profesoresUpdate = this.state.profesores;
-//TODO: 
 		const cursos = this.state.listCursos;
 		const indx = cursos.indexOf(event.target.value);
 		var listAsignaturasOptions = [];
