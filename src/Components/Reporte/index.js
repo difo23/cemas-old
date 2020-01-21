@@ -16,7 +16,7 @@ class Reporte extends Component {
 		var listCursosOptions = [];
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos;
+			cursos = res.data.cursos.sort();
 			listCursosOptions = cursos.map((curso) => <option value={curso.codigo_curso}>{curso.codigo_curso}</option>);
 
 			this.setState({
@@ -40,34 +40,33 @@ class Reporte extends Component {
 	};
 
 	manejaGenerar = (event) => {
-		if(this.state.curso != 'default' && this.state.periodo != 'default'){
-		alert(`Actualizado el reporte de notas ${this.state.curso}${this.state.periodo}.pdf `);
-		API.get(`reportes/${this.state.curso}/${this.state.periodo}`).then((res) => {
-			console.log("Reporte creado en BD")
-			alert(`Recoleccion de calificaciones terminada!`);
-			
-		});
-		API.get(`pdf/${this.state.curso}/${this.state.periodo}`).then((res) => {
-			console.log("Archivo PDF creado en servidor")
-			alert(`PDF actualizado! ${this.state.curso}${this.state.periodo}.pdf ya puedes obtener el reporte `);
-		});
-	}else{
-		alert('Debes elegir un curso y periodo para obtener un reporte!')
-	}
-	
+		if (this.state.curso != 'default' && this.state.periodo != 'default') {
+			alert(`Actualizado el reporte de notas ${this.state.curso}${this.state.periodo}.pdf `);
+			API.get(`reportes/${this.state.curso}/${this.state.periodo}`).then((res) => {
+				console.log('Reporte creado en BD');
+				alert(`Recoleccion de calificaciones terminada!`);
+			});
+			API.get(`pdf/${this.state.curso}/${this.state.periodo}`).then((res) => {
+				console.log('Archivo PDF creado en servidor');
+				alert(`PDF actualizado! ${this.state.curso}${this.state.periodo}.pdf ya puedes obtener el reporte `);
+			});
+		} else {
+			alert('Debes elegir un curso y periodo para obtener un reporte!');
+		}
 	};
-//TODO
+	//TODO
 
 	manejaObtener = (event) => {
-		if(this.state.curso != 'default' && this.state.periodo != 'default'){
-		alert('Se abrira una nueva ventana con el reporte! Si obtienes un PDF en blanco o el logo del centro, recuerda actualizar las calificaciones');
-		let url= `http://localhost:8626/file/${this.state.curso}/${this.state.periodo}`;
-			
-		window.open(url);
-	}else{
-		alert('Debes elegir un curso y periodo para obtener un reporte! ')
-	}
-		
+		if (this.state.curso != 'default' && this.state.periodo != 'default') {
+			alert(
+				'Se abrira una nueva ventana con el reporte! Si obtienes un PDF en blanco o el logo del centro, recuerda actualizar las calificaciones'
+			);
+			let url = `http://localhost:8626/file/${this.state.curso}/${this.state.periodo}`;
+
+			window.open(url);
+		} else {
+			alert('Debes elegir un curso y periodo para obtener un reporte! ');
+		}
 	};
 
 	render() {
@@ -111,10 +110,10 @@ class Reporte extends Component {
 							</div>
 							<hr className="my-4" />
 							<div className="col-sm-2">
-									<button className="btn  btn-danger" onClick={this.manejaObtener}>
-										Obtener PDF
-									</button>
-								</div>
+								<button className="btn  btn-danger" onClick={this.manejaObtener}>
+									Obtener PDF
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -6,6 +6,7 @@ import CalificacionGeneral from './utils/calificacionGeneral';
 import CalificacionTecnico from './utils/calificacionTecnica';
 import CalificacionExtraordinaria from './utils/calificacionExtraordinaria';
 import CalificacionCompletivo from './utils/calificacionCompletivo';
+import { sortCurso } from './utils';
 
 class Calificaciones extends Component {
 	constructor(props) {
@@ -84,7 +85,7 @@ class Calificaciones extends Component {
 		});
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos.sort().reverse();
+			cursos = res.data.cursos.sort();
 			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
 				profesores.push(curso.profesores);
