@@ -36,8 +36,6 @@ class Calificaciones extends Component {
 	}
 
 	componentDidMount() {
-		// let asigAcads = [];
-		// var listAsigAcadsOptions = [];
 		var listAsigAcads = [];
 		var cursos = [];
 		var asignaturas = [];
@@ -54,21 +52,6 @@ class Calificaciones extends Component {
 			this.setState({ listCalificaciones: listCalificaciones });
 		});
 
-		// API.get(`asignaturas_academicas`).then((res) => {
-		// 	asigAcads = res.data.asignaturas_academicas;
-		// 	//console.log("Asignaturas Academicas: "+JSON.stringify(asigAcads));
-		// 	for (let asigAcad of asigAcads) {
-		// 		listAsigAcads.push(asigAcad.cursos_profesor);
-		// 	}
-
-		// 	//console.log(listAsigAcads);
-		// 	for (var lists of listAsigAcads) {
-		// 		listAsigAcadsOptions.push(lists.map((list) => <option value={list.profesor}>{list.profesor}</option>));
-		// 	}
-		// 	this.setState({ listAsigAcadsOptions: listAsigAcadsOptions,
-		// 		listAsigAcads: listAsigAcads });
-		// });
-
 		API.get(`periodos_estudiantes`).then((res) => {
 			perEsts = res.data.estudiantes;
 
@@ -84,7 +67,7 @@ class Calificaciones extends Component {
 		});
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos.sort().reverse();
+			cursos = res.data.cursos.sort();
 			for (let curso of cursos) {
 				asignaturas.push(curso.asignaturas);
 				profesores.push(curso.profesores);
@@ -119,7 +102,7 @@ class Calificaciones extends Component {
 			const asigs = asignaturasUpdate[indx];
 			const profs = profesoresUpdate[indx];
 			listAsignaturasOptions = asigs.map((asig) => <option value={asig}>{asig}</option>);
-			listProfesoresOptions = profs.map((prof) => <option value={prof}>{prof}</option>);
+			listProfesoresOptions = profs.map((prof) => <option value={prof}>{prof.split('-')[0]}</option>);
 		}
 		this.setState({
 			curso: event.target.value,

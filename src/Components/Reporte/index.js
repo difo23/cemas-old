@@ -16,7 +16,7 @@ class Reporte extends Component {
 		var listCursosOptions = [];
 
 		API.get(`cursos`).then((res) => {
-			cursos = res.data.cursos;
+			cursos = res.data.cursos.sort();
 			listCursosOptions = cursos.map((curso) => <option value={curso.codigo_curso}>{curso.codigo_curso}</option>);
 
 			this.setState({
