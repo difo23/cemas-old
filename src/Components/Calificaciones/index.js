@@ -6,6 +6,7 @@ import CalificacionGeneral from './utils/calificacionGeneral';
 import CalificacionTecnico from './utils/calificacionTecnica';
 import CalificacionExtraordinaria from './utils/calificacionExtraordinaria';
 import CalificacionCompletivo from './utils/calificacionCompletivo';
+import { sortCurso } from './utils';
 
 class Calificaciones extends Component {
 	constructor(props) {

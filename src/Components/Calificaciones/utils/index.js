@@ -90,6 +90,8 @@ let updateParcialRows = (row, data) => {
 	return data;
 };
 
+
+
 let updateExtraordinarioRows = (row, data) => {
 	let promedio = 0;
 	let element = data[row-1];
