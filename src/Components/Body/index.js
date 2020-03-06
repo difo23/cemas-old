@@ -18,16 +18,13 @@ class Body extends Component {
 			<div>
 				<Router>
 					<div className={'RegistroDigital'}>
-						<Route exact path="/centros" component={Centro} />
-						<Route exact path="/" component={Bienvenido} />
-						<Route exact path="/calificaciones" component={Calificaciones} />
-						<Route exact path="/estudiantes" component={Estudiantes} />
+						
+						<Route exact path="/" component={Calificaciones} />
+						
 
 						<Route exact path="/reporte" component={Reporte} />
 
-						<Route exact path="/cursos" component={Cursos} />
-						<Route exact path="/asignaturas" component={Asignatura} />
-						<Route exact path="/maestro" component={Maestro} />
+						
 					</div>
 				</Router>
 			</div>
