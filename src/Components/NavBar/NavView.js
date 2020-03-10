@@ -23,7 +23,7 @@ function NavView(props) {
 			<div className="collapse navbar-collapse" id="navbarColor02">
 				<ul className="navbar-nav mr-auto">
 					<li className="nav-item active">
-						<a className="nav-link" href="/centros">
+						<a className="nav-link" href="/">
 							INICIO<span className="sr-only">(current)</span>
 						</a>
 					</li>
@@ -48,21 +48,7 @@ function NavView(props) {
 							Estudiantes
 						</a>
 					</li> */}
-					<li className="nav-item">
-						<a className="nav-link" href="/calificaciones">
-							Calificaciones
-						</a>
-					</li>
-					<li className="nav-item">
-						<a className="nav-link" href="/reporte">
-							Reporte de Calificaciones
-						</a>
-					</li>
-					<li className="nav-item">
-						<a className="nav-link" href="/">
-							Estadisticas
-						</a>
-					</li>
+					
 				</ul>
 			</div>
 		</nav>

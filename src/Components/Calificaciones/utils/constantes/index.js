@@ -165,7 +165,7 @@ let TECNICA_COLUMNS = [
 	{
 		dataField: 'rne',
 		text: 'RNE:',
-		editable: false,
+		editable: true,
 		filter: textFilter(),
 		headerStyle,
 		style
