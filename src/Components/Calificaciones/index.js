@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
 import './index.css';
 import API from '../../api';
+import Upload from '../Upload/index'
 import CalificacionGeneral from './utils/calificacionGeneral';
 import CalificacionTecnico from './utils/calificacionTecnica';
 import CalificacionExtraordinaria from './utils/calificacionExtraordinaria';
@@ -299,6 +300,11 @@ class Calificaciones extends Component {
 					</div>
 					<hr className="my-4" />
 				</div>
+				<hr className="" />
+					<div>
+						<Upload/>
+					</div>
+					<hr className="my-4" />
 			</div>
 		);
 	}
