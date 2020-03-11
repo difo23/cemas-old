@@ -9,7 +9,6 @@ import XLSX from 'xlsx';
 import { make_cols } from './MakeColumns';
 import { SheetJSFT } from './types';
 
-
 class TablaGeneral extends Component {
 	constructor(props) {
 		super(props);
@@ -54,7 +53,7 @@ class TablaGeneral extends Component {
 
 	manejaEnvio = (event) => {
 		event.preventDefault();
-		
+
 		let calificaciones = {
 			calificacion_estudiantes: this.state.rows,
 			estado: 'true',
@@ -84,43 +83,51 @@ class TablaGeneral extends Component {
 			alert('Su Calificacion ha sido enviada!');
 		}
 	};
-	
-	
-	handleChange = (e)=> {
+
+	handleChange = (e) => {
 		const files = e.target.files;
 		if (files && files[0]) this.setState({ file: files[0] });
-	  }
-	
-	  handleFile= () => {
+	};
+
+	handleFile = () => {
 		/* Boilerplate to set up FileReader */
 		const reader = new FileReader();
 		const rABS = !!reader.readAsBinaryString;
-	
-		reader.onload = e => {
-		  /* Parse data */
-		  const bstr = e.target.result;
-		  const wb = XLSX.read(bstr, {
-			type: rABS ? "binary" : "array",
-			bookVBA: true
-		  });
-		  /* Get first worksheet */
-		  const wsname = wb.SheetNames[0];
-		  const ws = wb.Sheets[wsname];
-		  /* Convert array of arrays */
-		  const data = XLSX.utils.sheet_to_json(ws);
-		  /* Update state */
-		  this.setState({ rows: data, cols: make_cols(ws["!ref"]), docs: true }, () => {
-			console.log(JSON.stringify(this.state.data, null, 2));
-		  });
+
+		reader.onload = (e) => {
+			/* Parse data */
+			const bstr = e.target.result;
+			const wb = XLSX.read(bstr, {
+				type: rABS ? 'binary' : 'array',
+				bookVBA: true
+			});
+			/* Get first worksheet */
+			const wsname = wb.SheetNames[0];
+			const ws = wb.Sheets[wsname];
+			/* Convert array of arrays */
+			const data = XLSX.utils.sheet_to_json(ws);
+			/* Update state */
+			if (
+				!!this.state.curso &&
+				!!this.state.asignatura &&
+				!!this.state.maestro &&
+				!!this.state.periodo &&
+				!!this.state.type
+			) {
+				this.setState({ rows: data, cols: make_cols(ws['!ref']), docs: true }, () => {
+					console.log(JSON.stringify(this.state.data, null, 2));
+				});
+			} else {
+				console.log('Debes crear un reporte con los campos curso y mestro activos');
+			}
 		};
-	
+
 		if (rABS) {
-		  reader.readAsBinaryString(this.state.file);
+			reader.readAsBinaryString(this.state.file);
 		} else {
-		  reader.readAsArrayBuffer(this.state.file);
+			reader.readAsArrayBuffer(this.state.file);
 		}
-	  }
-	
+	};
 
 	cellEdit = cellEditFactory({
 		mode: 'click',
@@ -162,21 +169,10 @@ class TablaGeneral extends Component {
 					<hr className="" />
 					<div>
 						<h3 htmlFor="file">Subir Archivo Excel:</h3>
-					
-						<input
-						type="file"
-						
-						id="file"
-						accept={SheetJSFT}
-						onChange={this.handleChange}
-						/>
-						
-						<input
-						className="btn btn-info"
-						type="submit"
-						value="Actualizar"
-						onClick={this.handleFile}
-						/>
+
+						<input type="file" id="file" accept={SheetJSFT} onChange={this.handleChange} />
+
+						<input className="btn btn-info" type="submit" value="Actualizar" onClick={this.handleFile} />
 					</div>
 					<hr className="my-4" />
 					<div>
