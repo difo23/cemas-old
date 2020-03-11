@@ -108,17 +108,18 @@ class TablaGeneral extends Component {
 			const data = XLSX.utils.sheet_to_json(ws);
 			/* Update state */
 			if (
-				!!this.state.curso &&
-				!!this.state.asignatura &&
-				!!this.state.maestro &&
-				!!this.state.periodo &&
-				!!this.state.type
+				this.state.curso !== 'default' &&
+				this.state.asignatura !== 'default' &&
+				this.state.maestro !== 'default' &&
+				this.state.periodo !== 'default' &&
+				this.state.type !== 'default'
 			) {
 				this.setState({ rows: data, cols: make_cols(ws['!ref']), docs: true }, () => {
 					console.log(JSON.stringify(this.state.data, null, 2));
 				});
 			} else {
 				console.log('Debes crear un reporte con los campos curso y mestro activos');
+				alert('Debes crear un reporte con los campos curso y maestro activos');
 			}
 		};
 
