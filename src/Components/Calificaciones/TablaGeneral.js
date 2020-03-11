@@ -6,7 +6,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import API from '../../api';
 import BootstrapTable from 'react-bootstrap-table-next';
 import axios from 'axios';
-
+import Upload from '../Upload/index'
 
 class TablaGeneral extends Component {
 	constructor(props) {
@@ -139,6 +139,11 @@ class TablaGeneral extends Component {
 					/>
 				</div>
 				<div>
+				<hr className="" />
+					<div>
+						<Upload/>
+					</div>
+					<hr className="my-4" />
 					<div>
 						<button onClick={this.manejaEnvio} className="btn btn-primary">
 							Enviar

@@ -35,10 +35,10 @@ class Upload extends Component {
     
       render() {
         return (
-          <form onSubmit={this.onFormSubmit}>
-            <h1>File Upload</h1>
-            <input type="file" onChange={this.onChange} />
-            <button type="submit">Upload</button>
+          <form action="/upload" onSubmit={this.onFormSubmit} enctype="multipart/form-data">
+            <h1>File Upload:</h1>
+            <input   type="file" onChange={this.onChange}  name="avatar"/>
+            <button  className="btn btn-info" type="submit">Actualizar con Archivo</button>
           </form>
        )
       }
