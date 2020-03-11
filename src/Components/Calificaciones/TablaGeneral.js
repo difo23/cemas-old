@@ -84,6 +84,10 @@ class TablaGeneral extends Component {
 		}
 	};
 
+	getNewDataFileMerge = (data) => {
+		return data;
+	};
+
 	handleChange = (e) => {
 		const files = e.target.files;
 		if (files && files[0]) this.setState({ file: files[0] });
@@ -114,6 +118,7 @@ class TablaGeneral extends Component {
 				this.state.periodo !== 'default' &&
 				this.state.type !== 'default'
 			) {
+				let newData = getNewDataFileMerge(data);
 				this.setState({ rows: data, cols: make_cols(ws['!ref']), docs: true }, () => {
 					console.log(JSON.stringify(this.state.data, null, 2));
 				});
