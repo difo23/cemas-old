@@ -16,7 +16,8 @@ class TablaGeneral extends Component {
 		const tipos = [ 'GENERAL', 'COMPLETIVA', 'EXTRAORDINARIA', 'TECNICA' ];
 
 		this.state = {
-			file: {},
+			rows: [],
+			file: null,
 			data: [],
 			cols: [],
 			docs: false,
@@ -84,13 +85,41 @@ class TablaGeneral extends Component {
 		}
 	};
 
-	getNewDataFileMerge = (data) => {
-		return data;
-	};
-
 	handleChange = (e) => {
 		const files = e.target.files;
 		if (files && files[0]) this.setState({ file: files[0] });
+	};
+
+	getNewDataFileMerge = (data) => {
+		if (
+			this.state.curso !== 'default' &&
+			this.state.asignatura !== 'default' &&
+			this.state.maestro !== 'default' &&
+			this.state.periodo !== 'default' &&
+			this.state.type !== 'default'
+		) {
+			if (this.state.rows) {
+				console.log('merge datos:');
+				console.log('rows', this.state.rows);
+				console.log('data', data);
+				let rows = this.state.rows;
+
+				for (let i = 0; i < rows.length && i < data.length; i++) {
+					data[i].rne = rows[i].rne;
+					data[i].ago_sept_oct = rows[i].ago_sept_oct ? rows[i].ago_sept_oct : data[i].ago_sept_oct;
+					data[i].nov_dic_ene = rows[i].nov_dic_ene ? rows[i].nov_dic_ene : data[i].nov_dic_ene;
+					data[i].feb_mar = rows[i].feb_mar ? rows[i].feb_mar : data[i].feb_mar;
+					data[i].abr_may_jun = rows[i].abr_may_jun ? rows[i].abr_may_jun : data[i].abr_may_jun;
+				}
+
+				return data;
+			}
+			return [];
+		} else {
+			console.log('Debes crear un reporte con los campos curso y mestro activos');
+			alert('Debes crear un reporte con los campos curso y maestro activos');
+			return [];
+		}
 	};
 
 	handleFile = () => {
@@ -111,27 +140,27 @@ class TablaGeneral extends Component {
 			/* Convert array of arrays */
 			const data = XLSX.utils.sheet_to_json(ws);
 			/* Update state */
-			if (
-				this.state.curso !== 'default' &&
-				this.state.asignatura !== 'default' &&
-				this.state.maestro !== 'default' &&
-				this.state.periodo !== 'default' &&
-				this.state.type !== 'default'
-			) {
-				let newData = getNewDataFileMerge(data);
-				this.setState({ rows: data, cols: make_cols(ws['!ref']), docs: true }, () => {
-					console.log(JSON.stringify(this.state.data, null, 2));
-				});
-			} else {
-				console.log('Debes crear un reporte con los campos curso y mestro activos');
-				alert('Debes crear un reporte con los campos curso y maestro activos');
-			}
+
+			let newData = this.getNewDataFileMerge(data);
+			this.setState({ rows: newData, cols: make_cols(ws['!ref']), docs: true }, () => {
+				console.log(JSON.stringify(this.state.data, null, 2));
+			});
 		};
 
 		if (rABS) {
-			reader.readAsBinaryString(this.state.file);
+			try {
+				reader.readAsBinaryString(this.state.file);
+			} catch (error) {
+				alert('Error de carga vuelve a intentar');
+			}
 		} else {
-			reader.readAsArrayBuffer(this.state.file);
+			try {
+				reader.readAsArrayBuffer(this.state.file);
+			} catch (e) {
+				alert('Vuelve a intentar error de carga');
+			}
+
+			alert();
 		}
 	};
 
