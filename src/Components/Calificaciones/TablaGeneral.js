@@ -103,13 +103,21 @@ class TablaGeneral extends Component {
 				console.log('rows', this.state.rows);
 				console.log('data', data);
 				let rows = this.state.rows;
-
-				for (let i = 0; i < rows.length && i < data.length; i++) {
-					data[i].rne = rows[i].rne;
-					data[i].ago_sept_oct = rows[i].ago_sept_oct ? rows[i].ago_sept_oct : data[i].ago_sept_oct;
-					data[i].nov_dic_ene = rows[i].nov_dic_ene ? rows[i].nov_dic_ene : data[i].nov_dic_ene;
-					data[i].feb_mar = rows[i].feb_mar ? rows[i].feb_mar : data[i].feb_mar;
-					data[i].abr_may_jun = rows[i].abr_may_jun ? rows[i].abr_may_jun : data[i].abr_may_jun;
+				if (this.state.type == 0) {
+					for (let i = 0; i < rows.length && i < data.length; i++) {
+						data[i].rne = rows[i].rne;
+						data[i].ago_sept_oct = rows[i].ago_sept_oct ? rows[i].ago_sept_oct : data[i].ago_sept_oct;
+						data[i].nov_dic_ene = rows[i].nov_dic_ene ? rows[i].nov_dic_ene : data[i].nov_dic_ene;
+						data[i].feb_mar = rows[i].feb_mar ? rows[i].feb_mar : data[i].feb_mar;
+						data[i].abr_may_jun = rows[i].abr_may_jun ? rows[i].abr_may_jun : data[i].abr_may_jun;
+					}
+				}
+				console.log(this.state.type);
+				if (this.state.type == 3) {
+					console.log('Entra');
+					for (let i = 0; i < rows.length && i < data.length; i++) {
+						data[i].rne = rows[i].rne;
+					}
 				}
 
 				return data;
