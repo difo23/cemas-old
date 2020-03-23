@@ -62,7 +62,7 @@ class Reporte extends Component {
 				'Se abrira una nueva ventana con el reporte! Si obtienes un PDF en blanco o el logo del centro, recuerda actualizar las calificaciones'
 			);
 			let url = `https://cemasapi.herokuapp.com/file/${this.state.curso}/${this.state.periodo}`;
-
+			//
 			window.open(url);
 		} else {
 			alert('Debes elegir un curso y periodo para obtener un reporte! ');
