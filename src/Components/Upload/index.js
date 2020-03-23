@@ -22,7 +22,7 @@ class Upload extends Component {
         this.setState({file:e.target.files[0]})
       }
       fileUpload(file){
-        const url = 'http://localhost:8626/upload';
+        const url = 'https://cemasapi.herokuapp.com/upload';
         const formData = new FormData();
         formData.append('file',file)
         const config = {

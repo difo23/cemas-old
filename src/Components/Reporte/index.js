@@ -61,7 +61,7 @@ class Reporte extends Component {
 			alert(
 				'Se abrira una nueva ventana con el reporte! Si obtienes un PDF en blanco o el logo del centro, recuerda actualizar las calificaciones'
 			);
-			let url = `https://cemasfront.herokuapp.com/file/${this.state.curso}/${this.state.periodo}`;
+			let url = `https://cemasapi.herokuapp.com/file/${this.state.curso}/${this.state.periodo}`;
 
 			window.open(url);
 		} else {
