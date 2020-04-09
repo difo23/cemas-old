@@ -6,7 +6,7 @@ function NavView(props) {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a className="navbar-brand" href="#">
-				CEMAS FyE
+				CEMAS FyA
 			</a>
 			<button
 				className="navbar-toggler"
@@ -22,11 +22,11 @@ function NavView(props) {
 
 			<div className="collapse navbar-collapse" id="navbarColor02">
 				<ul className="navbar-nav mr-auto">
-					<li className="nav-item active">
+					{/* <li className="nav-item active">
 						<a className="nav-link" href="/">
 							INICIO<span className="sr-only">(current)</span>
 						</a>
-					</li>
+					</li> */}
 					{/* <li className="nav-item">
 						<a className="nav-link" href="/cursos">
 							Cursos
