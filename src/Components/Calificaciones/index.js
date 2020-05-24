@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
 import './index.css';
 import API from '../../api';
-
+import { history } from '../../_helpers';
+//import NavBar from '../NavBar';
 import CalificacionGeneral from './utils/calificacionGeneral';
 import CalificacionTecnico from './utils/calificacionTecnica';
 import CalificacionExtraordinaria from './utils/calificacionExtraordinaria';
 import CalificacionCompletivo from './utils/calificacionCompletivo';
-import { sortCurso } from './utils';
+import { userService, authenticationService } from '../../_services';
 
 class Calificaciones extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			currentUser: authenticationService.currentUserValue,
+			users: null,
 			tipoTabla: '0',
 			curso: 'default',
 			maestro: 'default',
@@ -38,6 +41,14 @@ class Calificaciones extends Component {
 	}
 
 	componentDidMount() {
+		authenticationService.currentUser.subscribe((x) => this.setState({ currentUser: x }));
+	}
+
+	logout() {
+		authenticationService.logout();
+		history.push('/login');
+	}
+	componentDidMount() {
 		var listAsigAcads = [];
 		var cursos = [];
 		var asignaturas = [];
@@ -47,6 +58,8 @@ class Calificaciones extends Component {
 		var perEsts = [];
 		var listperEsts = [];
 		var listCalificaciones = [];
+
+		userService.getAll().then((users) => this.setState({ users }));
 
 		API.get(`calificaciones`).then((res) => {
 			listCalificaciones = res.data.calificaciones;
@@ -210,8 +223,19 @@ class Calificaciones extends Component {
 	};
 
 	render() {
+		const { currentUser, users } = this.state;
 		return (
 			<div>
+				{currentUser && (
+							<nav className="navbar navbar-expand navbar-dark bg-dark">
+								<div className="navbar-nav">
+								
+									<a onClick={this.logout} className="nav-item nav-link">
+										Logout
+									</a>
+								</div>
+							</nav>
+						)}
 				<div className="jumbotron">
 					<div className="form-inline my-2 my-lg-0">
 						<h1 className="display-5">Calificaciones:</h1>
@@ -281,11 +305,10 @@ class Calificaciones extends Component {
 										Buscar
 									</button>
 								</div>
-								
 							</div>
 						</div>
 					</div>
-					
+
 					<hr className="" />
 					<div>
 						<Tabla
@@ -299,10 +322,9 @@ class Calificaciones extends Component {
 							calificaciones={this.state.calificaciones}
 						/>
 					</div>
-					
+
 					<hr className="my-4" />
 				</div>
-				
 			</div>
 		);
 	}
