@@ -4,9 +4,8 @@ import CONSTANT from './utils/constants';
 import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import { getNewRow} from './utils';
+import { getNewRow } from './utils';
 import cellEditFactory from 'react-bootstrap-table2-editor';
-
 
 class EstudianteTabla extends Component {
 	constructor(props) {
@@ -16,7 +15,8 @@ class EstudianteTabla extends Component {
 
 	initialState = () => {
 		let initState = {
-			curso: "6B201920",
+			cursoSelect: [],
+			curso: '',
 			columns: CONSTANT.ESTUDIANTES_COLUMNS,
 			nombre: '',
 			email: '',
@@ -29,17 +29,50 @@ class EstudianteTabla extends Component {
 			nombre_tutor: '',
 			fecha_nacimiento: '',
 			sexo: '',
-			codigo_curso_activo: '',
+			codigo: '',
 			ultimos_estudiantes_agregados: [],
 			estudiante_editar: {},
-			rows:[],
-			type: "Estudiante"
+			codigo_periodo: '',
+			codigo_curso: '',
+			titular: '',
+			codigo_calificaciones: '',
+			estudiantes_inscritos: [],
+			rows: [],
+			type: 'Estudiante'
 		};
 		return initState;
 	};
 
+	manejaEnvio = () => {
+		if (this.state.codigo_calificaciones !== '') {
+			let con = confirm('Desea Guardar su calificacion ?');
+
+			let curso_periodo = {
+				codigo_periodo: this.state.codigo_periodo,
+				codigo_curso: this.state.codigo_curso,
+				titular: this.state.titular,
+				codigo_calificaciones: this.state.codigo_calificaciones,
+				estudiantes_inscritos: this.state.cursoSelect
+			};
+
+			if (con) {
+				// eslint-disable-next-line no-undef
+				API.post('/periodo_estudianten', curso_periodo, {
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					}
+				}).then((res) => {
+					console.log('Respuesta ' + res);
+
+					console.log('Respuesta con data ' + res.data);
+				});
+				alert('Su Calificacion ha sido enviada!');
+			}
+		}
+	};
+
 	addRow = () => {
-		let newId = this.state.curso+"-"+(this.state.rows.length+1) ;
+		let newId = this.state.curso + '-' + (this.state.rows.length + 1);
 		let row = getNewRow(this.state.type);
 		row.matricula = newId;
 		let newData = this.state.rows;
@@ -53,23 +86,17 @@ class EstudianteTabla extends Component {
 		this.setState({ rows: newData });
 	};
 
-	getStudents = async (limite) => {
-		let res = await API.get('/estudiante', {
-			params: {
-				limite
-			}
-		});
-		console.log(res.data, 'En la promesa');
-
-		return res.data.estudiantes;
-	};
-
-	componentDidMount() {
-		let estudiantes = this.getStudents(10);
+	componentWillReceiveProps(props) {
 		this.setState({
-			ultimos_estudiantes_agregados: estudiantes
+			cursoSelect: props.cursoSelect,
+			codigo_curso: props.codigo_curso,
+			codigo_periodo: props.codigo_periodo,
+			codigo_calificaciones: props.codigo_calificaciones,
+			titular: props.titular
 		});
 	}
+
+	componentDidMount() {}
 
 	cellEdit = cellEditFactory({
 		mode: 'click',
@@ -83,55 +110,47 @@ class EstudianteTabla extends Component {
 			// let type = this.state.type;
 			// let rows = this.state.rows;
 			// let newcarry = this.state.carry;
-
 			// //let newData = updateRow(type, row, rows);
 			// this.setState({
 			// 	rows: newData,
-				
 			// });
-			
 		}
 	});
 
 	render() {
-		console.log(this.state.ultimos_estudiantes_agregados, ' En el render');
+		console.log(this.state.cursoSelect.estudiantes, ' En el render');
 		return (
 			<div>
-				 
-
-					<hr className="my-4" />
-					<div class="table-estudiante">
-						<BootstrapTable
-							striped
-							hover
-							selectRow={this.selectRow}
-							cellEdit={this.cellEdit}
-							keyField="matricula"
-							data={this.state.rows}
-							filter={filterFactory()}
-							columns={this.state.columns}
-							noDataIndication="La tabla esta vacia"
-						/>
-					</div>
-					<hr className="my-4" />
-                    <div className="form-inline my-2 my-lg-0">
+				<hr className="my-4" />
+				<div class="table-estudiante">
+					<BootstrapTable
+						striped
+						hover
+						selectRow={this.selectRow}
+						cellEdit={this.cellEdit}
+						keyField="matricula"
+						data={this.state.cursoSelect.estudiantes || []}
+						filter={filterFactory()}
+						columns={this.state.columns}
+						noDataIndication="La tabla esta vacia"
+					/>
+				</div>
+				<hr className="my-4" />
+				<div className="form-inline my-2 my-lg-0">
 					<div>
 						<button onClick={this.manejaEnvio} className="btn btn-primary">
 							Enviar
 						</button>
-						
 					</div>
-                    <div>
+					<div>
 						<button onClick={this.addRow} className="btn btn-success">
 							Agregar Nuevo
 						</button>
-						
 					</div>
 					<div>
 						<button onClick={this.remRow} className="btn btn-danger">
-						Eliminar Ultimo
+							Eliminar Ultimo
 						</button>
-						
 					</div>
 				</div>
 			</div>

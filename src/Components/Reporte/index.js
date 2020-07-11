@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import API from '../../api';
-
+import { userService, authenticationService } from '../../_services';
+import { history } from '../../_helpers';
 class Reporte extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			curso: 'default',
+			currentUser: authenticationService.currentUserValue,
+			users: null,
 			periodo: 'default',
 			listCursosOptions: []
 		};
@@ -69,9 +72,33 @@ class Reporte extends Component {
 		}
 	};
 
+	logout() {
+		authenticationService.logout();
+		history.push('/login');
+	}
+
 	render() {
+		const { currentUser, users } = this.state;
 		return (
 			<div>
+				{currentUser && (
+					<nav className="navbar navbar-expand navbar-dark bg-dark">
+						<div className="navbar-nav">
+							<a href={`/`} className="nav-item nav-link">{`Bienvenid@ a BDCEMAS ${this.state.currentUser
+								.firstName} ${this.state.currentUser.lastName}`}</a>
+
+							<a href={`/`} className="nav-item nav-link">
+								Calificaciones
+							</a>
+							<a href={`/estudiantes`} className="nav-item nav-link">
+								Estudiantes
+							</a>
+							<a onClick={this.logout} className="nav-item nav-link">
+								Salir
+							</a>
+						</div>
+					</nav>
+				)}
 				<div className="jumbotron">
 					<div className="form-inline my-2 my-lg-0">
 						<h1 className="display-5">Reporte:</h1>

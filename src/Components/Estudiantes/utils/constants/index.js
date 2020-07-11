@@ -17,30 +17,30 @@ let style = {
 
 const ESTUDIANTES_COLUMNS = [
 	{
-		dataField: 'matricula',
-		text: 'MATRICULA',
+		dataField: 'numero',
+		text: 'NUMERO',
 		headerStyle,
 		style,
 		filter: textFilter() // apply text filter
 	},
 	{
-		dataField: 'RNE',
+		dataField: 'rne',
 		headerStyle,
 		style,
 		text: 'RNE:',
 		filter: textFilter()
 	},
 	{
-		dataField: 'nombre',
+		dataField: 'nombres',
 		headerStyle,
 		style,
-		text: 'Nombre:'
+		text: 'Nombres:'
 	},
 	{
-		dataField: 'apellido',
+		dataField: 'apellidos',
 		headerStyle,
 		style,
-		text: 'Apellido:'
+		text: 'Apellidos:'
 	},
 	{
 		dataField: 'edad',

@@ -16,7 +16,8 @@ class LoginPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>LOGIN BD CEMAS </h2>
+				<h2>LOGIN BD CEMAS</h2>
+
 				<Formik
 					initialValues={{
 						username: '',

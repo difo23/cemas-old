@@ -3,6 +3,7 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 import Calificaciones from '../Calificaciones';
+import Estudiantes from '../Estudiantes';
 import { LoginPage } from '../Login';
 import Reporte from '../Reporte';
 import React, { Component } from 'react';
@@ -35,13 +36,12 @@ class Body extends Component {
 			<div>
 				<Router history={history}>
 					<div>
-						
+						<PrivateRoute exact path="/" component={Calificaciones} />
+						<PrivateRoute exact path="/reporte" component={Reporte} />
+						<PrivateRoute exact path="/estudiantes" component={Estudiantes} />
 						<div className="jumbotron">
 							<div className="container">
 								<div className="row">
-								
-										<PrivateRoute exact path="/" component={Calificaciones} />
-										<Route exact path="/reporte" component={Reporte} />
 									<div className="col-md-6 offset-md-3">
 										<Route path="/login" component={LoginPage} />
 									</div>

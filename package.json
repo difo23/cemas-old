@@ -12,6 +12,7 @@
     "formik": "^2.1.4",
     "fs": "0.0.1-security",
     "history": "^4.10.1",
+    "jshint": "^2.11.1",
     "json-server": "^0.15.0",
     "material-ui": "^0.20.2",
     "mdbreact": "^4.25.3",
