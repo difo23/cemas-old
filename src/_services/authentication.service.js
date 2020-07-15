@@ -3,7 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 //import config from 'config';
 import { handleResponse } from '../_helpers';
 
-const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
+const currentUserSubject = new BehaviorSubject(JSON.parse(JSON.stringify(localStorage.getItem('currentUser'))));
+
 const urlAPI = `http://localhost:8626/authenticate`;
 //`http://localhost:8626/authenticate`
 

@@ -71,7 +71,7 @@ class TablaGeneral extends Component {
 		// eslint-disable-next-line no-restricted-globals
 		con = confirm('Desea Guardar su calificacion ?');
 
-		if (con) {
+		if (true) {
 			API.post('/calificacion', calificaciones, {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'

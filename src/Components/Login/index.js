@@ -31,6 +31,7 @@ class LoginPage extends React.Component {
 						setStatus();
 						authenticationService.login(username, password).then(
 							(user) => {
+								console.log('autentificado', user, username, password);
 								const { from } = this.props.location.state || { from: { pathname: '/' } };
 								this.props.history.push(from);
 							},

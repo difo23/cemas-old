@@ -45,7 +45,9 @@ class EstudianteTabla extends Component {
 
 	manejaEnvio = () => {
 		if (this.state.codigo_calificaciones !== '') {
-			let con = confirm('Desea Guardar su calificacion ?');
+			let con = false;
+			// eslint-disable-next-line no-restricted-globals
+			con = confirm('Desea Guardar su calificacion ?');
 
 			let curso_periodo = {
 				codigo_periodo: this.state.codigo_periodo,
@@ -55,7 +57,7 @@ class EstudianteTabla extends Component {
 				estudiantes_inscritos: this.state.cursoSelect
 			};
 
-			if (con) {
+			if (true) {
 				// eslint-disable-next-line no-undef
 				API.post('/periodo_estudianten', curso_periodo, {
 					headers: {
