@@ -229,7 +229,7 @@ class Calificaciones extends Component {
 	};
 
 	render() {
-		const { currentUser, users } = this.state;
+		const { currentUser } = this.state;
 		return (
 			<div>
 				{currentUser && (
