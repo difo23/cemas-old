@@ -1,21 +1,13 @@
 import React from 'react';
 
-import Footer from './Components/Footer';
-import Body from './Components/Body';
-import './App.css';
-
-
+import RouterApp from './Components/RouterApp';
 
 function App() {
 	return (
 		<div className="app">
-			{/* <div className="header">
-				<NavBar />
-			</div> */}
-			<div className="body">
-				<Body/>
+			<div className="container mx-lg-auto">
+				<RouterApp />
 			</div>
-			
 		</div>
 	);
 }

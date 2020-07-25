@@ -19,7 +19,7 @@ export function handleResponse(response) {
 
 			return data;
 		})
-		.catch(function() {
-			console.log("Can't connect to backend try latter");
+		.catch((error) => {
+			console.log("Can't connect to backend try latter", error);
 		});
 }

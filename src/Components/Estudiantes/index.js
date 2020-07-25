@@ -52,6 +52,8 @@ class Estudiante extends Component {
 	}
 
 	componentDidMount() {
+		authenticationService.currentUser.subscribe((x) => this.setState({ currentUser: x }));
+
 		this.getEstudiantes();
 	}
 
@@ -95,11 +97,14 @@ class Estudiante extends Component {
 							<a href={`/`} className="nav-item nav-link">{`Bienvenid@ a BDCEMAS ${this.state.currentUser
 								.firstName} ${this.state.currentUser.lastName}`}</a>
 
+							<a href={`/`} className="nav-item nav-link">
+								Calificaciones
+							</a>
 							<a href={`/reporte`} className="nav-item nav-link">
 								Reporte
 							</a>
-							<a href={`/`} className="nav-item nav-link">
-								Calificaciones
+							<a href={`/estudiantes`} className="nav-item nav-link">
+								Estudiantes
 							</a>
 							<a onClick={this.logout} className="nav-item nav-link">
 								Salir

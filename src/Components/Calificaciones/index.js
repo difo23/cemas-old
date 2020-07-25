@@ -90,7 +90,11 @@ class Calificaciones extends Component {
 				profesores.push(curso.profesores);
 			}
 
-			listCursosOptions = cursos.map((curso) => <option value={curso.codigo_curso}>{curso.codigo_curso}</option>);
+			listCursosOptions = cursos.map((curso) => (
+				<option key={curso.codigo_curso} value={curso.codigo_curso}>
+					{curso.codigo_curso}
+				</option>
+			));
 			listCursos = cursos.map((curso) => curso.codigo_curso);
 
 			this.setState({
@@ -163,13 +167,13 @@ class Calificaciones extends Component {
 
 		let estudiantesList = [];
 
-		if (curso != 'default') {
+		if (curso !== 'default') {
 			for (var perEst of perEsts) {
 				let cursoPerido = perEst.curso_periodo.split(':');
 				let cursoEst = cursoPerido[0];
 				let peridoEst = cursoPerido[1];
 
-				if (periodo == peridoEst && cursoEst == curso) {
+				if (periodo === peridoEst && cursoEst === curso) {
 					estudiantesList = perEst.estudiantes;
 					len = estudiantesList.length;
 					break;

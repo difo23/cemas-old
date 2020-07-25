@@ -18,6 +18,7 @@ export const authenticationService = {
 };
 
 function login(username, password) {
+	console.log(' Login datos enviados', username, password);
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -26,6 +27,8 @@ function login(username, password) {
 
 	return fetch(urlAPI, requestOptions).then(handleResponse).then((user) => {
 		// store user details and jwt token in local storage to keep user logged in between page refreshes
+
+		console.log('Fetch en la autentificacion', user);
 		localStorage.setItem('currentUser', JSON.stringify(user));
 		currentUserSubject.next(user);
 

@@ -17,6 +17,7 @@ class Reporte extends Component {
 	componentDidMount() {
 		var cursos = [];
 		var listCursosOptions = [];
+		authenticationService.currentUser.subscribe((x) => this.setState({ currentUser: x }));
 
 		API.get(`cursos`).then((res) => {
 			cursos = res.data.cursos.sort();
@@ -89,6 +90,9 @@ class Reporte extends Component {
 
 							<a href={`/`} className="nav-item nav-link">
 								Calificaciones
+							</a>
+							<a href={`/reporte`} className="nav-item nav-link">
+								Reporte
 							</a>
 							<a href={`/estudiantes`} className="nav-item nav-link">
 								Estudiantes
