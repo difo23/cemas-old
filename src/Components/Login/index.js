@@ -15,6 +15,8 @@ const LoginPage = (props) => {
 		password: ''
 	};
 
+	let c
+
 	const onSubmitFormik = ({ username, password }, { setStatus, setSubmitting }) => {
 		setStatus();
 		authenticationService.login(username, password).then(

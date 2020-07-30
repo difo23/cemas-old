@@ -5,7 +5,7 @@ import RouterApp from './Components/RouterApp';
 function App() {
 	return (
 		<div className="app">
-			<div className="container mx-lg-auto">
+			<div >
 				<RouterApp />
 			</div>
 		</div>

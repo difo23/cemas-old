@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Tabla from './TablaGeneral';
-import './index.css';
+
 import API from '../../api';
 import { history } from '../../_helpers';
 //import NavBar from '../NavBar';
@@ -250,7 +250,7 @@ class Calificaciones extends Component {
 						</div>
 					</nav>
 				)}
-				<div className="jumbotron">
+				<div className="container  mt-3">
 					<div className="form-inline my-2 my-lg-0">
 						<h1 className="display-5">Calificaciones:</h1>
 						<div className="col-sm-3">

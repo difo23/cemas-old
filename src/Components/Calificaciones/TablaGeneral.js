@@ -2,7 +2,7 @@ import cellEditFactory from 'react-bootstrap-table2-editor';
 import filterFactory from 'react-bootstrap-table2-filter';
 import React, { Component } from 'react';
 import { getNewColumns, updateRow } from './utils';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+//import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import API from '../../api';
 import BootstrapTable from 'react-bootstrap-table-next';
 import XLSX from 'xlsx';
@@ -71,7 +71,7 @@ class TablaGeneral extends Component {
 		// eslint-disable-next-line no-restricted-globals
 		con = confirm('Desea Guardar su calificacion ?');
 
-		if (true) {
+		if (con) {
 			API.post('/calificacion', calificaciones, {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
@@ -103,7 +103,7 @@ class TablaGeneral extends Component {
 				console.log('rows', this.state.rows);
 				console.log('data', data);
 				let rows = this.state.rows;
-				if (this.state.type == 0) {
+				if (this.state.type === 0) {
 					for (let i = 0; i < rows.length && i < data.length; i++) {
 						data[i].rne = rows[i].rne;
 						data[i].ago_sept_oct = rows[i].ago_sept_oct ? rows[i].ago_sept_oct : data[i].ago_sept_oct;
@@ -113,7 +113,7 @@ class TablaGeneral extends Component {
 					}
 				}
 				console.log(this.state.type);
-				if (this.state.type == 3) {
+				if (this.state.type === 3) {
 					console.log('Entra');
 					for (let i = 0; i < rows.length && i < data.length; i++) {
 						data[i].rne = rows[i].rne;

@@ -23,7 +23,7 @@ const RouterApp = () => {
 	);
 
 	return (
-		<div className="container">
+		<div>
 			<Router history={history}>
 				<Switch>
 					<PrivateRoute exact path="/" component={Calificaciones} />
