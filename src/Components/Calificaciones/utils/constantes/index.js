@@ -85,32 +85,32 @@ const PERIODO_ESCOLAR_OPTIONS = [ '-', '2018-19', '', '', '', '', '' ];
 
 const CENTRO_EDUCATIVO_OPTIONS = [ '-', 'CEMAS', '', '', '', '', '' ];
 
-let headerStyle =  {
+let headerStyle = {
 	backgroundColor: '#c8e6c9',
 	fontWeight: 'boldest',
-	   fontSize: '16px',
-	   color: 'black'
-   };
+	fontSize: '16px',
+	color: 'black'
+};
 
-   let style = {
-   fontWeight: 'boldest',
-   fontSize: '14px',
-   color: 'black',
-    'word-wrap': 'break-word'
- };
+let style = {
+	fontWeight: 'boldest',
+	fontSize: '14px',
+	color: 'black',
+	'word-wrap': 'break-word'
+};
 
 const PARCIAL_COLUMNS = [
 	{
 		dataField: 'numero',
 		text: 'NUMERO:',
-		filter: textFilter(), // apply text filter
+		// filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},
 	{
 		dataField: 'rne',
 		text: 'RNE:',
-		filter: textFilter(),
+		//filter: textFilter(),
 		headerStyle,
 		style
 	},
@@ -149,7 +149,7 @@ const PARCIAL_COLUMNS = [
 			fontSize: '24px',
 			backgroundColor: '#F8e6c9',
 			color: 'black'
-		  }
+		}
 	}
 ];
 
@@ -158,7 +158,7 @@ let TECNICA_COLUMNS = [
 		dataField: 'numero',
 		text: 'NUMERO:',
 		editable: false,
-		filter: textFilter(), // apply text filter
+		//filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},
@@ -166,7 +166,7 @@ let TECNICA_COLUMNS = [
 		dataField: 'rne',
 		text: 'RNE:',
 		editable: true,
-		filter: textFilter(),
+		//filter: textFilter(),
 		headerStyle,
 		style
 	},
@@ -175,14 +175,13 @@ let TECNICA_COLUMNS = [
 		text: 'Acumulado:',
 		headerStyle,
 		style
-	}/*,
+	} /*,
 	{
 		dataField: 'ras',
 		text: ' #RAs:',
 		headerStyle,
 		style
 	}*/,
-	
 
 	{
 		dataField: 'total',
@@ -201,14 +200,14 @@ const COMPLETIVA_COLUMNS = [
 	{
 		dataField: 'numero',
 		text: 'NUMERO:',
-		filter: textFilter(), // apply text filter
+		//filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},
 	{
 		dataField: 'rne',
 		text: 'RNE:',
-		filter: textFilter(),
+		//filter: textFilter(),
 		headerStyle,
 		style
 	},
@@ -249,14 +248,14 @@ const EXTRAORDINARIA_COLUMNS = [
 	{
 		dataField: 'numero',
 		text: 'NUMERO:',
-		filter: textFilter(), // apply text filter
+		//filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},
 	{
 		dataField: 'rne',
 		text: 'RNE:',
-		filter: textFilter(),
+		//filter: textFilter(),
 		headerStyle,
 		style
 	},
@@ -296,8 +295,8 @@ const EXTRAORDINARIA_COLUMNS = [
 const ASISTENCIA_COLUMNS = [
 	{
 		dataField: 'id',
-		text: '',
-		filter: textFilter()
+		text: ''
+		//filter: textFilter()
 	},
 	{
 		dataField: 'estado',
@@ -312,8 +311,8 @@ const ASISTENCIA_COLUMNS = [
 const SITUACION_FINAL_COLUMNS = [
 	{
 		dataField: 'id',
-		text: '',
-		filter: textFilter()
+		text: ''
+		//filter: textFilter()
 	},
 	{
 		dataField: 'a',
@@ -328,8 +327,8 @@ const SITUACION_FINAL_COLUMNS = [
 const CAP_COLUMNS = [
 	{
 		dataField: 'id',
-		text: '',
-		filter: textFilter()
+		text: ''
+		//	filter: textFilter()
 	},
 	{
 		dataField: 'oportunidad1',

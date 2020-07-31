@@ -6,8 +6,8 @@ import { getNewColumns, updateRow } from './utils';
 import API from '../../api';
 import BootstrapTable from 'react-bootstrap-table-next';
 import XLSX from 'xlsx';
-import { make_cols } from './MakeColumns';
-import { SheetJSFT } from './types';
+import { make_cols } from './helper/MakeColumns';
+import { SheetJSFT } from './helper/types';
 
 class TablaGeneral extends Component {
 	constructor(props) {

@@ -6,8 +6,9 @@ import renderFormik from './helpers/renderFormik';
 import loginSchemaFormik from './helpers/loginSchemaFormik';
 
 const LoginPage = (props) => {
+	
 	if (authenticationService.currentUserValue) {
-		props.history.push('/');
+		props.history.replace('/calificaciones');
 	}
 
 	const initialValues = {
@@ -15,13 +16,13 @@ const LoginPage = (props) => {
 		password: ''
 	};
 
-	let c
+
 
 	const onSubmitFormik = ({ username, password }, { setStatus, setSubmitting }) => {
 		setStatus();
 		authenticationService.login(username, password).then(
 			(user) => {
-				const { from } = props.location.state || { from: { pathname: '/' } };
+				const { from } = props.location.state || { from: { pathname: '/calificaciones' } };
 				props.history.push(from);
 			},
 			(error) => {
