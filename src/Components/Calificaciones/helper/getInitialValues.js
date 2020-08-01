@@ -9,10 +9,9 @@ export const getInitialValues = (params) => {
 	const TYPES = [ 'GENERALES', 'EXTRAORNIDARIAS', 'COMPLETIVAS', 'TECNICAS' ];
 	const { CURSOS, ASIGNATURAS } = user.cursos_materias[0];
 
-	console.log(user);
 	const initialValues = {
 		type: TYPES[0],
-		periodo: PERIODOS[0],
+		periodo: PERIODOS[1],
 		curso: CURSOS[0],
 		asignatura: ASIGNATURAS[0],
 		file: '',

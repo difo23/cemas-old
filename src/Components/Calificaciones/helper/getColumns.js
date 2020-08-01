@@ -9,7 +9,7 @@ let headerStyle = {
 
 let style = {
 	fontWeight: 'boldest',
-	fontSize: '10px',
+	fontSize: '14px',
 	color: 'black',
 	wordWrap: 'break-word'
 };

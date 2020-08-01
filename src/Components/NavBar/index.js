@@ -21,10 +21,22 @@ export const Navbar = () => {
 			<div className="navbar-collapse">
 				<div className="navbar-nav">
 					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/calificaciones">
-						Calificaciones
+						Académicas
+					</NavLink>
+
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion1">
+						Técnicas
 					</NavLink>
 
 					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion2">
+						Registro
+					</NavLink>
+
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion3">
+						Profesor
+					</NavLink>
+
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion4">
 						Reportes
 					</NavLink>
 				</div>

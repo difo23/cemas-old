@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-import filterFactory from 'react-bootstrap-table2-filter';
-import cellEditFactory from 'react-bootstrap-table2-editor';
+
+// import filterFactory from 'react-bootstrap-table2-filter';
+// import cellEditFactory from 'react-bootstrap-table2-editor';
 
 import Selector from './Selector';
+import Alert from './Alert';
+
 import { SheetJSFT } from './helper/types';
 import { getInitialValues } from './helper/getInitialValues';
 import { getColumns } from './helper/getColumns';
+import postData from './helper/postData';
+import setCalificaciones from './helper/setCalificaciones';
+import getCalificaciones from './helper/getCalificaciones';
 
 const Calificaciones = () => {
 	const { type, periodo, curso, asignatura, file, TYPES, PERIODOS, CURSOS, ASIGNATURAS, user } = getInitialValues();
@@ -18,6 +24,8 @@ const Calificaciones = () => {
 		asignatura,
 		file,
 		user,
+		error: false,
+		success: false,
 		columns: getColumns(type),
 		rows: []
 	});
@@ -29,6 +37,8 @@ const Calificaciones = () => {
 			newState = {
 				...state,
 				rows: [],
+				error: false,
+				success: false,
 				columns: getColumns(target.value),
 				[target.name]: target.value
 			};
@@ -36,6 +46,8 @@ const Calificaciones = () => {
 			newState = {
 				...state,
 				rows: [],
+				error: false,
+				success: false,
 				[target.name]: target.value
 			};
 		}
@@ -44,25 +56,42 @@ const Calificaciones = () => {
 
 	const handleSearch = (e) => {
 		console.log('SEARCH');
-		setstate({
-			...state,
-			rows: [
-				{
-					numero: 1,
-					ago_sept_oct: 0,
-					nov_dic_ene: 0,
-					feb_mar: 0,
-					abr_may_jun: 0,
-					cf: 0
-				}
-			]
-		});
-
-		console.log(state);
+		//'/periodos_estudiantes'  setstate({ ...state, error: false, success: true, rows: res.calificacion_estudiantes })
+		getCalificaciones({
+			state: state
+		})
+			.then((res) => setstate({ ...state, error: false, success: true, rows: res }))
+			.catch((err) => setstate({ ...state, success: false, error: true }));
 	};
 
 	const handleSend = (e) => {
-		console.log('SEND');
+		e.preventDefault();
+
+		let calificaciones = setCalificaciones(state);
+
+		let con = false;
+		// eslint-disable-next-line no-restricted-globals
+		con = confirm('Desea Guardar la tabla de calificacion ?');
+
+		if (con && state.rows.length) {
+			postData('/calificacion', calificaciones)
+				.then((res) =>
+					setstate({
+						...state,
+						error: false,
+						success: true
+					})
+				)
+				.catch((e) =>
+					setstate({
+						...state,
+						success: false,
+						error: true
+					})
+				);
+		} else {
+			alert('No fue correctamente completado!');
+		}
 	};
 
 	const handleFile = (e) => {
@@ -72,8 +101,8 @@ const Calificaciones = () => {
 	return (
 		<div className="container  mt-3">
 			<div className="form-inline  my-lg-0">
-				<h1 className="display-5">Calificaciones:</h1>
-				<Selector name="type" option={state.type} arr={TYPES} handleChange={handleChange} />
+				<h1 className="display-5">Calificaciones Generales</h1>
+				{/* <Selector name="type" option={state.type} arr={TYPES} handleChange={handleChange} /> */}
 			</div>
 
 			<hr style={{ border: '1px solid green' }} />
@@ -91,6 +120,9 @@ const Calificaciones = () => {
 			</div>
 
 			<hr style={{ border: '1px solid green' }} />
+
+			{state.success && <Alert message={'Todo salió bien! Y yo me alegro.'} type={'success'} />}
+			{state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
 
 			<div className="container  mt-3 mb-3">
 				<h3 className="display-5 mb-3">Tabla de calificaciones:</h3>
@@ -128,6 +160,7 @@ const Calificaciones = () => {
 					Enviar tabla a BD
 				</button>
 			</div>
+			<hr style={{ border: '1px solid green' }} />
 		</div>
 	);
 };
