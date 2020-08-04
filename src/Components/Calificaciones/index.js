@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 
 // import filterFactory from 'react-bootstrap-table2-filter';
-// import cellEditFactory from 'react-bootstrap-table2-editor';
 
 import Selector from './Selector';
 import Alert from './Alert';
 
-import { SheetJSFT } from './helper/types';
+//import { SheetJSFT } from './helper/types';
 import { getInitialValues } from './helper/getInitialValues';
 import { getColumns } from './helper/getColumns';
 import postData from './helper/postData';
 import setCalificaciones from './helper/setCalificaciones';
 import getCalificaciones from './helper/getCalificaciones';
+import { cellEditabled } from './helper/cellEditabled';
 
 const Calificaciones = () => {
 	const { type, periodo, curso, asignatura, file, TYPES, PERIODOS, CURSOS, ASIGNATURAS, user } = getInitialValues();
@@ -90,13 +90,20 @@ const Calificaciones = () => {
 					})
 				);
 		} else {
-			alert('No fue correctamente completado!');
+			setstate({
+				...state,
+				success: false,
+				error: true
+			});
 		}
 	};
 
+	//TODO: Handled file
 	const handleFile = (e) => {
 		console.log('FILE');
 	};
+
+	const cellEdit = cellEditabled(state, setstate);
 
 	return (
 		<div className="container  mt-3">
@@ -130,6 +137,9 @@ const Calificaciones = () => {
 				<BootstrapTable
 					className="mt-3"
 					keyField="numero"
+					striped
+					hover
+					cellEdit={cellEdit}
 					noDataIndication={`Listo para buscar las calificaciones ${state.type}:${state.curso}:${state.user
 						.username}:${state.asignatura}:${state.periodo}...`}
 					// filter={filterFactory()}
@@ -138,7 +148,7 @@ const Calificaciones = () => {
 				/>
 			</div>
 
-			<hr style={{ border: '1px solid green' }} />
+			{/* <hr style={{ border: '1px solid green' }} />
 
 			<div className="ml-2">
 				<h3 htmlFor="file">Subir Archivo Excel:</h3>
@@ -151,7 +161,7 @@ const Calificaciones = () => {
 					value="Actualizar tabla desde archivo"
 					onClick={handleFile}
 				/>
-			</div>
+			</div> */}
 
 			<hr style={{ border: '1px solid green' }} />
 
