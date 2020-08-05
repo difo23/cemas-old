@@ -32,7 +32,7 @@ export const Navbar = () => {
 						Registro
 					</NavLink>
 
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion3">
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/profesor">
 						Profesor
 					</NavLink>
 

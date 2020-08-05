@@ -18,7 +18,7 @@ const PARCIAL_COLUMNS = [
 	{
 		dataField: 'numero',
 		text: 'NUMERO:',
-		//filter: textFilter(), // apply text filter
+		filter: textFilter(), // apply text filter
 		headerStyle,
 		style
 	},

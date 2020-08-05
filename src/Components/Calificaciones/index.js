@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
-
-// import filterFactory from 'react-bootstrap-table2-filter';
+import filterFactory from 'react-bootstrap-table2-filter';
 
 import Selector from './Selector';
 import Alert from './Alert';
@@ -139,6 +138,7 @@ const Calificaciones = () => {
 					keyField="numero"
 					striped
 					hover
+					filter={filterFactory()}
 					cellEdit={cellEdit}
 					noDataIndication={`Listo para buscar las calificaciones ${state.type}:${state.curso}:${state.user
 						.username}:${state.asignatura}:${state.periodo}...`}

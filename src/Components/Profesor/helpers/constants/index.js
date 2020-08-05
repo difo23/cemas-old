@@ -75,6 +75,5 @@ const MAESTROS_COLUMNS = [
 	}
 ];
 
-let CONSTANTS = { MAESTROS_COLUMNS };
 
-export default CONSTANTS;
+export default MAESTROS_COLUMNS;
