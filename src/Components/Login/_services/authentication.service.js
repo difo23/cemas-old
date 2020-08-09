@@ -5,8 +5,7 @@ import { handleResponse } from '../_helpers';
 
 const currentUserSubject = new BehaviorSubject(localStorage.getItem('currentUser'));
 
-const urlAPI = `http://localhost:8626/authenticate`;
-//`http://localhost:8626/authenticate`
+const urlAPI =  `http://localhost:8626/authenticate`;
 
 export const authenticationService = {
 	login,

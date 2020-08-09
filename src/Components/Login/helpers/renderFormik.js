@@ -6,7 +6,7 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 		<div>
 			<Form>
 				<div className="form-group">
-					<label htmlFor="username">Username</label>
+					<label htmlFor="username">USUARIO:</label>
 					<Field
 						name="username"
 						type="text"
@@ -15,7 +15,7 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 					<ErrorMessage name="username" component="div" className="invalid-feedback" />
 				</div>
 				<div className="form-group">
-					<label htmlFor="password">Password</label>
+					<label htmlFor="password">CONTRASEÑA:</label>
 					<Field
 						name="password"
 						type="password"

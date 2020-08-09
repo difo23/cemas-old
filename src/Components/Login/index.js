@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { authenticationService } from '../../_services';
+import { authenticationService } from './_services';
 import { Formik } from 'formik';
 import renderFormik from './helpers/renderFormik';
 import loginSchemaFormik from './helpers/loginSchemaFormik';
 
 const LoginPage = (props) => {
-	
 	if (authenticationService.currentUserValue) {
 		props.history.replace('/calificaciones');
 	}
@@ -15,8 +14,6 @@ const LoginPage = (props) => {
 		username: '',
 		password: ''
 	};
-
-
 
 	const onSubmitFormik = ({ username, password }, { setStatus, setSubmitting }) => {
 		setStatus();
@@ -36,7 +33,7 @@ const LoginPage = (props) => {
 	return (
 		<div className=" ml-auto mr-auto mt-5" style={{ width: '50%' }}>
 			<div className="card text-white bg-primary">
-				<div className="card-header">Login DB CEMAS</div>
+				<div className="card-header">LOGIN ESCUELA</div>
 
 				<div className="card-body">
 					<Formik

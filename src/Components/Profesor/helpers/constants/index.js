@@ -1,5 +1,6 @@
 import { textFilter } from 'react-bootstrap-table2-filter';
 import { Type } from 'react-bootstrap-table2-editor';
+import getPeriodos from '../../../helpers/getPeridos';
 
 let headerStyle = {
 	backgroundColor: '#c8e6c9',
@@ -75,5 +76,29 @@ const MAESTROS_COLUMNS = [
 	}
 ];
 
+const OPTIONS_GRADOS = [ 
+	{values:'1', label: '1'}, 
+	{values:'2', label: '2'}, 
+	{values:'3', label: '3'}, 
+	{values:'4', label: '4'}, 
+	{values:'5', label: '5'}, 
+	{values:'6', label: '6'} 
+];
+const OPTIONS_SECCIONES = [ 
+	{values:'A', label: 'A'}, 
+	{values:'B', label: 'B'}, 
+	{values:'C', label: 'C'}, 
+	{values:'D', label: 'D'}, 
+	{values:'E', label: 'E'}, 
+	{values:'F', label: 'F'}  
+];
+const OPTIONS_PERIODOS = getPeriodos();
 
-export default MAESTROS_COLUMNS;
+export {
+	
+	MAESTROS_COLUMNS,
+	OPTIONS_PERIODOS,
+	OPTIONS_SECCIONES,
+	OPTIONS_GRADOS
+
+};

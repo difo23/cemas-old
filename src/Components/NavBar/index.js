@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { authenticationService } from '../../_services';
-import { history } from '../../_helpers';
+import { authenticationService } from '../Login/_services';
+import { history } from '../Login/_helpers';
 
 export const Navbar = () => {
 	let user = authenticationService.currentUserValue;
@@ -14,21 +14,17 @@ export const Navbar = () => {
 
 	return (
 		<nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-			<Link className="navbar-brand" to="/calificaciones">
-				CEMAS
+			<Link className="navbar-brand" to="/asignaturas">
+				ESCUELA
 			</Link>
 
 			<div className="navbar-collapse">
 				<div className="navbar-nav">
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/calificaciones">
-						Académicas
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/asignaturas">
+						Asignaturas
 					</NavLink>
 
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion1">
-						Técnicas
-					</NavLink>
-
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion2">
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/registro">
 						Registro
 					</NavLink>
 
