@@ -2,19 +2,20 @@
 
 const getPeriodos = () => {
 
-    let periodos = [];
+	let periodos = [];
 
 	const fecha = new Date();
 	let temp = '';
 	for (let i = 1; i > -3; --i) {
 		temp = `${fecha.getFullYear() + i}-${fecha.getFullYear() + i + 1}`;
 		periodos.push({
-			values:temp, 
+			name: 'periodo',
+			value: temp,
 			label: temp
 		});
 	}
-    
-    return periodos;
+
+	return periodos;
 };
 
 export default getPeriodos;

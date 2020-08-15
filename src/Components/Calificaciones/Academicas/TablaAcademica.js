@@ -1,26 +1,30 @@
 import React, { useState } from 'react';
-
-//import PropTypes from 'prop-types';
-
+import BootstrapTable from 'react-bootstrap-table-next';
+import filterFactory from 'react-bootstrap-table2-filter';
 import Alert from '../Alert';
-import { getInitialValues } from '../helper/getInitialValues';
+
+
+
+import { getUser } from '../../helpers/getUser';
 import { getColumns } from '../helper/getColumns';
 import postData from '../helper/postData';
 import setCalificaciones from '../helper/setCalificaciones';
-
+//import getCalificaciones from '../helper/getCalificaciones';
 import { cellEditabled } from '../helper/cellEditabled';
-import ListCalificaciones from './ListCalificaciones';
 
 const TablaAcademica = (props) => {
-	const { user } = getInitialValues();
+	const user = getUser();
 
-	const [ state, setstate ] = useState({
+	const [state, setstate] = useState({
+
 		user,
 		error: false,
 		success: false,
 		columns: getColumns('GENERALES'),
 		rows: []
 	});
+
+
 
 	const handleSend = (e) => {
 		e.preventDefault();
@@ -56,28 +60,43 @@ const TablaAcademica = (props) => {
 		}
 	};
 
+
 	const cellEdit = cellEditabled(state, setstate);
 
 	return (
-		<div>
+		<div className="container  mt-3">
+
+
 			{state.success && <Alert message={'Todo salió bien! Y yo me alegro.'} type={'success'} />}
 			{state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
 
-			<ListCalificaciones />
-			<ListCalificaciones />
+			<div className="container  mt-3 mb-3">
+				<h3 className="display-5 mb-3">Tabla de calificaciones:</h3>
 
-			<hr style={{ border: '1px solid gray' }} />
+				<BootstrapTable
+					className="mt-3"
+					keyField="numero"
+					striped
+					hover
+					filter={filterFactory()}
+					cellEdit={cellEdit}
+					noDataIndication={`Listo para buscar las calificaciones...`}
+					// filter={filterFactory()}
+					data={state.rows}
+					columns={state.columns}
+				/>
+			</div>
 
-			<div className="col-sm mt-3">
-				<button alt="Guardar" className="btn btn-block btn-outline-danger ml-1">
-					<i className="fas fa-cloud-upload-alt" />
+			<hr style={{ border: '1px solid green' }} />
+
+			<div className="col-sm-3 mt-3">
+				<button onClick={handleSend} className="btn btn-danger ml-1">
+					Enviar tabla a BD
 				</button>
 			</div>
 			<hr style={{ border: '1px solid green' }} />
 		</div>
 	);
 };
-
-TablaAcademica.propTypes = {};
 
 export default TablaAcademica;
