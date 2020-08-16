@@ -143,4 +143,192 @@ export const SECCIONES = [
 
 ]
 
+export const ESTUDIANTES = [
+    {
+        name: 'estudiante',
+        value: '10',
+        label: '10'
+    },
+
+    {
+        name: 'estudiante',
+        value: '15',
+        label: '15'
+    },
+    {
+        name: 'estudiante',
+        value: '16',
+        label: '16'
+    },
+    {
+        name: 'estudiante',
+        value: '17',
+        label: '17'
+    },
+    {
+        name: 'estudiante',
+        value: '18',
+        label: '18'
+    },
+    {
+        name: 'estudiante',
+        value: '19',
+        label: '19'
+    },
+    {
+        name: 'estudiante',
+        value: '20',
+        label: '20'
+    },
+    {
+        name: 'estudiante',
+        value: '21',
+        label: '21'
+    },
+    {
+        name: 'estudiante',
+        value: '22',
+        label: '22'
+    },
+    {
+        name: 'estudiante',
+        value: '23',
+        label: '23'
+    },
+    {
+        name: 'estudiante',
+        value: '24',
+        label: '24'
+    },
+    {
+        name: 'estudiante',
+        value: '25',
+        label: '25'
+    },
+    {
+        name: 'estudiante',
+        value: '26',
+        label: '26'
+    },
+    {
+        name: 'estudiante',
+        value: '27',
+        label: '27'
+    },
+    {
+        name: 'estudiante',
+        value: '28',
+        label: '28'
+    },
+    {
+        name: 'estudiante',
+        value: '29',
+        label: '29'
+    },
+    {
+        name: 'estudiante',
+        value: '30',
+        label: '30'
+    },
+    {
+        name: 'estudiante',
+        value: '31',
+        label: '31'
+    },
+    {
+        name: 'estudiante',
+        value: '32',
+        label: '32'
+    },
+    {
+        name: 'estudiante',
+        value: '33',
+        label: '33'
+    },
+    {
+        name: 'estudiante',
+        value: '34',
+        label: '34'
+    },
+    {
+        name: 'estudiante',
+        value: '35',
+        label: '35'
+    },
+
+]
+
+export const RAS = [
+    {
+        name: 'ra',
+        value: '3',
+        label: '3'
+    },
+
+    {
+        name: 'ra',
+        value: '4',
+        label: '4'
+    },
+    {
+        name: 'ra',
+        value: '5',
+        label: '5'
+    },
+    {
+        name: 'ra',
+        value: '6',
+        label: '6'
+    },
+    {
+        name: 'ra',
+        value: '7',
+        label: '7'
+    },
+    {
+        name: 'ra',
+        value: '8',
+        label: '8'
+    },
+    {
+        name: 'ra',
+        value: '9',
+        label: '9'
+    },
+    {
+        name: 'ra',
+        value: '10',
+        label: '10'
+    },
+    {
+        name: 'ra',
+        value: '11',
+        label: '11'
+    }
+    ,
+    {
+        name: 'ra',
+        value: '12',
+        label: '12'
+    }
+    ,
+    {
+        name: 'ra',
+        value: '13',
+        label: '13'
+    }
+    ,
+    {
+        name: 'ra',
+        value: '14',
+        label: '14'
+    },
+    {
+        name: 'ra',
+        value: '15',
+        label: '15'
+    }
+
+]
+
 export const PERIDOS = getPeriodos();

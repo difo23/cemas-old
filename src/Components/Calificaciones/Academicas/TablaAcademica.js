@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory from 'react-bootstrap-table2-filter';
-import Alert from '../Alert';
+import Alert from '../../helpers/Alert';
 
 
 

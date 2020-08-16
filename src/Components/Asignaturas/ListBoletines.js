@@ -1,21 +1,22 @@
 import React from 'react';
 
-import  ItemBoletin from "./ItemBoletin";
+import ItemBoletin from "./ItemBoletin";
 
-const ListBoletines = props => {
+const ListBoletines = ({ boletines }) => {
     return (
-        <div className= 'container'>
-            <ItemBoletin/>
-            <ItemBoletin/>
-            <ItemBoletin/>
-            <ItemBoletin/>
-            <ItemBoletin/>
+        <div className='container'>
+
+            {boletines.map(boletin => {
+
+                return <ItemBoletin key={boletin.code} boletin={boletin} />
+            })}
+
         </div>
     );
 };
 
 ListBoletines.propTypes = {
-    
+
 };
 
 export default ListBoletines;
