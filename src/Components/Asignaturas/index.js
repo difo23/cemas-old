@@ -16,8 +16,6 @@ const Asignaturas = () => {
 
 	const handleChange = (boletin) => {
 
-
-
 		const {
 			ra,
 			estudiante,

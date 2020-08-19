@@ -7,7 +7,7 @@ import Alert from '../../helpers/Alert';
 
 import { getUser } from '../../helpers/getUser';
 import { getColumns } from '../helper/getColumns';
-import postData from '../helper/postData';
+import postData from '../../../api/postData';
 import setCalificaciones from '../helper/setCalificaciones';
 //import getCalificaciones from '../helper/getCalificaciones';
 import { cellEditabled } from '../helper/cellEditabled';

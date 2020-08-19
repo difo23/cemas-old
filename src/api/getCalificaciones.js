@@ -1,5 +1,5 @@
 import getData from './getData';
-import setNewCalificaciones from './setNewCalificaciones';
+import setNewCalificaciones from '../Components/Calificaciones/helper/setNewCalificaciones';
 
 const getCalificaciones = async ({ state }) => {
 	//calificacion_estudiantes:
@@ -18,7 +18,7 @@ const getCalificaciones = async ({ state }) => {
 		console.log('Periodo estudiantes antes ', data);
 		let { estudiantes_inscritos } = data[0];
 		let calificaciones = setNewCalificaciones(estudiantes_inscritos);
-		data = [ { calificacion_estudiantes: calificaciones } ];
+		data = [{ calificacion_estudiantes: calificaciones }];
 
 		console.log('Periodo estudiantes ', data);
 	}
