@@ -1,12 +1,12 @@
 import URL from './url'
 
 
-const getData = async ({ url, params }) => {
+const getData = async ({ url, params, id }) => {
 
 	let urlAPI = URL;
 	let string_params = '';
 
-	if (typeof params === "object") {
+	if (params.length === 1) {
 
 		for (let param of params) {
 
@@ -15,7 +15,7 @@ const getData = async ({ url, params }) => {
 		}
 
 	} else {
-		string_params += `/${params}`;
+		string_params += `/${id}`;
 	}
 
 	const urlComplete = `${urlAPI}${url}${encodeURI(string_params)}`;
