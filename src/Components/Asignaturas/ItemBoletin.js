@@ -5,17 +5,17 @@ const ItemBoletin = ({ boletin }) => {
 	return (
 		<div key={boletin.code}>
 			<div className="row mt-3">
-				<div className="col-sm-6 mt-3">
-					<span> {boletin.code}</span>
+				<div className="col-sm-6 mt-4">
+					<span> {boletin.codigo_calificacion}</span>
 				</div>
 
-				<div className="col-sm-2 mt-2 ">
+				<div className="col-sm-3 mt-3 ">
 					<button className="btn btn-block btn-outline-danger ">
 						<i className=" fas fa-trash-alt" />
 					</button>
 				</div>
 
-				<div className="col-sm-2 mt-2 ">
+				<div className="col-sm-3 mt-3 ">
 					{/* <button  className="btn btn-block btn-outline-success ">
 					Calificar
 				</button> */}
@@ -26,7 +26,7 @@ const ItemBoletin = ({ boletin }) => {
 							pathname: '/calificaciones',
 							search: 'search',
 							hash: 'hash',
-							state: { fromDashboard: boletin.tecnico, estudiante: boletin.estudiante, ra: boletin.ra }
+							state: { fromDashboard: boletin.modalidad, estudiante: boletin.estudiantes, ra: boletin.ra }
 						}}
 					>
 						Calificar{' '}

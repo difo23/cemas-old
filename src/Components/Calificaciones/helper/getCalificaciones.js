@@ -1,5 +1,5 @@
-import getData from './getData';
-import setNewCalificaciones from '../Components/Calificaciones/helper/setNewCalificaciones';
+import getData from '../../../api/getData';
+import setNewCalificaciones from './setNewCalificaciones';
 
 const getCalificaciones = async ({ state }) => {
 	//calificacion_estudiantes:

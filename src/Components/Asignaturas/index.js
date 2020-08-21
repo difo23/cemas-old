@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormAsignaturas from './FormAsignaturas';
 import ListBoletines from './ListBoletines';
 import Alert from '../helpers/Alert';
+import getRecordsByCode from './helpers/getRecordsByCode';
 
 const Asignaturas = () => {
-	const initialState = {
-		boletines: [],
-		error: false
 
-	}
+	const [state, setstate] = useState({
+		error: false,
+		boletines: []
+	});
 
-	const [state, setstate] = useState(initialState)
+	useEffect(() => {
+		//GET All records by user- for test I will use ÁNGELA FELIZ-AMFH000
+
+		getRecordsByCode([{
+			key: 'codigo_maestro',
+			value: "ÁNGELA FELIZ-AMFH000"
+		}]).then(data => setstate({
+			error: false,
+			boletines: data
+		})).catch((err) => console.log(err));
 
 
+	}, [])
 
 	const handleChange = (boletin) => {
 

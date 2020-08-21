@@ -1,4 +1,14 @@
-import axios from 'axios';
+import getData from './getData';
+import postData from './postData';
+import URL from './url';
 
-baseURL_local = `http://192.168.0.22:8626/`
-baseURL_Externacon = `https://cemasapi.herokuapp.com/`
+
+
+
+
+export {
+    URL,
+    getData,
+    postData
+
+};

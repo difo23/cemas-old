@@ -1,5 +1,7 @@
+import URL from './url'
+
 const postData = async (url, calificaciones) => {
-	let urlAPI = 'http://localhost:8626';
+	let urlAPI = URL;
 
 	const requestOptions = {
 		method: 'POST',

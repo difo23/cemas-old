@@ -1,11 +1,12 @@
 import { BehaviorSubject } from 'rxjs';
+import { URL } from '../../../api'
 
 //import config from 'config';
 import { handleResponse } from '../_helpers';
 
 const currentUserSubject = new BehaviorSubject(localStorage.getItem('currentUser'));
 
-const urlAPI =  `http://localhost:8626/authenticate`;
+const urlAPI = `${URL}/authenticate`;
 
 export const authenticationService = {
 	login,

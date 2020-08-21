@@ -1,5 +1,8 @@
 import { authHeader, handleResponse } from '../_helpers';
-const urlAPI = `http://localhost:8626/`;
+import { URL } from '../../../api'
+
+
+const urlAPI = `${URL}/`;
 export const userService = {
 	getAll
 };
