@@ -25,25 +25,38 @@ const Asignaturas = () => {
 
 	}, [])
 
-	const handleChange = (boletin) => {
+	const handleChange = (select) => {
 
-		const {
-			ra,
-			estudiante,
-			tecnico,
-			code } = boletin
+		const { code } = select
 
-		if (!state.boletines.find((boletin) => { return code.slice(0, code.length - 5) === boletin.code.slice(0, code.length - 5) })) {
+		if (!state.boletines.find((boletin) => {
+			return (
+				select.code.codigo_asignatura === boletin.codigo_asignatura && select.code.codigo_periodo === boletin.codigo_periodo && select.code.codigo_curso === boletin.codigo_curso
+			)
+		})
+		) {
 
-			setstate({
-				boletines: [...state.boletines, {
-					ra,
-					estudiante,
-					tecnico,
-					code
-				}],
-				error: false
-			})
+			/*TODO: 
+				Es necesario crear la interfaz de registro.
+				Crear el api para la interfaz de registro.
+
+				Necesito crear una nueva lista de estudiantes basados en registro del curso y compararlo con el numero de estudiantes pasado por la interfaz.
+			
+			*/
+
+			createCalificaciones(code).then(
+				(calificaciones) => {
+					code.calificacion_estudiantes = calificaciones
+					setstate({
+						boletines: [...state.boletines, {
+							...code
+						}],
+						error: false
+					})
+
+				}
+			);
+
 
 
 		} else {

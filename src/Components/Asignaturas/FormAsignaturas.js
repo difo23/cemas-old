@@ -3,6 +3,7 @@ import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
 import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, ESTUDIANTES, RAS } from './constants';
 import Alert from '../helpers/Alert';
+import createCodeBoletin from './helpers/createCodeBoletin';
 //import PropTypes from 'prop-types';
 
 const FormAsignaturas = ({ handleChange }) => {
@@ -24,7 +25,7 @@ const FormAsignaturas = ({ handleChange }) => {
 		periodos: [],
 		estudiantes: [],
 		ras: [],
-		code: null
+		code: { codigo_calificacion: '' }
 	}
 
 
@@ -43,25 +44,14 @@ const FormAsignaturas = ({ handleChange }) => {
 		secciones: SECCIONES,
 		periodos: PERIDOS,
 		estudiantes: ESTUDIANTES,
-		ras: RAS
+		ras: RAS,
+		code: { codigo_calificacion: '' }
 	}
 
 	const [state, setstate] = useState(initialState);
 
 
-	const createCode = ({ periodo, asignatura, modalidad, grado, seccion, ra, estudiante, user }) => {
-		let code = ''
-		if (!!asignatura && !!periodo && !!grado && !!seccion && !!estudiante) {
 
-			code = `CEMAS:${modalidad.value}:${grado.value}${seccion.value}:${asignatura.value}:${user.username}:${periodo.value}:${estudiante.value}:${ra.value}`;
-
-				return code;
-		}
-
-		return null;
-
-
-	}
 
 	const handleAdd = (e) => {
 		e.preventDefault();
@@ -71,16 +61,13 @@ const FormAsignaturas = ({ handleChange }) => {
 
 			handleChange(
 				{
-					ra: state.ra.value,
-					estudiante: state.estudiante.value,
-					tecnico: state.tecnico,
 					code: state.code
 				})
 
 			setstate(initialState);
 		} else {
 
-			
+
 
 			setstate({ ...state, error: true })
 
@@ -130,16 +117,14 @@ const FormAsignaturas = ({ handleChange }) => {
 		};
 
 
-		let code = createCode(newState);
+		let code = createCodeBoletin(newState);
+
+
 		setstate({ ...newState, code });
 	}
 
 	return (
 		<form>
-
-
-
-			{state.error && <Alert message={'Debes completar todos los campos del formulario!'} type={'danger'} />}
 
 			<div className="orm-group row mt-4">
 
@@ -225,8 +210,8 @@ const FormAsignaturas = ({ handleChange }) => {
 					Código auto-generado:
 				</label>
 				<div className="col-sm-7">
-				
-					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.code || ''} />
+
+					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.code.codigo_calificacion || ''} />
 				</div>
 
 				<div className="col-sm-2">
@@ -236,6 +221,7 @@ const FormAsignaturas = ({ handleChange }) => {
 				</div>
 
 			</div>
+			{state.error && <Alert message={'Debes completar todos los campos del formulario!'} type={'danger'} />}
 		</form>
 	);
 };
