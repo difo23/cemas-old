@@ -8,7 +8,9 @@ const Asignaturas = () => {
 
 	const [state, setstate] = useState({
 		error: false,
-		boletines: []
+		success: false,
+		boletines: [],
+		message: ''
 	});
 
 	useEffect(() => {
@@ -19,6 +21,8 @@ const Asignaturas = () => {
 			value: "ÁNGELA FELIZ-AMFH000"
 		}]).then(data => setstate({
 			error: false,
+			success: true,
+			message: `${data.length} boletin${data.length < 2 ? '' : 'es'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
 			boletines: data
 		})).catch((err) => console.log(err));
 
@@ -27,46 +31,57 @@ const Asignaturas = () => {
 
 	const handleChange = (select) => {
 
-		const { code } = select
+		const { boletin_select } = select;
 
-		if (!state.boletines.find((boletin) => {
+		const registro_find = state.boletines.find((boletin) => {
 			return (
-				select.code.codigo_asignatura === boletin.codigo_asignatura && select.code.codigo_periodo === boletin.codigo_periodo && select.code.codigo_curso === boletin.codigo_curso
+				boletin_select.codigo_asignatura === boletin.codigo_asignatura && boletin_select.codigo_periodo === boletin.codigo_periodo && boletin_select.codigo_curso === boletin.codigo_curso
 			)
-		})
-		) {
+		});
 
-			/*TODO: 
-				Es necesario crear la interfaz de registro.
-				Crear el api para la interfaz de registro.
+		if (!registro_find) {
 
-				Necesito crear una nueva lista de estudiantes basados en registro del curso y compararlo con el numero de estudiantes pasado por la interfaz.
-			
-			*/
+			//TODO: 
 
-			createCalificaciones(code).then(
-				(calificaciones) => {
-					code.calificacion_estudiantes = calificaciones
-					setstate({
-						boletines: [...state.boletines, {
-							...code
-						}],
-						error: false
-					})
+			createCalificaciones(boletin_select).then(
+				(boletin) => {
+
+
+					if (!boletin) {
+						//no exite curso con estudiantes registrados
+
+						setstate({
+							...state,
+							error: true,
+							success: false,
+							message: 'No exite curso con estudiantes registrados! Solicitar al titular que registre los estudiantes'
+						})
+
+					} else {
+
+						setstate({
+							boletines: [...state.boletines, {
+								...boletin
+							}],
+							success: true,
+							message: 'Nuevo boletin fue creado correctamente.',
+							error: false
+						})
+
+					}
+
 
 				}
 			);
 
-
-
-		} else {
-
-			setstate({
-				...state,
-				error: true
-			})
 		}
 
+		setstate({
+			...state,
+			success: false,
+			error: true,
+			message: 'Ya esta registrada esta asigantura, si la lista de estudiantes cambio debes eliminar este boletin y volerlo a crear :(!',
+		})
 
 	}
 
@@ -89,7 +104,8 @@ const Asignaturas = () => {
 
 			<div >
 				<h3 className="diplay-4 mb-3 mt-3"> Lista de Boletines a calificar:</h3>
-				{state.error && <Alert message={'Ya esta registrada esta asigantura!'} type={'danger'} />}
+				{state.error && <Alert message={`{state.message}`} type={'danger'} />}
+				{state.success && <Alert message={`{state.message}`} type={'success'} />}
 				<ListBoletines
 					boletines={state.boletines}
 

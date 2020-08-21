@@ -3,7 +3,7 @@ import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
 import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, ESTUDIANTES, RAS } from './constants';
 import Alert from '../helpers/Alert';
-import createCodeBoletin from './helpers/createCodeBoletin';
+import createBoletinSelect from './helpers/createBoletinSelect';
 //import PropTypes from 'prop-types';
 
 const FormAsignaturas = ({ handleChange }) => {
@@ -25,7 +25,7 @@ const FormAsignaturas = ({ handleChange }) => {
 		periodos: [],
 		estudiantes: [],
 		ras: [],
-		code: { codigo_calificacion: '' }
+		boletin_select: { codigo_calificacion: '' }
 	}
 
 
@@ -45,7 +45,7 @@ const FormAsignaturas = ({ handleChange }) => {
 		periodos: PERIDOS,
 		estudiantes: ESTUDIANTES,
 		ras: RAS,
-		code: { codigo_calificacion: '' }
+		boletin_select: { codigo_calificacion: '' }
 	}
 
 	const [state, setstate] = useState(initialState);
@@ -61,7 +61,7 @@ const FormAsignaturas = ({ handleChange }) => {
 
 			handleChange(
 				{
-					code: state.code
+					boletin_select: state.boletin_select
 				})
 
 			setstate(initialState);
@@ -117,10 +117,10 @@ const FormAsignaturas = ({ handleChange }) => {
 		};
 
 
-		let code = createCodeBoletin(newState);
+		let boletin_select = createBoletinSelect(newState);
 
 
-		setstate({ ...newState, code });
+		setstate({ ...newState, boletin_select });
 	}
 
 	return (
@@ -211,7 +211,7 @@ const FormAsignaturas = ({ handleChange }) => {
 				</label>
 				<div className="col-sm-7">
 
-					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.code.codigo_calificacion || ''} />
+					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.boletin_select.codigo_calificacion || ''} />
 				</div>
 
 				<div className="col-sm-2">
