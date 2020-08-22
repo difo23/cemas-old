@@ -9,7 +9,7 @@ const Calificaciones = ({ location }) => {
 				<h1 className="display-5">Calificaciones</h1>
 			</div>
 			<hr style={{ border: '1px solid green' }} />
-			{location.state.fromDashboard ? <TablaTecnica /> : <TablaAcademica />}
+			{location.state.fromDashboard ? <TablaTecnica boletin={location.state.boletin} /> : <TablaAcademica boletin={location.state.boletin} />}
 		</div>
 	);
 };

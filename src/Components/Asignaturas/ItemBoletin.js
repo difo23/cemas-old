@@ -10,7 +10,7 @@ const ItemBoletin = ({ boletin, handleDelete }) => {
 				</div>
 
 				<div className="col-sm-3 mt-3 ">
-					<button className="btn btn-block btn-outline-danger " onClick={() =>  handleDelete(boletin._id, boletin.codigo_calificacion)}>
+					<button className="btn btn-block btn-outline-danger " onClick={() => handleDelete(boletin._id, boletin.codigo_calificacion)}>
 						<i className=" fas fa-trash-alt" />
 					</button>
 				</div>
@@ -26,7 +26,7 @@ const ItemBoletin = ({ boletin, handleDelete }) => {
 							pathname: '/calificaciones',
 							search: 'search',
 							hash: 'hash',
-							state: { fromDashboard: boletin.modalidad, estudiante: boletin.estudiantes, ra: boletin.ra }
+							state: { fromDashboard: (boletin.modalidad === 'TECNICA' ? true : false), boletin: boletin }
 						}}
 					>
 						Calificar{' '}

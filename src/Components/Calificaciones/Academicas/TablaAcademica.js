@@ -11,9 +11,11 @@ import postData from '../../../api/postData';
 import setCalificaciones from '../helper/setCalificaciones';
 //import getCalificaciones from '../helper/getCalificaciones';
 import { cellEditabled } from '../helper/cellEditabled';
+import updateData from '../../../api/updateData';
 
 const TablaAcademica = (props) => {
 	const user = getUser();
+
 
 	const [state, setstate] = useState({
 
@@ -21,7 +23,8 @@ const TablaAcademica = (props) => {
 		error: false,
 		success: false,
 		columns: getColumns('GENERALES'),
-		rows: []
+		boletin: props.boletin,
+		rows: props.boletin.calificacion_estudiantes
 	});
 
 
@@ -29,17 +32,17 @@ const TablaAcademica = (props) => {
 	const handleSend = (e) => {
 		e.preventDefault();
 
-		let calificaciones = setCalificaciones(state);
+		let boletin = { ...state.boletin, calificacion_estudiantes: state.rows };
+		console.log('Guardar tabla ', boletin)
 
-		let con = false;
-		// eslint-disable-next-line no-restricted-globals
-		con = confirm('Desea Guardar la tabla de calificacion ?');
-
-		if (con && state.rows.length) {
-			postData('/calificacion', calificaciones)
+		if (window.confirm('Desea Guardar la tabla de calificacion ?')
+			&& state.rows.length
+		) {
+			updateData('/calificacion', boletin._id, boletin)
 				.then((res) =>
 					setstate({
 						...state,
+						boletin,
 						error: false,
 						success: true
 					})
@@ -54,6 +57,7 @@ const TablaAcademica = (props) => {
 		} else {
 			setstate({
 				...state,
+				boletin,
 				success: false,
 				error: true
 			});
