@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ItemBoletin = ({ boletin }) => {
+const ItemBoletin = ({ boletin, handleDelete }) => {
 	return (
 		<div key={boletin.code}>
 			<div className="row mt-3">
@@ -10,7 +10,7 @@ const ItemBoletin = ({ boletin }) => {
 				</div>
 
 				<div className="col-sm-3 mt-3 ">
-					<button className="btn btn-block btn-outline-danger ">
+					<button className="btn btn-block btn-outline-danger " onClick={() =>  handleDelete(boletin._id, boletin.codigo_calificacion)}>
 						<i className=" fas fa-trash-alt" />
 					</button>
 				</div>

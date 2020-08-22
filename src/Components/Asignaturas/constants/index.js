@@ -85,7 +85,7 @@ export const GRADOS = [
         label: '5'
     },
     {
-        name: 'grados',
+        name: 'grado',
         value: '6',
         label: '6'
     },

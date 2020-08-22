@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
-import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, ESTUDIANTES, RAS } from './constants';
+import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from './constants';
 import Alert from '../helpers/Alert';
 import createBoletinSelect from './helpers/createBoletinSelect';
 //import PropTypes from 'prop-types';
@@ -43,14 +43,12 @@ const FormAsignaturas = ({ handleChange }) => {
 		estudiante: null,
 		secciones: SECCIONES,
 		periodos: PERIDOS,
-		estudiantes: ESTUDIANTES,
+		//estudiantes: ESTUDIANTES,
 		ras: RAS,
 		boletin_select: { codigo_calificacion: '' }
 	}
 
 	const [state, setstate] = useState(initialState);
-
-
 
 
 	const handleAdd = (e) => {
@@ -66,8 +64,6 @@ const FormAsignaturas = ({ handleChange }) => {
 
 			setstate(initialState);
 		} else {
-
-
 
 			setstate({ ...state, error: true })
 
@@ -87,7 +83,7 @@ const FormAsignaturas = ({ handleChange }) => {
 				...clearState,
 				modalidad: e.value,
 				asignaturas: ASIGNATURAS_TECNICAS,
-				grados: GRADOS.slice(3, GRADOS.length),
+				grados: GRADOS.slice(3, GRADOS.length + 1),
 				tecnico: true
 			};
 
@@ -182,14 +178,14 @@ const FormAsignaturas = ({ handleChange }) => {
 					/>
 				</div>
 
-				<div className="col-sm-3">
+				{/* <div className="col-sm-3">
 					<Selector
 						title="#Estudiantes"
 						value={state.estudiante}
 						options={state.estudiantes}
 						handleChange={handledState}
 					/>
-				</div>
+				</div> */}
 
 				{
 					state.tecnico ? (

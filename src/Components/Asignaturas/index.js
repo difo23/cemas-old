@@ -3,6 +3,9 @@ import FormAsignaturas from './FormAsignaturas';
 import ListBoletines from './ListBoletines';
 import Alert from '../helpers/Alert';
 import getRecordsByCode from './helpers/getRecordsByCode';
+import postData from '../../api/postData';
+import deleteData from '../../api/deleteData';
+import createCalificaciones from './helpers/createCalificaciones';
 
 const Asignaturas = () => {
 
@@ -18,7 +21,8 @@ const Asignaturas = () => {
 
 		getRecordsByCode([{
 			key: 'codigo_maestro',
-			value: "ÁNGELA FELIZ-AMFH000"
+			//value: "ÁNGELA FELIZ-AMFH000"
+			value: "MMRD"
 		}]).then(data => setstate({
 			error: false,
 			success: true,
@@ -28,6 +32,24 @@ const Asignaturas = () => {
 
 
 	}, [])
+
+	const handleDelete = (id, codigo_calificacion) => {
+
+		if (window.confirm(`Deseas elimnar este boletin ${codigo_calificacion}`)) {
+
+			console.log(id);
+			deleteData('/calificacion', id);
+			setstate({
+				boletines: [...(state.boletines.filter(boletin => boletin._id != id))],
+				success: true,
+				message: `Se ha eliminado el boletin ${codigo_calificacion}.`,
+				error: false
+			})
+		} else {
+
+			console.log(`Cancelado el borrado de ${codigo_calificacion}`)
+		}
+	}
 
 	const handleChange = (select) => {
 
@@ -54,19 +76,27 @@ const Asignaturas = () => {
 							...state,
 							error: true,
 							success: false,
-							message: 'No exite curso con estudiantes registrados! Solicitar al titular que registre los estudiantes'
+							message: `No exite curso con estudiantes registrados! Solicitar al titular que registre los estudiantes`
 						})
 
 					} else {
 
-						setstate({
-							boletines: [...state.boletines, {
-								...boletin
-							}],
-							success: true,
-							message: 'Nuevo boletin fue creado correctamente.',
-							error: false
-						})
+						//Guardar Boletin nuevo en base de datos
+						postData('/calificaciones/create', boletin)
+							.then((res) => { return res.json() })
+							.then((data) => {
+
+								console.log('Result ', data);
+
+								setstate({
+									boletines: [...state.boletines, {
+										...data.calificacion
+									}],
+									success: true,
+									message: 'Nuevo boletin fue creado correctamente.',
+									error: false
+								})
+							});
 
 					}
 
@@ -87,7 +117,7 @@ const Asignaturas = () => {
 
 
 	return (
-		<div className="container  mt-3">
+		<div className="container  mt-3 mb-5">
 			<h1 className="  display-5">Asignaturas</h1>
 
 			<hr style={{ border: '1px solid green' }} />
@@ -104,9 +134,10 @@ const Asignaturas = () => {
 
 			<div >
 				<h3 className="diplay-4 mb-3 mt-3"> Lista de Boletines a calificar:</h3>
-				{state.error && <Alert message={`{state.message}`} type={'danger'} />}
-				{state.success && <Alert message={`{state.message}`} type={'success'} />}
+				{state.error && <Alert message={`${state.message}`} type={'danger'} />}
+				{state.success && <Alert message={`${state.message}`} type={'success'} />}
 				<ListBoletines
+					handleDelete={handleDelete}
 					boletines={state.boletines}
 
 				/>

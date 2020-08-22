@@ -11,16 +11,32 @@ async function createCalificaciones(boletin) {
         }]
     });
 
+
     if (curso.length > 0) {
         let calificaciones = curso[0].estudiantes_inscritos.map((alumno, i) => {
-            return {
-                numero: alumno.numero,
-                ago_sept_oct: 0,
-                nov_dic_ene: 0,
-                feb_mar: 0,
-                abr_may_jun: 0,
-                cf: 0
-            };
+
+            let calificacion = {};
+            calificacion['numero'] = alumno.numero
+
+            if (boletin.modalidad === 'TECNICA') {
+                for (let i = 1; i <= boletin.ras; ++i) {
+                    calificacion[`ra${i}`] = { acumulado: 0, total: 0 };
+                }
+
+                calificacion[`cf`] = { acumulado: 0, total: 0 };
+
+            } else {
+
+                calificacion['ago_sept_oct'] = 0;
+                calificacion['nov_dic_ene'] = 0;
+                calificacion['feb_mar'] = 0;
+                calificacion['abr_may_jun'] = 0;
+                calificacion['cf'] = 0;
+
+            }
+
+
+            return calificacion;
         });
 
         boletin.calificacion_estudiantes = calificaciones;

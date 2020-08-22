@@ -2,7 +2,7 @@ import React from 'react';
 
 import ItemBoletin from "./ItemBoletin";
 
-const ListBoletines = ({ boletines }) => {
+const ListBoletines = ({ boletines, handleDelete }) => {
 
     console.log(boletines)
     return (
@@ -10,7 +10,7 @@ const ListBoletines = ({ boletines }) => {
 
             {boletines.map(boletin => {
 
-                return <ItemBoletin key={boletin._id} boletin={boletin} />
+                return <ItemBoletin key={boletin._id} boletin={boletin} handleDelete={handleDelete} />
             })}
 
         </div>
