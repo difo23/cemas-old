@@ -93,9 +93,9 @@ const TablaAcademica = (props) => {
 
 			<hr style={{ border: '1px solid green' }} />
 
-			<div className="col-sm-3 mt-3">
-				<button onClick={handleSend} className="btn btn-danger ml-1">
-					Enviar tabla a BD
+			<div className="col-sm-12 mt-3">
+				<button alt="Guardar" onClick={handleSend} className="btn btn-block btn-outline-danger ml-1">
+					<i className="fas fa-cloud-upload-alt" />
 				</button>
 			</div>
 			<hr style={{ border: '1px solid green' }} />
