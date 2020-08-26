@@ -6,8 +6,8 @@ const ItemRA = (props) => {
 
 		numero: props.numero,
 		ra_number: props.ra,
-		acumulado: '',
-		total: ''
+		acumulado: props.acumulado,
+		total: props.total
 	})
 
 
@@ -17,7 +17,7 @@ const ItemRA = (props) => {
 	const onchange = ({ target }) => {
 
 		const { name, value } = target;
-		
+
 
 		props.onChangeRA(
 			{
@@ -33,7 +33,7 @@ const ItemRA = (props) => {
 
 		});
 
-		
+
 
 	}
 
@@ -50,10 +50,10 @@ const ItemRA = (props) => {
 					<strong> {props.ra}</strong>
 				</div>
 				<div className="col">
-					<input type="text"  onChange={onchange} name="acumulado" value={state.acumulado} className="form-control" placeholder="Acumulado" autoComplete="off" />
+					<input type="text" onChange={onchange} name="acumulado" value={state.acumulado} className="form-control" placeholder="Acumulado" autoComplete="off" />
 				</div>
 				<div className="col">
-					<input type="text"  onChange={onchange} name="total" value={state.total} className="form-control" placeholder="Total" autoComplete="off" />
+					<input type="text" onChange={onchange} name="total" value={state.total} className="form-control" placeholder="Total" autoComplete="off" />
 				</div>
 
 			</div>

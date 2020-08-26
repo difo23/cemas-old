@@ -7,9 +7,9 @@ import Alert from '../../helpers/Alert';
 
 import { getUser } from '../../helpers/getUser';
 import { getColumns } from '../helper/getColumns';
-import postData from '../../../api/postData';
-import setCalificaciones from '../helper/setCalificaciones';
-//import getCalificaciones from '../helper/getCalificaciones';
+// import postData from '../../../api/postData';
+// import setCalificaciones from '../helper/setCalificaciones';
+// //import getCalificaciones from '../helper/getCalificaciones';
 import { cellEditabled } from '../helper/cellEditabled';
 import updateData from '../../../api/updateData';
 
@@ -75,7 +75,7 @@ const TablaAcademica = (props) => {
 			{state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
 
 			<div className="container  mt-3 mb-3">
-				<h3 className="display-5 mb-3">Tabla de calificaciones:</h3>
+
 
 				<BootstrapTable
 					className="mt-3"

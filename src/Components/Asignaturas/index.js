@@ -40,7 +40,7 @@ const Asignaturas = () => {
 			console.log(id);
 			deleteData('/calificacion', id);
 			setstate({
-				boletines: [...(state.boletines.filter(boletin => boletin._id != id))],
+				boletines: [...(state.boletines.filter(boletin => boletin._id !== id))],
 				success: true,
 				message: `Se ha eliminado el boletin ${codigo_calificacion}.`,
 				error: false

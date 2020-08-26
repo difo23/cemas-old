@@ -28,7 +28,7 @@ const Calificaciones = ({ location, history }) => {
 
 
 
-	}, [location])
+	}, [location, history])
 
 	return (
 		<div className="container  mt-3">
