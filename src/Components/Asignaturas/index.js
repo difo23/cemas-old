@@ -28,7 +28,13 @@ const Asignaturas = () => {
 			success: true,
 			message: `${data.length} boletin${data.length < 2 ? '' : 'es'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
 			boletines: data
-		})).catch((err) => console.log(err));
+		})).catch((err) => setstate({
+			boletines: [],
+			message: 'Revisar el internet!',
+			error: true,
+			success: false,
+		})
+		)
 
 
 	}, [])
