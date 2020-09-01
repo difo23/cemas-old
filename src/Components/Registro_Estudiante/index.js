@@ -2,19 +2,33 @@ import React, { useState } from 'react';
 
 import FormCurso from './FormCurso';
 import ListEstudiantes from './ListEstudiantes';
+import createCurso from './createCurso';
+import getUser from '../helpers/getUser';
 
 const Registro = () => {
 
 	const [state, setstate] = useState({
-		estudiantes: 0,
+
+		user: getUser()
+
 	})
 
 	const handleChange = (event) => {
 
 		console.log('Registro', event)
-		setstate(event)
 
+
+
+		if (event.estudiantes > 1) {
+			setstate({
+				...state,
+				curso: createCurso({ ...event, user: state.user })
+			});
+
+		};
 	}
+
+
 	return (
 		<div className="container mt-3 mb-5">
 			<h1>Registro</h1>
@@ -22,14 +36,7 @@ const Registro = () => {
 			<FormCurso handleChange={handleChange} />
 			<hr style={{ border: '1px solid green' }} />
 
-			{
-				Array(state.estudiantes * 1).fill(1).map((e, i) => {
-
-					return <ListEstudiantes key={`${e}-${i}`} numero={i + 1} />
-
-				})
-			}
-
+			{/* <ListEstudiantes estudiantes={state.estudiantes} /> */}
 		</div>
 	);
 };

@@ -1,45 +1,33 @@
 import React from 'react';
-import Selector from '../helpers/Selector';
 
-const ItemEstudiantes = ({ estudiante }) => {
+import FormEstudiante from './FormEstudiante';
+
+const ItemEstudiante = (props) => {
 	return (
-		<div className="mt-3 mb-3">
-			<div className="row mt-3">
-				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Nombres" autoComplete="off" />
-				</div>
-				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Apellidos" autoComplete="off" />
-				</div>
-			</div>
-
-			<div className="row ">
-				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Correo" autoComplete="off" />
-				</div>
-				<div className="col-sm mt-3">
-					<input
-						type="tel"
-						className="form-control"
-						placeholder="Cel, Ejem: 8096557898  "
-						autoComplete="off"
-					/>
+		<div className="row mt-3 mb-3">
+			<div className="col-sm-3 ml-3">
+				<div className="mt-3">
+					<h2>
+						<span
+							style={{
+								fontSize: '100px',
+								color: 'Dodgerblue'
+							}}
+						>
+							<i className="fas fa-user-graduate" />
+						</span>
+						<strong> {`#${props.numero}`}</strong>
+					</h2>
 				</div>
 			</div>
+			<div className="col mt-3">
+				<h5>Carta de Info:</h5>
 
-			<div className="row ">
-				<div className="col-sm mt-3">
-					<Selector title="Sexo" name="grados" option="1" arr={[]} />
-				</div>
-				<div className="col-sm mt-3">
-					<Selector title="Edad" name="edad" option="1" arr={[]} />
-				</div>
-				<div className="col-sm mt-3">
-					<input type="date" className="form-control" autoComplete="off" placeholder="Fecha de nacimiento" />
-				</div>
+				<FormEstudiante />
+
 			</div>
 		</div>
 	);
 };
 
-export default ItemEstudiantes;
+export default ItemEstudiante;
