@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import FormCurso from './FormCurso';
 import ListEstudiantes from './ListEstudiantes';
 import createCurso from './createCurso';
-import getUser from '../helpers/getUser';
+import { getUser } from '../helpers/getUser';
 
 const Registro = () => {
 
@@ -15,7 +15,7 @@ const Registro = () => {
 
 	const handleChange = (event) => {
 
-		console.log('Registro', event)
+		console.log('Registro', event, state.user)
 
 
 

@@ -1,10 +1,10 @@
 
 
 
-function createEstudiantes(params) {
+function createEstudiantes(estudiantes) {
 
 
-    return Array(params.estudiantes).fill(1).map((e, i) => {
+    return Array(estudiantes * 1).fill(1).map((e, i) => {
 
 
         return {
