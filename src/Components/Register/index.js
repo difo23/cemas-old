@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
-import regiterSchemaFormik from 'regiterSchemaFormik';
-
+import registerSchemaFormik from './registerSchemaFormik';
+import RegisterFormFormik from './RegisterFormFormik';
 const Register = props => {
 
     const initialValues = {
@@ -11,7 +11,7 @@ const Register = props => {
     };
 
 
-    const onSubmitFormik = ({ username, password, passwordConfirm }, { setStatus, setSubmitting }) => {
+    const onSubmitFormik = ({ username, password }, { setStatus, setSubmitting }) => {
         setStatus();
 
     };
@@ -26,10 +26,10 @@ const Register = props => {
                 <div className="card-body">
                     <Formik
                         initialValues={initialValues}
-                        validationSchema={regiterSchemaFormik}
+                        validationSchema={registerSchemaFormik}
                         onSubmit={onSubmitFormik}
                     >
-                        {}
+                        {RegisterFormFormik}
                     </Formik>
                 </div>
             </div>

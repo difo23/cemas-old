@@ -7,7 +7,7 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 		<div>
 			<Form>
 				<div className="form-group">
-					<label htmlFor="username">USUARIO:</label>
+					<label htmlFor="username">EMAIL:</label>
 					<Field
 						name="username"
 						type="text"
@@ -25,11 +25,11 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 					<ErrorMessage name="password" component="div" className="invalid-feedback" />
 				</div>
 				<div className="form-group">
-					<button type="submit" className="btn btn-outline-primary" disabled={isSubmitting}>
+					<button type="submit" className="btn btn-outline-success" disabled={isSubmitting}>
 						Login
 					</button>
 
-					<Link className="btn ml-1 btn-outline-success" to='/register'>Register</Link>
+					<Link className="card-link ml-1 " to='/register'> Go to Register</Link>
 
 
 				</div>
