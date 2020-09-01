@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Selector from '../helpers/Selector';
 //import PropTypes from 'prop-types';
 
-const FormCurso = ({ handleChange }) => {
+const FormCurso = (props) => {
+
+	const [state, setstate] = useState({
+		value: 0
+	})
+
+	const handleChange = (event) => {
+		event.preventDefault()
+		console.log(event.target)
+
+		setstate({ value: event.target.value })
+	}
 	return (
 		<form>
 			<div className="col mt-3 mr-3 mb-3">
@@ -25,9 +36,11 @@ const FormCurso = ({ handleChange }) => {
 					<input
 						type="number"
 						name="estudiantes"
+						value={state.value}
 						id="estudiantes"
 						placeholder="#Estudiantes"
 						className="form-control"
+						onChange={handleChange}
 					/>
 				</div>
 			</div>

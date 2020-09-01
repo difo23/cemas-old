@@ -1,14 +1,14 @@
-const createCodeBoletin = ({ periodo, asignatura, modalidad, grado, seccion, ra, user, centro = { codigo: 'CEMAS' } }) => {
+const createCodeBoletin = ({ periodo, asignatura, modalidad, grado, seccion, ra, user, centro }) => {
     let code = ''
 
 
     if (!!asignatura && !!periodo && !!grado && !!seccion) {
 
         code = {
-            codigo_calificacion: `${centro.codigo}:${modalidad.value}:${grado.value}${seccion.value}:${asignatura.value}:${user.username}:${periodo.value}:${ra.value}`,
+            codigo_calificacion: `${centro}:${modalidad.value}:${grado.value}${seccion.value}:${asignatura.value}:${user.username}:${periodo.value}:${ra.value}`,
             calificacion_estudiantes: [],
             codigo_asignatura: asignatura.value,
-            codigo_centro: centro.codigo,
+            codigo_centro: centro,
             codigo_curso: `${grado.value}${seccion.value}`,
             codigo_maestro: user.username,
             codigo_periodo: periodo.value,

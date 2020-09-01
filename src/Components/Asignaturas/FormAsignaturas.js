@@ -11,6 +11,7 @@ const FormAsignaturas = ({ handleChange }) => {
 	const initialState = {
 		user: getUser(),
 		ra: null,
+		centro: getUser().codigoCentro,
 		estudiante: null,
 		tecnico: false,
 		error: false,
@@ -207,7 +208,7 @@ const FormAsignaturas = ({ handleChange }) => {
 				</label>
 				<div className="col-sm-7">
 
-					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.boletin_select.codigo_calificacion || ''} />
+					<input type="text" readOnly className="form-control-plaintext" id="static1" value={state.boletin_select.codigo_asignatura || ''} />
 				</div>
 
 				<div className="col-sm-2">

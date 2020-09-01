@@ -6,7 +6,7 @@ const ItemBoletin = ({ boletin, handleDelete }) => {
 		<div key={boletin.code}>
 			<div className="row mt-3">
 				<div className="col-sm-6 mt-4">
-					<span> {boletin.codigo_calificacion}</span>
+					<span> {`${boletin.codigo_curso} ${boletin.codigo_asignatura} ${boletin.modalidad} ${boletin.codigo_periodo}`}</span>
 				</div>
 
 				<div className="col-sm-3 mt-3 ">

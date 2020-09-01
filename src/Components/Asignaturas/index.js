@@ -6,10 +6,15 @@ import getRecordsByCode from './helpers/getRecordsByCode';
 import postData from '../../api/postData';
 import deleteData from '../../api/deleteData';
 import createCalificaciones from './helpers/createCalificaciones';
-
+import { getUser } from '../helpers/getUser';
 const Asignaturas = () => {
 
+
+
+
+
 	const [state, setstate] = useState({
+		user: getUser(),
 		error: false,
 		success: false,
 		boletines: [],
@@ -21,14 +26,15 @@ const Asignaturas = () => {
 
 		getRecordsByCode([{
 			key: 'codigo_maestro',
-			//value: "ÁNGELA FELIZ-AMFH000"
-			value: "MMRD"
+			value: state.user.username
 		}]).then(data => setstate({
+			...state,
 			error: false,
 			success: true,
 			message: `${data.length} boletin${data.length < 2 ? '' : 'es'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
 			boletines: data
 		})).catch((err) => setstate({
+			...state,
 			boletines: [],
 			message: 'Revisar el internet!',
 			error: true,
@@ -46,6 +52,7 @@ const Asignaturas = () => {
 			console.log(id);
 			deleteData('/calificacion', id);
 			setstate({
+				...state,
 				boletines: [...(state.boletines.filter(boletin => boletin._id !== id))],
 				success: true,
 				message: `Se ha eliminado el boletin ${codigo_calificacion}.`,
@@ -95,6 +102,7 @@ const Asignaturas = () => {
 								console.log('Result ', data);
 
 								setstate({
+									...state,
 									boletines: [...state.boletines, {
 										...data.calificacion
 									}],
@@ -113,6 +121,7 @@ const Asignaturas = () => {
 		}
 
 		setstate({
+			...state,
 			...state,
 			success: false,
 			error: true,
