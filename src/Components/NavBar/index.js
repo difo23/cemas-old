@@ -28,9 +28,7 @@ export const Navbar = () => {
 						Registro
 					</NavLink>
 
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/profesor">
-						Profesor
-					</NavLink>
+					
 
 					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion4">
 						Reportes

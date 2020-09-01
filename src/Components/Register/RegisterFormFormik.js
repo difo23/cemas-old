@@ -16,13 +16,13 @@ const RegisterFormFormik = ({ errors, status, touched, isSubmitting }) => {
                     <ErrorMessage name="username" component="div" className="invalid-feedback" />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="codigoCentro:">EMAIL CENTRO EDUCATIVO:</label>
+                    <label htmlFor="codigoCentro">EMAIL CENTRO EDUCATIVO:</label>
                     <Field
-                        name="codigoCentro:"
+                        name="codigoCentro"
                         type="email"
-                        className={'form-control' + (errors.codigoCentro: && touched.codigoCentro: ? ' is-invalid' : '')}
+                        className={'form-control' + (errors.codigoCentro && touched.codigoCentro ? ' is-invalid' : '')}
                     />
-                    <ErrorMessage name="codigoCentro:" component="div" className="invalid-feedback" />
+                    <ErrorMessage name="codigoCentro" component="div" className="invalid-feedback" />
                 </div>
 
                 <div className="form-group">
