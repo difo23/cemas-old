@@ -20,6 +20,7 @@ const Selector = ({ title, value, options, handleChange }) => {
 				value={value}
 				options={options}
 				placeholder={title}
+
 			/>
 		</>
 	)

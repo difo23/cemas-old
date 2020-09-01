@@ -1,18 +1,43 @@
 import React, { useState } from 'react';
 import Selector from '../helpers/Selector';
+import { GRADOS, SECCIONES, PERIDOS } from '../constants';
 //import PropTypes from 'prop-types';
 
 const FormCurso = (props) => {
 
 	const [state, setstate] = useState({
-		value: 0
+		estudiantes: '',
+		grado: { name: 'Grado', value: 'Grado', label: 'Grado' },
+		periodo: { name: 'Periodo', value: 'Perido', label: 'Periodo' },
+		seccion: { name: 'Seccion', value: 'Seccion', label: 'Seccion' },
+
+		grados: GRADOS,
+		secciones: SECCIONES,
+		periodos: PERIDOS
+
 	})
 
 	const handleChange = (event) => {
-		event.preventDefault()
-		console.log(event.target)
 
-		setstate({ value: event.target.value })
+		console.log(event);
+		let newState = {}
+
+		if (event.target) {
+			newState = {
+				...state,
+				[event.target.name]: event.target.value
+			}
+			setstate(newState)
+		} else {
+			newState = {
+				...state,
+				[event.name]: event
+			}
+			setstate(newState)
+		}
+
+		props.handleChange(newState);
+
 	}
 	return (
 		<form>
@@ -22,21 +47,21 @@ const FormCurso = (props) => {
 
 			<div className=" row   mt-3">
 				<div className="col-sm-3 mt-1">
-					<Selector title="Grado" name="grados" option="1" arr={[]} handleChange={handleChange} />
+					<Selector title="Grado" name="grado" value={state.grado} options={state.grados} handleChange={handleChange} />
 				</div>
 
 				<div className="col-sm-3 mt-1">
-					<Selector title="Sección" name="secciones" option={'A'} arr={[]} handleChange={handleChange} />
+					<Selector title="Sección" name="seccion" value={state.seccion} options={state.secciones} handleChange={handleChange} />
 				</div>
 
 				<div className="col-sm-3 mt-1">
-					<Selector title="Periodo" name="periodos" option="2020-2021" arr={[]} handleChange={handleChange} />
+					<Selector title="Periodo" name="periodo" value={state.periodo} options={state.periodos} handleChange={handleChange} />
 				</div>
 				<div className="col-sm-3 mt-1">
 					<input
 						type="number"
 						name="estudiantes"
-						value={state.value}
+						value={state.estudiantes}
 						id="estudiantes"
 						placeholder="#Estudiantes"
 						className="form-control"
@@ -55,7 +80,7 @@ const FormCurso = (props) => {
 						readOnly
 						className="form-control-plaintext"
 						id="static1"
-						value="25:6F:2020-2021:MMRD:CEMAS"
+						value={`${state.grado.value}${state.seccion.value}:${state.periodo.value}:${state.estudiantes}`}
 					/>
 				</div>
 

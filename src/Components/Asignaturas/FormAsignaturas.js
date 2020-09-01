@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
-import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from './constants';
+import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
 import Alert from '../helpers/Alert';
 import createBoletinSelect from './helpers/createBoletinSelect';
 //import PropTypes from 'prop-types';

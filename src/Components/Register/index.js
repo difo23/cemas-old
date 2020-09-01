@@ -48,7 +48,7 @@ const Register = props => {
 
 
     return (
-        <div className=" ml-auto mr-auto mt-5" style={{ width: '50%' }}>
+        <div className=" ml-auto mr-auto mt-5 mb-5" style={{ width: '50%' }}>
             <div className="card text-white bg-dark">
                 <div className="card-header">REGISTRO ESCUELA</div>
 

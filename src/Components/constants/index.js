@@ -1,4 +1,4 @@
-import getPeriodos from '../../helpers/getPeridos';
+import getPeriodos from '../helpers/getPeridos';
 
 export const ASIGNATURAS_TECNICAS = [
     {

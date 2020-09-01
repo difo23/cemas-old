@@ -16,14 +16,15 @@ const ListEstudiantes = (props) => {
 						>
 							<i className="fas fa-user-graduate" />
 						</span>
-						<strong> {`#${'1'}`}</strong>
+						<strong> {`#${props.numero}`}</strong>
 					</h2>
 				</div>
 			</div>
-
 			<div className="col mt-3">
 				<h5>Carta de Info:</h5>
+
 				<ItemEstudiante />
+
 			</div>
 		</div>
 	);
