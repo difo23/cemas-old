@@ -1,41 +1,138 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Selector from '../helpers/Selector';
+import { SEXO, EDAD } from '../constants';
 
-const FormEstudiante = ({ estudiante }) => {
+const FormEstudiante = ({ estudiante, handleChange }) => {
+
+	const [state, setstate] = useState({
+
+		...estudiante
+
+	});
+
+
+	const onChange = (event) => {
+
+		console.log('Handle change form estudiante ', event);
+		let newState = {}
+
+
+		if (event.target) {
+
+			console.log('Handle change form estudiante ', event.target);
+			newState = {
+				...state,
+				[event.target.name]: event.target.value,
+
+			}
+
+		} else {
+
+			newState = {
+				...state,
+				[event.name]: event.value
+			}
+
+		}
+
+		console.log('Nuevo state', newState)
+
+		handleChange(newState)
+
+		setstate(newState)
+
+	}
+
+
 	return (
 		<div className="mt-3 mb-3">
 			<div className="row mt-3">
 				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Nombres" autoComplete="off" />
-				</div>
-				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Apellidos" autoComplete="off" />
-				</div>
-			</div>
-
-			<div className="row ">
-				<div className="col-sm mt-3">
-					<input type="text" className="form-control" placeholder="Correo" autoComplete="off" />
+					<input
+						type="text"
+						className="form-control"
+						value={state.nombres}
+						placeholder="Nombres"
+						name={'nombres'}
+						autoComplete="off"
+						onChange={onChange}
+					/>
 				</div>
 				<div className="col-sm mt-3">
 					<input
-						type="tel"
+						type="text"
 						className="form-control"
-						placeholder="Cel, Ejem: 8096557898  "
+						value={state.apellidos}
+						placeholder="Apellidos"
 						autoComplete="off"
+						name={'apellidos'}
+						onChange={onChange}
 					/>
 				</div>
 			</div>
 
 			<div className="row ">
 				<div className="col-sm mt-3">
-					<Selector title="Sexo" name="grados" option="1" arr={[]} />
+					<input
+						type="email"
+						name={'correo'}
+						className="form-control"
+						placeholder="Correo"
+						value={state.correo}
+						autoComplete="off"
+						onChange={onChange}
+					/>
 				</div>
 				<div className="col-sm mt-3">
-					<Selector title="Edad" name="edad" option="1" arr={[]} />
+					<input
+						type="tel"
+						className="form-control"
+						name={'telefono'}
+						placeholder="Cel, Ejem: 8096557898  "
+						value={state.telefono}
+						autoComplete="off"
+						onChange={onChange}
+					/>
+				</div>
+			</div>
+
+			<div className="row ">
+				<div className="col-sm mt-3">
+					<Selector
+						title="Sexo"
+						name="sexo"
+						value={{
+							name: 'sexo',
+							value: state.sexo.length ? state.sexo : 'Sexo',
+							label: state.sexo.length ? state.sexo : 'Sexo'
+						}}
+						options={SEXO}
+						handleChange={onChange}
+					/>
 				</div>
 				<div className="col-sm mt-3">
-					<input type="date" className="form-control" autoComplete="off" placeholder="Fecha de nacimiento" />
+					<Selector
+						title="Edad"
+						name="edad"
+						value={{
+							name: 'edad',
+							value: state.edad.length ? state.edad : 'Edad',
+							label: state.edad.length ? state.edad : 'Edad'
+						}}
+						options={EDAD}
+						handleChange={onChange}
+					/>
+				</div>
+				<div className="col-sm mt-3">
+					<input
+						type="date"
+						value={state.fecha_nacimiento}
+						name={'fecha_nacimiento'}
+						className="form-control"
+						autoComplete="off"
+						onChange={onChange}
+						placeholder="Fecha de nacimiento"
+					/>
 				</div>
 			</div>
 		</div>

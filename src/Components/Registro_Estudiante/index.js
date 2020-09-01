@@ -1,28 +1,75 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import getCursosByCode from './helpers/getCursosByCode';
 import FormCurso from './FormCurso';
-import ListEstudiantes from './ListEstudiantes';
+import Alert from '../helpers/Alert';
+import ListCurso from './ListCurso';
 import createCurso from './createCurso';
 import { getUser } from '../helpers/getUser';
+import deleteData from '../../api/deleteData';
+import { GRADOS, SECCIONES, PERIDOS } from '../constants';
+
 
 const Registro = () => {
 
 	const [state, setstate] = useState({
-
-		user: getUser()
-
+		cursos: [],
+		user: getUser(),
+		error: false,
+		success: false,
+		message: '',
 	})
 
+	useEffect(() => {
+		console.log('Cargar todos los cursos creados por el usuario');
+
+		getCursosByCode([{
+			key: 'codigo_titular',
+			value: state.user.username
+		}]).then(data => setstate({
+			...state,
+			error: false,
+			success: true,
+			message: `${data.length} Curso${data.length < 2 ? '' : 's'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
+			cursos: data
+		})).catch((err) => setstate({
+			...state,
+			cursos: [],
+			message: 'Revisar el internet!',
+			error: true,
+			success: false,
+		})
+		)
+
+	}, [])
+
+
+	const handleDelete = (id, codigo_calificaciones) => {
+
+		if (window.confirm(`Deseas elimnar este boletin ${codigo_calificaciones}`)) {
+
+			console.log(id);
+			deleteData('/curso', id);
+			setstate({
+				...state,
+				cursos: [...(state.cursos.filter(curso => curso._id !== id))],
+				success: true,
+				message: `Se ha eliminado el boletin ${codigo_calificaciones}.`,
+				error: false
+			})
+		} else {
+
+			console.log(`Cancelado el borrado de ${codigo_calificaciones}`)
+		}
+	}
+
+
 	const handleChange = (event) => {
-
-		console.log('Registro', event, state.user)
-
 
 
 		if (event.estudiantes > 1) {
 			setstate({
 				...state,
-				curso: createCurso({ ...event, user: state.user })
+				cursos: [...state.cursos, createCurso({ ...event, user: state.user })]
 			});
 
 		};
@@ -36,7 +83,10 @@ const Registro = () => {
 			<FormCurso handleChange={handleChange} />
 			<hr style={{ border: '1px solid green' }} />
 
-			{/* <ListEstudiantes estudiantes={state.estudiantes} /> */}
+
+			{state.error && <Alert message={`${state.message}`} type={'danger'} />}
+			{state.success && <Alert message={`${state.message}`} type={'success'} />}
+			<ListCurso cursos={state.cursos} handleDelete={handleDelete} />
 		</div>
 	);
 };

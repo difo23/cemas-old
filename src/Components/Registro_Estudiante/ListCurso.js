@@ -2,18 +2,18 @@ import React from 'react';
 import ItemCurso from './ItemCurso';
 
 
-const ListCurso = ({ cursos }) => {
+const ListCurso = ({ cursos, handleDelete }) => {
 
 
     const renderCursos = cursos.map((curso) => {
-        return <ItemCurso key={curso._id} curso={curso} />
+        return <ItemCurso key={curso._id} curso={curso} handleDelete={handleDelete} />
     });
 
 
 
     return (
         <div>
-            <h1>Lista de cursos:</h1>
+            <h5>Lista de cursos:</h5>
             <hr />
             {renderCursos}
         </div>

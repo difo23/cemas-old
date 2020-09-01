@@ -2,8 +2,7 @@ import createEstudiantes from './createEstudiantes';
 import postData from '../../api/postData';
 
 async function createCurso(params) {
-    console.log('Params', params)
-
+    
     const grado = params.grado.value;
     const seccion = params.seccion.value;
     const periodo = params.periodo.value;
@@ -14,20 +13,19 @@ async function createCurso(params) {
         codigo_centro: user.codigoCentro,
         codigo_periodo: periodo,
         codigo_curso: `${grado}${seccion}`,
-        codigo_calificacion: `${grado}${seccion}:${periodo}:${estudiantes}`,
+        codigo_calificaciones: `${grado}${seccion}:${periodo}:${estudiantes}`,
         codigo_titular: user.username,
         nombres_titular: `${user.firstName} ${user.lastName}`,
-        estudiantes_inscritos: createEstudiantes(estudiantes)
+        estudiantes_inscritos: createEstudiantes(estudiantes),
+        estado: true
     }
 
-
-    console.log('Curso:  ', curso);
 
 
     // save in bd
     // obtener _id desde la bd
 
-    let data = await postData('', curso);
+    let data = await postData('/curso/create', curso);
 
 
     return data;

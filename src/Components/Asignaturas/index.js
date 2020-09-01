@@ -7,11 +7,9 @@ import postData from '../../api/postData';
 import deleteData from '../../api/deleteData';
 import createCalificaciones from './helpers/createCalificaciones';
 import { getUser } from '../helpers/getUser';
+
+
 const Asignaturas = () => {
-
-
-
-
 
 	const [state, setstate] = useState({
 		user: getUser(),

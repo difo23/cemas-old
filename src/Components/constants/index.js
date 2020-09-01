@@ -57,6 +57,90 @@ export const ASIGNATURAS_ACADEMICAS = [
 
 ]
 
+
+export const EDAD = [
+    {
+        name: 'edad',
+        value: '8',
+        label: '8'
+    },
+    {
+        name: 'edad',
+        value: '9',
+        label: '9'
+    },
+    {
+        name: 'edad',
+        value: '10',
+        label: '10'
+    },
+    {
+        name: 'edad',
+        value: '11',
+        label: '11'
+    },
+    {
+        name: 'edad',
+        value: '12',
+        label: '12'
+    },
+    {
+        name: 'edad',
+        value: '13',
+        label: '13'
+    },
+    {
+        name: 'edad',
+        value: '14',
+        label: '14'
+    },
+    {
+        name: 'edad',
+        value: '15',
+        label: '15'
+    },
+    {
+        name: 'edad',
+        value: '16',
+        label: '16'
+    },
+    {
+        name: 'edad',
+        value: '17',
+        label: '17'
+    },
+    {
+        name: 'edad',
+        value: '18',
+        label: '18'
+    },
+    {
+        name: 'edad',
+        value: '19',
+        label: '19'
+    }
+
+
+]
+
+
+export const SEXO = [
+    {
+        name: 'sexo',
+        value: 'M',
+        label: 'M'
+    },
+    {
+        name: 'sexo',
+        value: 'F',
+        label: 'F'
+    },
+
+]
+
+
+
+
 export const GRADOS = [
     {
         name: 'grado',

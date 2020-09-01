@@ -10,7 +10,7 @@ const FormCurso = (props) => {
 		grado: { name: 'Grado', value: 'Grado', label: 'Grado' },
 		periodo: { name: 'Periodo', value: 'Perido', label: 'Periodo' },
 		seccion: { name: 'Seccion', value: 'Seccion', label: 'Seccion' },
-
+		code: '',
 		grados: GRADOS,
 		secciones: SECCIONES,
 		periodos: PERIDOS
@@ -21,28 +21,56 @@ const FormCurso = (props) => {
 
 		console.log(event);
 		let newState = {}
+		let code = '';
 
 		if (event.target) {
+
+			console.log('Validar el code', event.target.value)
+
+			if (event.target.value.length > 0) {
+
+				code = `${state.grado.value}${state.seccion.value}:${state.periodo.value}:${event.target.value}`;
+			}
+
 			newState = {
 				...state,
-				[event.target.name]: event.target.value
+				[event.target.name]: event.target.value,
+				code
 			}
-			setstate(newState)
+
 		} else {
+
 			newState = {
 				...state,
 				[event.name]: event
 			}
-			setstate(newState)
+
 		}
 
-		props.handleChange(newState);
+		setstate(newState)
 
 	}
+
+
+	const handleAdd = (e) => {
+		e.preventDefault();
+
+		if (state.estudiantes > 0) {
+
+
+			props.handleChange(state);
+
+		} else {
+			window.alert('La cantidad de estudiantes inscritos debe ser mayor!')
+		}
+
+	}
+
+
 	return (
 		<form>
 			<div className="col mt-3 mr-3 mb-3">
-				<h5>Curso Titular: </h5>
+				<h5>Curso: </h5>
 			</div>
 
 			<div className=" row   mt-3">
@@ -80,13 +108,13 @@ const FormCurso = (props) => {
 						readOnly
 						className="form-control-plaintext"
 						id="static1"
-						value={`${state.grado.value}${state.seccion.value}:${state.periodo.value}:${state.estudiantes}`}
+						value={state.code}
 					/>
 				</div>
 
 				<div className="col-sm-2">
-					<button type="button" className="btn btn-block btn-outline-danger">
-						<i className="fas fa-cloud-upload-alt" />
+					<button onClick={handleAdd} type="button" className="btn btn-block btn-outline-primary">
+						<i className="fas fa-plus" />
 					</button>
 				</div>
 			</div>

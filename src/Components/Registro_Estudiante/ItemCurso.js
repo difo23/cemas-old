@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const ItemCurso = ({ curso }) => {
+const ItemCurso = ({ curso, handleDelete }) => {
     return (
 
         <div key={curso._id}>
@@ -26,7 +26,7 @@ const ItemCurso = ({ curso }) => {
                             pathname: '/estudiantes',
                             search: 'search',
                             hash: 'hash',
-                            state: { estudiantes: curso.estudiantes_inscritos.length, curso: curso }
+                            state: {  curso: curso }
                         }}
                     >
                         Inscribir{' '}
