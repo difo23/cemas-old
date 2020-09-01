@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, Form, ErrorMessage } from 'formik';
+import { Link } from 'react-router-dom';
 
 const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 	return (
@@ -24,9 +25,13 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 					<ErrorMessage name="password" component="div" className="invalid-feedback" />
 				</div>
 				<div className="form-group">
-					<button type="submit" className="btn btn-success" disabled={isSubmitting}>
+					<button type="submit" className="btn btn-outline-primary" disabled={isSubmitting}>
 						Login
 					</button>
+
+					<Link className="btn ml-1 btn-outline-success" to='/register'>Register</Link>
+
+
 				</div>
 				{status && <div className={'alert alert-danger'}>{status}</div>}
 			</Form>

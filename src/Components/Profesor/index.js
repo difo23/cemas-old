@@ -9,9 +9,6 @@ import CodigoAutoGenerado from './CodigoAutoGenerado';
 const Profesor = () => {
 	
 
-	
-
-
 	return (
 		<div className="container  mt-3">
 			

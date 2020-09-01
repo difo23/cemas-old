@@ -4,6 +4,7 @@ import Board from './Board';
 import { PrivateRoute } from '../Login/_components';
 import { history } from '../Login/_helpers';
 import LoginPage from '../Login';
+import RegisterPage from '../Register';
 
 const RouterApp = () => {
 	return (
@@ -11,6 +12,7 @@ const RouterApp = () => {
 			<div>
 				<Switch>
 					<Route exact path="/login" component={LoginPage} />
+					<Route exact path="/register" component={RegisterPage} />
 					<PrivateRoute path="/" component={Board} />
 				</Switch>
 			</div>

@@ -3,14 +3,14 @@ import { Switch } from 'react-router-dom';
 import { PrivateRoute } from '../Login/_components';
 import Calificaciones from '../Calificaciones';
 import Profesor from '../Profesor';
-import {Navbar} from '../NavBar';
+import { Navbar } from '../NavBar';
 import Asignaturas from '../Asignaturas';
-import Registro from '../Registro';
+import Registro from '../Registro_Estudiante';
 
 const Board = () => {
 	return (
 		<>
-			<Navbar/>
+			<Navbar />
 			<div>
 				<Switch>
 					<PrivateRoute exact path="/calificaciones" component={Calificaciones} />

@@ -1,0 +1,42 @@
+import React from 'react';
+import { Formik } from 'formik';
+import regiterSchemaFormik from 'regiterSchemaFormik';
+
+const Register = props => {
+
+    const initialValues = {
+        username: '',
+        password: '',
+        passwordConfirm: ''
+    };
+
+
+    const onSubmitFormik = ({ username, password, passwordConfirm }, { setStatus, setSubmitting }) => {
+        setStatus();
+
+    };
+
+
+
+    return (
+        <div className=" ml-auto mr-auto mt-5" style={{ width: '50%' }}>
+            <div className="card text-white bg-dark">
+                <div className="card-header">REGISTRO ESCUELA</div>
+
+                <div className="card-body">
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={regiterSchemaFormik}
+                        onSubmit={onSubmitFormik}
+                    >
+                        {}
+                    </Formik>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+
+export default Register;
