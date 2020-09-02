@@ -8,7 +8,7 @@ const getCursosByCode = async (props) => {
         params: props
     });
 
-    console.log(res);
+ 
 
     return res;
 };

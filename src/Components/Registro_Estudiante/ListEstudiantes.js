@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import ItemEstudiante from './ItemEstudiante'
 import updateData from '../../api/updateData';
-
+import Alert from '../helpers/Alert';
 
 const ListEstudiantes = ({ location, history }) => {
 
     const [state, setstate] = useState({
 
-        curso: { estudiantes_inscritos: [] }
+        curso: { estudiantes_inscritos: [] },
+        error: false,
+        success: false
     })
 
     useEffect(() => {
-        console.log(location)
+       
 
         if (!!location.state && !!location.state.curso) {
 
-            console.log(location.state.curso)
+           
 
             setstate({
-
+                ...state,
                 curso: location.state.curso
             })
         } else {
@@ -46,31 +48,30 @@ const ListEstudiantes = ({ location, history }) => {
             return est;
         })
 
-        setstate({ curso: { ...state.curso, estudiantes_inscritos } })
+        setstate({ ...state, curso: { ...state.curso, estudiantes_inscritos } })
 
     }
 
 
     const handleSend = () => {
 
-        if (window.confirm('Desea Guardar la tabla de calificacion ?')
+
+
+        if (window.confirm('Desea Guardar el curso?')
 
         ) {
+
             updateData('/curso', state.curso._id, state.curso)
-                .then((res) =>
-                    setstate({
-                        ...state,
-                        error: false,
-                        success: true
-                    })
-                )
-                .catch((e) =>
-                    setstate({
-                        ...state,
-                        success: false,
-                        error: true
-                    })
-                );
+                .then((res) => setstate({
+                    ...state,
+                    success: true,
+                    error: false
+                }))
+                .catch((error) => setstate({
+                    ...state,
+                    success: false,
+                    error: true
+                }));
         } else {
             setstate({
                 ...state,
@@ -89,6 +90,8 @@ const ListEstudiantes = ({ location, history }) => {
     return (
         <div className="container  mt-3" >
             <h5>Lista de Estudiantes</h5>
+            {state.success && <Alert message={'Todo salió bien! Y yo me alegro.'} type={'success'} />}
+            {state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
             <hr style={{ border: '1px solid green' }} />
             {rendeEstudiantes}
 

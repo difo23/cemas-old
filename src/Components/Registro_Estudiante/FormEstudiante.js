@@ -13,13 +13,13 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 
 	const onChange = (event) => {
 
-		console.log('Handle change form estudiante ', event);
+		
 		let newState = {}
 
 
 		if (event.target) {
 
-			console.log('Handle change form estudiante ', event.target);
+		
 			newState = {
 				...state,
 				[event.target.name]: event.target.value,

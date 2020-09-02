@@ -16,7 +16,8 @@ function createEstudiantes(estudiantes) {
             sexo: '',
             edad: '',
             fecha_nacimiento: '',
-            activo: true
+            estado: true
+
         }
 
 

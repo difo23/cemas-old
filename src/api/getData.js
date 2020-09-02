@@ -19,11 +19,11 @@ const getData = async ({ url, params, id }) => {
 	}
 
 	const urlComplete = `${urlAPI}${url}${encodeURI(string_params)}`;
-	console.log('Final URL', urlComplete);
+
 	const resp = await fetch(urlComplete);
 	const { data } = await resp.json();
 
-	console.log(data);
+
 
 	return data;
 };

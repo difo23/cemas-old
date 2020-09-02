@@ -19,13 +19,13 @@ const FormCurso = (props) => {
 
 	const handleChange = (event) => {
 
-		console.log(event);
+	
 		let newState = {}
 		let code = '';
 
 		if (event.target) {
 
-			console.log('Validar el code', event.target.value)
+			
 
 			if (event.target.value.length > 0) {
 

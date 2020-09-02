@@ -45,7 +45,7 @@ const Registro = () => {
 
 	const handleDelete = (id, codigo_calificaciones) => {
 
-		if (window.confirm(`Deseas elimnar este boletin ${codigo_calificaciones}`)) {
+		if (window.confirm(`Deseas elimnar este curso ${codigo_calificaciones}`)) {
 
 			console.log(id);
 			deleteData('/curso', id);
@@ -53,7 +53,7 @@ const Registro = () => {
 				...state,
 				cursos: [...(state.cursos.filter(curso => curso._id !== id))],
 				success: true,
-				message: `Se ha eliminado el boletin ${codigo_calificaciones}.`,
+				message: `Se ha eliminado el curso${codigo_calificaciones}.`,
 				error: false
 			})
 		} else {
@@ -67,10 +67,45 @@ const Registro = () => {
 
 
 		if (event.estudiantes > 1) {
-			setstate({
-				...state,
-				cursos: [...state.cursos, createCurso({ ...event, user: state.user })]
-			});
+
+			createCurso({ ...event, user: state.user }).then((res) => {
+
+
+				return res.json();
+			}).then((data) => {
+
+
+				console.log('Promesa', data)
+
+				if (data.curso) {
+
+					setstate({
+						...state,
+						success: true,
+						message: `Nuevo curso ${data.curso.codigo_calificaciones} agregado.`,
+						error: false,
+						cursos: [...state.cursos, data.curso]
+					});
+
+				} else {
+
+					setstate({
+						...state,
+						success: false,
+						message: `Estas duplicando el curso `,
+						error: true
+					})
+
+
+				}
+
+
+
+
+
+			})
+
+
 
 		};
 	}
