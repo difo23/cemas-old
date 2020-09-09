@@ -2,7 +2,7 @@ import createEstudiantes from './createEstudiantes';
 import postData from '../../api/postData';
 
 async function createCurso(params) {
-    
+
     const grado = params.grado.value;
     const seccion = params.seccion.value;
     const periodo = params.periodo.value;
@@ -13,7 +13,7 @@ async function createCurso(params) {
         codigo_centro: user.codigoCentro,
         codigo_periodo: periodo,
         codigo_curso: `${grado}${seccion}`,
-        codigo_calificaciones: `${grado}${seccion}:${periodo}:${estudiantes}`,
+        codigo_calificaciones: `${grado}${seccion}:${periodo}`,
         codigo_titular: user.username,
         nombres_titular: `${user.firstName} ${user.lastName}`,
         estudiantes_inscritos: createEstudiantes(estudiantes),
