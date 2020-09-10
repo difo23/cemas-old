@@ -14,15 +14,17 @@ const getData = async ({ url, params, id }) => {
 
 		}
 
-	} else {
+	} else if (id) {
 		string_params += `/${id}`;
 	}
 
-	const urlComplete = `${urlAPI}${url}${encodeURI(string_params)}`;
 
+
+	const urlComplete = `${urlAPI}${url}${encodeURI(string_params)}`;
 	const resp = await fetch(urlComplete);
 	const { data } = await resp.json();
 
+	
 
 
 	return data;

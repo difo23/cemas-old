@@ -1,5 +1,8 @@
 import getPeriodos from '../helpers/getPeridos';
 
+
+
+
 export const ASIGNATURAS_TECNICAS = [
     {
         name: 'asignatura',

@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
-import { ASIGNATURAS_ACADEMICAS, ASIGNATURAS_TECNICAS, MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
+import { ASIGNATURAS_ACADEMICAS,  MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
 import Alert from '../helpers/Alert';
 import createBoletinSelect from './helpers/createBoletinSelect';
+
+import getAsignaturasTecnicas from '../helpers/getAsignaturasTecnicas';
+
+
 //import PropTypes from 'prop-types';
 
 const FormAsignaturas = ({ handleChange }) => {
+
+
 
 	const initialState = {
 		user: getUser(),
@@ -26,7 +32,8 @@ const FormAsignaturas = ({ handleChange }) => {
 		periodos: [],
 		estudiantes: [],
 		ras: [],
-		boletin_select: { codigo_calificacion: '' }
+		boletin_select: { codigo_calificacion: '' },
+		ASIGNATURAS_TECNICAS: []
 	}
 
 
@@ -50,6 +57,16 @@ const FormAsignaturas = ({ handleChange }) => {
 	}
 
 	const [state, setstate] = useState(initialState);
+
+
+	useEffect(() => {
+
+		getAsignaturasTecnicas().then(res => {
+
+			setstate({ ...state, ASIGNATURAS_TECNICAS: res })
+		})
+
+	}, [])
 
 
 	const handleAdd = (e) => {
@@ -83,7 +100,7 @@ const FormAsignaturas = ({ handleChange }) => {
 			newState = {
 				...clearState,
 				modalidad: e.value,
-				asignaturas: ASIGNATURAS_TECNICAS,
+				asignaturas: state.ASIGNATURAS_TECNICAS,
 				grados: GRADOS.slice(3, GRADOS.length + 1),
 				tecnico: true
 			};
