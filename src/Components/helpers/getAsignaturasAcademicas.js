@@ -1,10 +1,10 @@
 import getData from '../../api/getData';
 
 
-export default async function getAsignaturasTecnicas(params) {
+export default async function getAsignaturasAcademicas() {
 
     const asignaturas = await getData({
-        url: '/asignaturas_tecnicas',
+        url: '/asignaturas_academicas',
         params: [],
         id: null
     })
@@ -18,6 +18,8 @@ export default async function getAsignaturasTecnicas(params) {
             label: `${asignatura.nombre} ${asignatura.codigo}`
         }
     })
+
+
 
     return options;
 

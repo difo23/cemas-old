@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Selector from '../helpers/Selector';
 import { getUser } from '../helpers/getUser';
-import { ASIGNATURAS_ACADEMICAS,  MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
+import { MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
 import Alert from '../helpers/Alert';
 import createBoletinSelect from './helpers/createBoletinSelect';
 
-import getAsignaturasTecnicas from '../helpers/getAsignaturasTecnicas';
+import getAsignaturas from '../helpers/getAsignaturas';
+
 
 
 //import PropTypes from 'prop-types';
@@ -33,7 +34,9 @@ const FormAsignaturas = ({ handleChange }) => {
 		estudiantes: [],
 		ras: [],
 		boletin_select: { codigo_calificacion: '' },
-		ASIGNATURAS_TECNICAS: []
+		ASIGNATURAS_TECNICAS: [],
+		ASIGNATURAS_ACADEMICAS: []
+
 	}
 
 
@@ -61,10 +64,11 @@ const FormAsignaturas = ({ handleChange }) => {
 
 	useEffect(() => {
 
-		getAsignaturasTecnicas().then(res => {
+		getAsignaturas().then(res => {
 
-			setstate({ ...state, ASIGNATURAS_TECNICAS: res })
+			setstate({ ...state, ASIGNATURAS_TECNICAS: res.tecnicas, ASIGNATURAS_ACADEMICAS: res.academicas })
 		})
+
 
 	}, [])
 
@@ -109,7 +113,7 @@ const FormAsignaturas = ({ handleChange }) => {
 			newState = {
 				...clearState,
 				modalidad: e.value,
-				asignaturas: ASIGNATURAS_ACADEMICAS,
+				asignaturas: state.ASIGNATURAS_ACADEMICAS,
 				grados: GRADOS,
 				tecnico: false
 			};
