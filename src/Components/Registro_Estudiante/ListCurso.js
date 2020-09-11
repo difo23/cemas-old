@@ -13,7 +13,7 @@ const ListCurso = ({ cursos, handleDelete }) => {
 
     return (
         <div>
-            <h5>Lista de cursos:</h5>
+            
             <hr />
             {renderCursos}
         </div>

@@ -118,10 +118,11 @@ const Registro = () => {
 			<FormCurso handleChange={handleChange} />
 			<hr style={{ border: '1px solid green' }} />
 
-
+			<h5>Lista de cursos:</h5>
 			{state.error && <Alert message={`${state.message}`} type={'danger'} />}
 			{state.success && <Alert message={`${state.message}`} type={'success'} />}
 			<ListCurso cursos={state.cursos} handleDelete={handleDelete} />
+
 		</div>
 	);
 };
