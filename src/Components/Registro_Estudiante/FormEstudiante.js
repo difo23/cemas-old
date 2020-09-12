@@ -74,11 +74,11 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 			<div className="row ">
 				<div className="col-sm mt-3">
 					<input
-						type="email"
-						name={'correo'}
+						type="text"
+						name={'rne'}
 						className="form-control"
-						placeholder="Correo"
-						value={state.correo}
+						placeholder="RNE"
+						value={state.rne}
 						autoComplete="off"
 						onChange={onChange}
 					/>
