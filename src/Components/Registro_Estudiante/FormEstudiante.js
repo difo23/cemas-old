@@ -13,13 +13,13 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 
 	const onChange = (event) => {
 
-		
+
 		let newState = {}
 
 
 		if (event.target) {
 
-		
+
 			newState = {
 				...state,
 				[event.target.name]: event.target.value,
@@ -78,6 +78,17 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 						name={'rne'}
 						className="form-control"
 						placeholder="RNE"
+						value={state.rne}
+						autoComplete="off"
+						onChange={onChange}
+					/>
+				</div>
+				<div className="col-sm mt-3">
+					<input
+						type="email"
+						name={'correo'}
+						className="form-control"
+						placeholder="Email"
 						value={state.rne}
 						autoComplete="off"
 						onChange={onChange}

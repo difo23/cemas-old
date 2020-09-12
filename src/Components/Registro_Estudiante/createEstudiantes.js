@@ -12,6 +12,7 @@ function createEstudiantes(estudiantes) {
             nombres: '',
             apellidos: '',
             rne: '',
+            correo: '',
             telefono: '',
             sexo: '',
             edad: '',
