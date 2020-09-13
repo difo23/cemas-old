@@ -15,7 +15,7 @@ async function createCurso(params) {
         codigo_curso: `${grado}${seccion}`,
         codigo_calificaciones: `${grado}${seccion}:${periodo}`,
         codigo_titular: user.username,
-        nombres_titular: `${user.firstName} ${user.lastName}`,
+        nombre_titular: `${user.firstName} ${user.lastName}`,
         estudiantes_inscritos: createEstudiantes(estudiantes),
         estado: true
     }

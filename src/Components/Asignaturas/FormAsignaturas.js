@@ -34,8 +34,6 @@ const FormAsignaturas = ({ handleChange }) => {
 		estudiantes: [],
 		ras: [],
 		boletin_select: { codigo_calificacion: '' },
-		ASIGNATURAS_TECNICAS: [],
-		ASIGNATURAS_ACADEMICAS: []
 
 	}
 
@@ -84,7 +82,7 @@ const FormAsignaturas = ({ handleChange }) => {
 					boletin_select: state.boletin_select
 				})
 
-			setstate(initialState);
+			setstate({...state, initialState});
 		} else {
 
 			setstate({ ...state, error: true })

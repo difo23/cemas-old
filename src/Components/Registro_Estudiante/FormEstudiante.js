@@ -19,12 +19,29 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 
 		if (event.target) {
 
+			if (event.target.name !== 'rne') {
 
-			newState = {
-				...state,
-				[event.target.name]: event.target.value,
+				newState = {
+					...state,
+					[event.target.name]: event.target.value
+
+				}
+
+			} else {
+
+				const value = event.target.value;
+
+
+				newState = {
+					...state,
+					[event.target.name]: value.toLowerCase(),
+
+				}
 
 			}
+
+
+
 
 		} else {
 
@@ -89,7 +106,7 @@ const FormEstudiante = ({ estudiante, handleChange }) => {
 						name={'correo'}
 						className="form-control"
 						placeholder="Email"
-						value={state.rne}
+						value={state.correo}
 						autoComplete="off"
 						onChange={onChange}
 					/>
