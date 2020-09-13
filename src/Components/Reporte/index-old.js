@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from '../../api';
 import { userService, authenticationService } from '../../_services';
 import { history } from '../../_helpers';
+
 class Reporte extends Component {
 	constructor(props) {
 		super(props);

@@ -138,7 +138,7 @@ const Asignaturas = () => {
 
 
 			<div className="asignaturas">
-				<h3 className="diplay-4 mb-3"> Registro de Boletines:</h3>
+				<h3 className="diplay-4 mb-3"> Registro de asignaturas:</h3>
 				<FormAsignaturas handleChange={handleChange} />
 			</div>
 
@@ -146,7 +146,7 @@ const Asignaturas = () => {
 
 
 			<div >
-				<h3 className="diplay-4 mb-3 mt-3"> Lista de Boletines a calificar:</h3>
+				<h3 className="diplay-4 mb-3 mt-3"> Lista de asignaturas a calificar:</h3>
 				{state.error && <Alert message={`${state.message}`} type={'danger'} />}
 				{state.success && <Alert message={`${state.message}`} type={'success'} />}
 				<ListBoletines

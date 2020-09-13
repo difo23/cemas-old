@@ -1,4 +1,4 @@
-import getData from '../../../api/getData';
+import getData from '../../api/getData';
 
 
 const getCursosByCode = async (props) => {

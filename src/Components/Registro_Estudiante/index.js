@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import getCursosByCode from './helpers/getCursosByCode';
+import getCursosByCode from '../helpers/getCursosByCode';
 import FormCurso from './FormCurso';
 import Alert from '../helpers/Alert';
 import ListCurso from './ListCurso';

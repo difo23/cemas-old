@@ -28,9 +28,9 @@ export const Navbar = () => {
 						Registro
 					</NavLink>
 
-					
 
-					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/opcion4">
+
+					<NavLink activeClassName="active" className="nav-item nav-link" exact to="/reportes">
 						Reportes
 					</NavLink>
 				</div>
