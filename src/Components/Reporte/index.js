@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getUser } from '../helpers/getUser';
 import Alert from '../helpers/Alert';
 import getCursosByCode from '../helpers/getCursosByCode';
+import {  postData, URL } from '../../api';
 
 
 function Reporte(props) {
@@ -45,14 +46,43 @@ function Reporte(props) {
     }, [])
 
 
-    const hadledUpdate = (event) => {
+    const hadledUpdate = (reporte) => {
 
         console.log('UPDATE REPORTES')
+
+        postData('/reportes/create', reporte)
+            .then((res) => { return res.json() })
+            .then((data) => {
+                if (data.create) {
+                    setstate({
+                        ...state,
+                        message: `Los reportes de ${reporte.curso} fueron actualizados!`,
+                        error: false,
+                        success: true,
+                    })
+                } else {
+                    setstate({
+                        ...state,
+                        message: `No existen boletines para ${reporte.curso}!`,
+                        error: true,
+                        success: false,
+                    })
+                }
+
+            })
     }
 
-    const hadledPDF = (event) => {
 
-        console.log('GET PDF')
+
+
+
+    const hadledPDF = (reporte) => {
+
+        const urlComplete = `${URL}${'/reporte/pdf'}/${reporte._id}`;
+        console.log('GET PDF', urlComplete)
+
+        window.open(urlComplete)
+
     }
 
 
@@ -64,11 +94,23 @@ function Reporte(props) {
                     <h6 className="card-subtitle mb-2 text-muted"> {`${curso.codigo_curso}`}</h6>
                     <p className="card-text"> Periodo Educativo: {curso.codigo_periodo}</p>
                     <button
-                        onClick={hadledUpdate}
+                        onClick={() => hadledUpdate({
+                            _id: curso._id,
+                            curso: curso.codigo_curso,
+                            titular: curso.codigo_titular,
+                            periodo: curso.codigo_periodo
+
+                        })}
                         className="btn btn-outline-danger mr-1"
                     >Actualizar</button>
                     <button
-                        onClick={hadledPDF}
+                        onClick={() => hadledPDF({
+                            _id: curso._id,
+                            curso: curso.codigo_curso,
+                            titular: curso.codigo_titular,
+                            periodo: curso.codigo_periodo
+
+                        })}
                         className="btn btn-outline-success ml-1"
                     >PDF</button>
                 </div>
