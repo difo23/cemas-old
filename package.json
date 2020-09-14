@@ -37,7 +37,7 @@
     "yup": "^0.29.0"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server.js",
     "startdev": "env-cmd react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
