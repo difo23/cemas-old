@@ -16,7 +16,7 @@ const ListBoletines = ({ boletines, handleDelete }) => {
                     <p className="card-text"> Periodo Educativo: {boletin.codigo_periodo}</p>
                     <p className="card-text"> Estudiantes inscritos: {boletin.estudiantes}</p>
                     <p className="card-text"> Modalidad: {boletin.modalidad}</p>
-                    <button className="btn mr-1 btn-outline-danger " onClick={() => handleDelete(boletin._id, boletin.codigo_calificaciones)}>
+                    <button className="btn mr-1 btn-outline-danger " onClick={() => handleDelete(boletin._id, boletin.codigo_calificacion)}>
                         <i className=" fas fa-trash-alt" />
                     </button>
 

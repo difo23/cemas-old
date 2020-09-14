@@ -1,6 +1,9 @@
 import getData from './getData';
 import postData from './postData';
 import URL from './url';
+import deleteData from './deleteData';
+import updateData from './updateData';
+
 
 
 
@@ -9,6 +12,7 @@ import URL from './url';
 export {
     URL,
     getData,
-    postData
-
+    postData,
+    deleteData,
+    updateData
 };

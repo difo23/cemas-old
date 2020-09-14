@@ -55,7 +55,7 @@ const Registro = () => {
 				...state,
 				cursos: [...(state.cursos.filter(curso => curso._id !== id))],
 				success: true,
-				message: `Se ha eliminado el curso${codigo_calificaciones}.`,
+				message: `Se ha eliminado el curso ${codigo_calificaciones}.`,
 				error: false
 			})
 		} else {

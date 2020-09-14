@@ -91,7 +91,7 @@ const Asignaturas = () => {
 							...state,
 							error: true,
 							success: false,
-							message: `No exite curso con estudiantes registrados! Solicitar al titular que registre los estudiantes`
+							message: `No exite curso con estudiantes registrados! Solicitar al titular que registre los estudiantes.`
 						})
 
 					} else {
@@ -120,16 +120,16 @@ const Asignaturas = () => {
 				}
 			);
 
+		} else {
+
+			setstate({
+				...state,
+				...state,
+				success: false,
+				error: true,
+				message: 'Ya esta registrada esta asigantura :(!',
+			})
 		}
-
-		setstate({
-			...state,
-			...state,
-			success: false,
-			error: true,
-			message: 'Ya esta registrada esta asigantura, si la lista de estudiantes cambio debes eliminar este boletin y volerlo a crear :(!',
-		})
-
 	}
 
 
@@ -151,8 +151,11 @@ const Asignaturas = () => {
 
 			<div >
 				<h3 className="diplay-4 mb-3 mt-3"> Lista de asignaturas a calificar:</h3>
+
 				{state.error && <Alert message={`${state.message}`} type={'danger'} />}
+
 				{state.success && <Alert message={`${state.message}`} type={'success'} />}
+
 				<ListBoletines
 					handleDelete={handleDelete}
 					boletines={state.boletines}

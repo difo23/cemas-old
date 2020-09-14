@@ -19,6 +19,7 @@ const Board = () => {
 					<PrivateRoute exact path="/asignaturas" component={Asignaturas} />
 					<PrivateRoute exact path="/estudiantes" component={ListEstudiantes} />
 					<PrivateRoute exact path="/reportes" component={Reporte} />
+					<PrivateRoute exact path="/" component={Reporte} />
 
 				</Switch>
 			</div>

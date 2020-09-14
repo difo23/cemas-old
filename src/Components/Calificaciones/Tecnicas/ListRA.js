@@ -89,17 +89,17 @@ const ListRA = (props) => {
 					</div>
 
 					<div className="row">
-						<div className="col-sm-6 mb-3">
-							<button type="button" onClick={add} className="btn btn-block btn-outline-primary">
-								<i className="fas fa-plus" />
-							</button>
-						</div>
-						<div className="col-sm-6 mb-3 ">
+						{/* <div className="col-sm-6 mb-3"> */}
+						<button type="button" onClick={add} className="btn btn-block btn-outline-primary">
+							<i className="fas fa-plus" />
+						</button>
+						{/* </div> */}
+						{/* <div className="col-sm-6 mb-3 ">
 
 							<button alt="Guardar" onClick={props.updateBoletin} className="btn btn-block btn-outline-danger ">
 								<i className="fas fa-cloud-upload-alt" />
 							</button>
-						</div>
+						</div> */}
 
 
 

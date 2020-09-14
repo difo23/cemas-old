@@ -4,7 +4,6 @@ import { getUser } from '../helpers/getUser';
 import { MODALIDADES, GRADOS, SECCIONES, PERIDOS, RAS } from '../constants';
 import Alert from '../helpers/Alert';
 import createBoletinSelect from './helpers/createBoletinSelect';
-
 import getAsignaturas from '../helpers/getAsignaturas';
 
 
@@ -22,6 +21,8 @@ const FormAsignaturas = ({ handleChange }) => {
 		estudiante: null,
 		tecnico: false,
 		error: false,
+		success: false,
+		message: '',
 		modalidad: null,
 		asignatura: null,
 		grado: null,
@@ -64,7 +65,7 @@ const FormAsignaturas = ({ handleChange }) => {
 
 		getAsignaturas().then(res => {
 
-			setstate(state => {
+			setstate((state) => {
 				return (
 					{
 						...state,
@@ -87,10 +88,10 @@ const FormAsignaturas = ({ handleChange }) => {
 					boletin_select: state.boletin_select
 				})
 
-			setstate({ ...state, initialState });
+			setstate({ ...state, error: false })
 		} else {
 
-			setstate({ ...state, error: true })
+			setstate({ ...state, error: true, success: false, message: 'Debes completar todos los campos del formulario!' })
 
 		}
 
@@ -242,7 +243,8 @@ const FormAsignaturas = ({ handleChange }) => {
 				</div>
 
 			</div>
-			{state.error && <Alert message={'Debes completar todos los campos del formulario!'} type={'danger'} />}
+			{state.error && <Alert message={state.message} type={'danger'} />}
+
 		</form>
 	);
 };

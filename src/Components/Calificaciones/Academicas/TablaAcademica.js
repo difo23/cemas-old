@@ -3,13 +3,9 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import filterFactory from 'react-bootstrap-table2-filter';
 import Alert from '../../helpers/Alert';
 
-
-
 import { getUser } from '../../helpers/getUser';
 import { getColumns } from '../helper/getColumns';
-// import postData from '../../../api/postData';
-// import setCalificaciones from '../helper/setCalificaciones';
-// //import getCalificaciones from '../helper/getCalificaciones';
+
 import { cellEditabled } from '../helper/cellEditabled';
 import updateData from '../../../api/updateData';
 
@@ -71,8 +67,8 @@ const TablaAcademica = (props) => {
 		<div className="container  mt-3">
 
 
-			{state.success && <Alert message={'Todo salió bien! Y yo me alegro.'} type={'success'} />}
-			{state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
+			{state.success && <Alert message={'Calificaciones actualizadas!'} type={'success'} />}
+			{state.error && <Alert message={'Revisa tu conexión'} type={'danger'} />}
 
 			<div className="container  mt-3 mb-3">
 

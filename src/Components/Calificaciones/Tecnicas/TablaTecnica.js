@@ -76,8 +76,8 @@ const TablaTecnica = ({ boletin }) => {
 	return (
 		<div>
 
-			{state.success && <Alert message={'Todo salió bien! Y yo me alegro.'} type={'success'} />}
-			{state.error && <Alert message={'Revisa tu conexión o la información que envias!'} type={'danger'} />}
+			{state.success && <Alert message={'Calificaciones actualziadas!'} type={'success'} />}
+			{state.error && <Alert message={'Revisa tu conexión!'} type={'danger'} />}
 
 
 			{state.boletin.calificacion_estudiantes.map((estudiante => {

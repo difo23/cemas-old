@@ -65,6 +65,7 @@ function Reporte(props) {
                         error: false,
                         success: true,
                     })
+                    window.alert('Actualizacion completada!')
                 } else {
                     setstate({
                         ...state,
@@ -89,34 +90,37 @@ function Reporte(props) {
 
 
     const renderCursos = state.cursos.map((curso) => {
+
+
+        const query = {
+            _id: curso._id,
+            curso: curso.codigo_curso,
+            titular: curso.codigo_titular,
+            periodo: curso.codigo_periodo,
+            centro: curso.codigo_centro
+
+        }
+
+
         return (
-            <div key={curso._id} className="card border-dark mb-3 mt-3 ml-3 mr-3" style={{ "width": "18rem" }}>
+
+
+            < div key={curso._id} className="card border-dark mb-3 mt-3 ml-3 mr-3" style={{ "width": "18rem" }
+            }>
                 <div className="card-body">
                     <h5 className="card-title">Reporte</h5>
                     <h6 className="card-subtitle mb-2 text-muted"> {`${curso.codigo_curso}`}</h6>
                     <p className="card-text"> Periodo Educativo: {curso.codigo_periodo}</p>
                     <button
-                        onClick={() => hadledUpdate({
-                            _id: curso._id,
-                            curso: curso.codigo_curso,
-                            titular: curso.codigo_titular,
-                            periodo: curso.codigo_periodo
-
-                        })}
+                        onClick={() => hadledUpdate(query)}
                         className="btn btn-outline-danger mr-1"
                     >Actualizar</button>
                     <button
-                        onClick={() => hadledPDF({
-                            _id: curso._id,
-                            curso: curso.codigo_curso,
-                            titular: curso.codigo_titular,
-                            periodo: curso.codigo_periodo
-
-                        })}
+                        onClick={() => hadledPDF(query)}
                         className="btn btn-outline-success ml-1"
                     >PDF</button>
                 </div>
-            </div>
+            </div >
         );
     });
 
