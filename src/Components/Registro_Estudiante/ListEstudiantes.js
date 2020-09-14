@@ -13,15 +13,17 @@ const ListEstudiantes = ({ location, history }) => {
     })
 
     useEffect(() => {
-       
+
 
         if (!!location.state && !!location.state.curso) {
 
-           
 
-            setstate({
-                ...state,
-                curso: location.state.curso
+
+            setstate(state => {
+                return ({
+                    ...state,
+                    curso: location.state.curso
+                })
             })
         } else {
 

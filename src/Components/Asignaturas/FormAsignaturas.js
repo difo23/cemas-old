@@ -64,10 +64,15 @@ const FormAsignaturas = ({ handleChange }) => {
 
 		getAsignaturas().then(res => {
 
-			setstate({ ...state, ASIGNATURAS_TECNICAS: res.tecnicas, ASIGNATURAS_ACADEMICAS: res.academicas })
+			setstate(state => {
+				return (
+					{
+						...state,
+						ASIGNATURAS_TECNICAS: res.tecnicas,
+						ASIGNATURAS_ACADEMICAS: res.academicas
+					})
+			})
 		})
-
-
 	}, [])
 
 
@@ -82,7 +87,7 @@ const FormAsignaturas = ({ handleChange }) => {
 					boletin_select: state.boletin_select
 				})
 
-			setstate({...state, initialState});
+			setstate({ ...state, initialState });
 		} else {
 
 			setstate({ ...state, error: true })

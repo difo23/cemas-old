@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getUser } from '../helpers/getUser';
 import Alert from '../helpers/Alert';
 import getCursosByCode from '../helpers/getCursosByCode';
-import {  postData, URL } from '../../api';
+import { postData, URL } from '../../api';
 
 
 function Reporte(props) {
@@ -25,23 +25,28 @@ function Reporte(props) {
 
         //cargar lista de cursos creados por el usuario
         console.log('Cargar todos los cursos creados por el usuario');
-
+        let username = getUser().username
         getCursosByCode([{
             key: 'codigo_titular',
-            value: state.user.username
-        }]).then(data => setstate({
-            ...state,
-            error: false,
-            success: true,
-            message: `${data.length} Curso${data.length < 2 ? '' : 's'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
-            cursos: data
-        })).catch((err) => setstate({
-            ...state,
-            cursos: [],
-            message: 'Revisar el internet!',
-            error: true,
-            success: false,
-        }))
+            value: username
+        }]).then(data => setstate(
+            state => {
+                return ({
+                    ...state,
+                    error: false,
+                    success: true,
+                    message: `${data.length} Curso${data.length < 2 ? '' : 's'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
+                    cursos: data
+                })
+            })).catch((err) => setstate(state => {
+                return ({
+                    ...state,
+                    cursos: [],
+                    message: 'Revisar el internet!',
+                    error: true,
+                    success: false,
+                })
+            }))
 
     }, [])
 
@@ -71,9 +76,6 @@ function Reporte(props) {
 
             })
     }
-
-
-
 
 
     const hadledPDF = (reporte) => {

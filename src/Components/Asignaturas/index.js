@@ -24,19 +24,23 @@ const Asignaturas = () => {
 
 		getRecordsByCode([{
 			key: 'codigo_maestro',
-			value: state.user.username
-		}]).then(data => setstate({
-			...state,
-			error: false,
-			success: true,
-			message: `${data.length} boletin${data.length < 2 ? '' : 'es'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
-			boletines: data
-		})).catch((err) => setstate({
-			...state,
-			boletines: [],
-			message: 'Revisar el internet!',
-			error: true,
-			success: false,
+			value: getUser().username
+		}]).then(data => setstate(state => {
+			return ({
+				...state,
+				error: false,
+				success: true,
+				message: `${data.length} boletin${data.length < 2 ? '' : 'es'} obtenido${data.length < 2 ? '' : 's'} de  BD.`,
+				boletines: data
+			})
+		})).catch((err) => setstate(state => {
+			return ({
+				...state,
+				boletines: [],
+				message: 'Revisar el internet!',
+				error: true,
+				success: false,
+			})
 		})
 		)
 
