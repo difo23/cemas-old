@@ -58,6 +58,8 @@ function Reporte(props) {
         postData('/reportes/create', reporte)
             .then((res) => { return res.json() })
             .then((data) => {
+
+                console.log('Reportes', data);
                 if (data.create) {
                     setstate({
                         ...state,

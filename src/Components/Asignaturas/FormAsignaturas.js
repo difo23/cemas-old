@@ -74,7 +74,7 @@ const FormAsignaturas = ({ handleChange }) => {
 					})
 			})
 		})
-	}, [])
+	}, [state.modalidad])
 
 
 	const handleAdd = (e) => {

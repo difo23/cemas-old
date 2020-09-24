@@ -11,8 +11,10 @@ async function createCalificaciones(boletin) {
         }]
     });
 
+    console.log('Creacion de calificaciones', curso, curso.codigo_centro, boletin.codigo_centro)
 
-    if (curso.length > 0 && curso.codigo_centro === boletin.codigo_centro) {
+
+    if (curso.length > 0 && curso[0].codigo_centro === boletin.codigo_centro) {
         let calificaciones = curso[0].estudiantes_inscritos.map((alumno, i) => {
 
             let calificacion = {};
