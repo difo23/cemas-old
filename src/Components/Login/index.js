@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { authenticationService } from './_services';
 import { Formik } from 'formik';
@@ -10,7 +10,7 @@ const LoginPage = (props) => {
 		props.history.replace('/calificaciones');
 	}
 
-	const [loging, setloging] = useState(false);
+
 
 	const initialValues = {
 		username: '',
@@ -18,19 +18,30 @@ const LoginPage = (props) => {
 	};
 
 	const onSubmitFormik = ({ username, password }, { setStatus, setSubmitting }) => {
-		setStatus();
-		setloging(true)
+		setStatus({
+			logging: true
+		});
+
 		authenticationService.login(username, password).then(
 			(user) => {
-				const { from } = props.location.state || { from: { pathname: '/calificaciones' } };
-				props.history.push(from);
-			},
-			(error) => {
-				console.log('No autentificado error', error);
-				setSubmitting(false);
-				setStatus(error);
+
+				if (user) {
+
+					const { from } = props.location.state || { from: { pathname: '/calificaciones' } };
+					props.history.push(from);
+				} else {
+
+					setSubmitting(false);
+					setStatus({ logging: false, message: 'Usuario o contraseña incorrecta!' });
+				}
+
 			}
-		);
+		).catch((error) => {
+
+			console.log('No autentificado error', error);
+			setSubmitting(false);
+			setStatus({ logging: false, message: 'No autentificado error internet' });
+		})
 	};
 
 	return (
@@ -47,11 +58,7 @@ const LoginPage = (props) => {
 					>
 						{renderFormik}
 					</Formik>
-					{
-						loging && <div className=" spinner-grow text-success ml-3" role="status">
-							<span className="sr-only">Loading...</span>
-						</div>
-					}
+
 				</div>
 
 			</div>
