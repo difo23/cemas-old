@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import registerSchemaFormik from './registerSchemaFormik';
 import RegisterFormFormik from './RegisterFormFormik';

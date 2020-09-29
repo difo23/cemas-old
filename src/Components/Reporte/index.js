@@ -130,7 +130,14 @@ function Reporte(props) {
     return (
         <div className="container mt-3 mb-5" >
 
-            <h5>Reportes:</h5>
+            <h1>Reportes:
+                 {
+                    !(state.success) && <div className=" spinner-grow text-success ml-3" role="status">
+                        <span className="sr-only">Loading...</span>
+                    </div>
+                }
+            </h1>
+
             <hr style={{ border: '1px solid green' }} />
             {state.error && <Alert message={`${state.message}`} type={'danger'} />}
             {state.success && <Alert message={`${state.message}`} type={'success'} />}
