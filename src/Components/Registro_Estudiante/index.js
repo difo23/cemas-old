@@ -67,7 +67,6 @@ const Registro = () => {
 
 	const handleChange = (event) => {
 
-
 		if (event.estudiantes > 1) {
 
 			createCurso({ ...event, user: state.user }).then((res) => {
@@ -101,13 +100,7 @@ const Registro = () => {
 
 				}
 
-
-
-
-
 			})
-
-
 
 		};
 	}
