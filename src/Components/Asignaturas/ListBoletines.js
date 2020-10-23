@@ -10,7 +10,7 @@ const ListBoletines = ({ boletines, handleDelete }) => {
         return (
             <div key={boletin._id} className="card border-dark mb-3 mt-3 ml-3 mr-3" style={{ "width": "18rem" }}>
                 <div className="card-body">
-                    <h5 className="card-title">Asigantura</h5>
+                    <h5 className="card-title">Asignatura</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{`${boletin.codigo_asignatura}`}</h6>
                     <p className="card-text"> <strong>{boletin.codigo_curso}</strong></p>
                     <p className="card-text"> Periodo Educativo: {boletin.codigo_periodo}</p>
