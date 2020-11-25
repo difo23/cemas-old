@@ -6,6 +6,7 @@ import postData from '../../api/postData';
 
 const Register = props => {
 
+
     const initialValues = {
         username: '',
         password: '',
@@ -17,19 +18,38 @@ const Register = props => {
 
 
     const onSubmitFormik = ({ username, password, lastName, firstName, codigoCentro }, { setStatus, setSubmitting }) => {
-        setStatus();
+        setStatus({
+            register: true,
+            message: null,
+            error: false,
+
+        });
+
 
         console.log(username, password, lastName, firstName, codigoCentro)
         postData('/register', { username, password, lastName, firstName, codigoCentro })
             .then((data) => {
-                console.log(data)
+
 
                 switch (data.status) {
+
                     case 201:
-                        setStatus('Exito: Su usuario ha sido creado!');
+
+                        setStatus({
+                            register: false,
+                            message: 'Su usuario ha sido creado con exito! Regresar a login.',
+                            error: false,
+
+                        });
                         break;
                     default:
-                        setStatus('Error: Email repetido!');
+                        setStatus({
+                            register: false,
+                            message: 'Error: Email repetido!',
+                            error: true,
+
+                        });
+
                         break;
 
 
@@ -40,7 +60,13 @@ const Register = props => {
             }).catch((error) => {
                 console.log(error);
                 setSubmitting(false);
-                setStatus('Error: Fallo con el Internet!');
+                setStatus({
+                    register: false,
+                    message: 'Error: Fallo con el Internet!',
+                    error: true,
+
+                });
+
             })
 
     };
@@ -60,7 +86,9 @@ const Register = props => {
                     >
                         {RegisterFormFormik}
                     </Formik>
+
                 </div>
+
             </div>
         </div>
     );

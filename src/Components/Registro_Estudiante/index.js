@@ -67,7 +67,6 @@ const Registro = () => {
 
 	const handleChange = (event) => {
 
-
 		if (event.estudiantes > 1) {
 
 			createCurso({ ...event, user: state.user }).then((res) => {
@@ -101,13 +100,7 @@ const Registro = () => {
 
 				}
 
-
-
-
-
 			})
-
-
 
 		};
 	}
@@ -115,7 +108,13 @@ const Registro = () => {
 
 	return (
 		<div className="container mt-3 mb-5">
-			<h1>Registro</h1>
+			<h1>Registro:
+				{
+					!(state.success) && <div className=" spinner-grow text-success ml-3" role="status">
+						<span className="sr-only">Loading...</span>
+					</div>
+				}
+			</h1>
 			<hr style={{ border: '1px solid green' }} />
 			<FormCurso handleChange={handleChange} />
 			<hr style={{ border: '1px solid green' }} />

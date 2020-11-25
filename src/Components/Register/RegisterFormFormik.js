@@ -71,10 +71,15 @@ const RegisterFormFormik = ({ errors, status, touched, isSubmitting }) => {
 					</button>
 
                     <Link className="card-link ml-1 " to='/login'> Back to Login</Link>
-
+                    {
+                        status && status.register && <div className="spinner-grow text-success ml-3" role="status">
+                            <span className="sr-only">Saving...</span>
+                        </div>
+                    }
 
                 </div>
-                {status && <div className={'alert alert-danger'}>{status}</div>}
+                {status && status.message && <div className={`alert alert-${status.error ? 'danger' : 'success'}`}>{status.message}</div>}
+
             </Form>
         </div>
     );

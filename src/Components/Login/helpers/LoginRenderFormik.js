@@ -31,9 +31,14 @@ const renderFormik = ({ errors, status, touched, isSubmitting }) => {
 
 					<Link className="card-link ml-1 " to='/register'> Go to Register</Link>
 
+					{
+						status && status.logging && <div className=" spinner-grow text-success ml-3" role="status">
+							<span className="sr-only">Loading...</span>
+						</div>
+					}
 
 				</div>
-				{status && <div className={'alert alert-danger'}>{status}</div>}
+				{status && status.message && <div className={'alert alert-danger'}>{status.message}</div>}
 			</Form>
 		</div>
 	);

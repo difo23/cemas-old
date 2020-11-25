@@ -3,6 +3,7 @@ import getData from '../../../api/getData';
 async function createCalificaciones(boletin) {
 
     //Busco el curso al que pertenece el boletin para tomar los datos del estudiante
+    //TODO: hacer la busqueda por el ID del curso en cuestion.
     let curso = await getData({
         url: '/curso',
         params: [{
